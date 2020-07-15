@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config
+    xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
+    version="2.2">
+
+<managed-bean>
+		<managed-bean-name>accountManager</managed-bean-name>
+		<managed-bean-class>com.StellarShoes.Beans.AccountManager</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>item</managed-bean-name>
+		<managed-bean-class>com.StellarShoes.Beans.Item</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>checkout</managed-bean-name>
+		<managed-bean-class>com.StellarShoes.Beans.Checkout</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>resetPass</managed-bean-name>
+		<managed-bean-class>com.StellarShoes.Beans.ResetPassword</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>createBN</managed-bean-name>
+		<managed-bean-class>com.StellarShoes.Beans.CreateAccountBN</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>manageProduct</managed-bean-name>
+		<managed-bean-class>com.StellarShoes.Beans.ManageProduct</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>productBN</managed-bean-name>
+		<managed-bean-class>com.StellarShoes.Beans.ProductBN</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+
+</faces-config>

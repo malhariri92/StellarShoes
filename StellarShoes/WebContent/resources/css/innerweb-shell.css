@@ -1,0 +1,215 @@
+body {
+    background-color: #f4eee9;
+    font-family: 'Barlow', sans-serif;
+}
+
+#user-name {
+    background-color: black;
+    color: white;    
+    /* display: flex; */
+    /* flex-wrap: nowrap; */
+    height: 50px;
+    /* justify-content: space-between; */
+    -webkit-box-shadow: 10px 2px 10px -1px rgba(161,161,161,0.41);
+    -moz-box-shadow: 10px 2px 10px -1px rgba(161,161,161,0.41);
+    box-shadow: 10px 2px 10px -1px rgba(161,161,161,0.41);
+    /* padding: 2%; */
+    position: fixed;
+    top: 0;
+    z-index: 2;
+    width: 100%;
+}
+
+#user-name p {
+    color: white;
+    font-size: 2em;
+    font-weight: 400;
+    height: 50px;
+    line-height: 50px;
+    position: fixed;
+    margin-top: 0;
+    z-index: 2;
+}    
+
+#top-icons {
+    background-color: black;
+    display: flex;
+    flex-wrap: nowrap;
+    height: 50px;
+    align-items: center;
+    justify-content: flex-end;
+    top: 0;
+    right: 0;
+    position: fixed;
+    text-align: center;
+    z-index: 4;
+}
+
+.fa {
+    color: white;
+    display: inline-block;
+    padding-right: .5em;
+    text-align: center;
+}
+
+/* The slide navigation menu */
+.nav-bar {
+    align-items: center;
+    background-color: #7f2226;
+    color: white;
+    display: flex; 
+    flex-wrap: nowrap;
+    /*padding-bottom: 14px;
+    padding-top: 70px;*/
+    /* justify-content: space-evenly; */
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+
+    /* position: fixed; */
+    width: 80%;
+    z-index: 1;   
+}
+
+.nav-item {
+    margin-left: auto;
+    margin-right: auto;
+    padding: .5em;
+    text-align: center;
+    /* width: 16.5%; */
+}
+
+/* .nav-item img {
+    width: 75px;
+    height: auto;
+} */
+
+/* The navigation menu links */
+.nav-bar a {
+    /* padding: 14px 8px 8px 12px; */
+    text-decoration: none;
+    /* font-size: 25px; */
+    color: white;
+    /* display: block; */
+}
+
+/* Mouseover changes nav links */
+.nav-bar a:hover, .slideNav a:active {
+    color: white; 
+}
+
+a:hover, a:active {
+    color: white; 
+
+}
+
+.page-ni {
+    background-color: #C1746E;
+}
+
+main {
+    background-color: #C1746E;
+    /* margin-top: 150px; */
+    margin-bottom: 5em;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    width: 80%;
+    z-index: 1;
+
+}
+
+
+h1 {
+    color: black;
+    font-size: 3em;
+    font-weight: 400;
+
+}
+
+h2 {
+    color: #7f2226;
+    font-size: 1.15em;
+    line-height: 1em;
+    font-weight: 800;
+}
+
+section {
+    background-color: white;
+    min-height: 200px;
+    margin: 1em;
+    padding: 1em;
+    z-index: 1;
+}
+
+section img {
+    border: 1px solid black;
+    float: left;
+    width: 150px;
+    height: auto;
+    margin-right: 1em;
+}
+
+section p {
+    width: 80%;
+}
+
+.search-section {
+    background: white;
+    color: black;
+    max-height: 35px;
+    min-height: 35px;
+    width: 80%;
+}
+
+.search-section .fa {
+    color: black;
+}
+
+button {
+    padding: .5em;
+    width: 150px;
+    margin-right: 10px;
+}
+
+button .fa {
+    color: black;
+}
+
+.ui-growl {
+top: 200px !important;
+right: 600px !important;
+background-color:#C1746E;
+}
+p {
+    color: black;
+    font-size: 1em;
+    font-weight: 400;
+}
+
+a {
+    text-decoration: none;
+    color: black; 
+}
+
+ul {
+}
+
+li {
+}
+
+
+
+
+
+
+
+
+
+
+
+
+    

@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" 
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+<title>Admin Services</title>
+<meta content="width=device-width, initial-scale=1" name="viewport" />
+<link rel="stylesheet" type="text/css" href="./resources/css/reset.css"/>
+<link rel="stylesheet" type="text/css" href="./resources/css/innerweb-shell.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+<link href="https://fonts.googleapis.com/css?family=Barlow:400,600,900" rel="stylesheet"/>
+</h:head>
+<body>
+	<header>
+		<div id="user-name">
+			<p>#{accountManager.email}</p>
+		</div>
+		<div id="top-icons">
+			<a href=""><i class="fa fa-cog fa-2x"></i></a> 
+			<h:form>
+			<h:commandLink action = "#{accountManager.logout()}"><i class="fa fa-sign-out fa-2x"></i></h:commandLink> 
+			</h:form>
+		</div>
+		<div class="nav-bar">
+			<a href="index.xhtml" class="nav-item"><img id="logo" src="./resources/images/stellar-shoes-logo.svg" ></img><br/>Main Site</a>
+			<a href="" class="nav-item"><i class="fa fa-home fa-3x"></i><br/>Home</a>
+			<a href="" class="nav-item page-ni"><i class="fa fa-archive fa-3x"></i><br/>Products</a>
+            <a href="" class="nav-item"><i class="fa fa-truck fa-3x"></i><br/>Orders</a>
+			<a href="" class="nav-item"><i class="fa fa-user-circle-o fa-3x"></i><br/>Customers</a>
+			<a href="" class="nav-item"><i class="fa fa-money fa-3x"></i><br/>Payments</a>
+        </div>
+	</header>
+
+	<main id="main">
+	<h1>Products</h1>
+	<section class = "search-section">
+		<a href=""><i class="fa fa-search fa-2x"></i></a> 
+		
+		<p:commandButton style = "width:170px; float:right;" value = "Add Product" icon="fa fa-plus-square" ></p:commandButton>
+		<i class="fa fa-sort fa-2x"></i>
+	</section>
+	<p:growl id="message" life = "2000"/>
+	
+	<ui:repeat var="shoe"  value="#{productBN.loadProducts()}">
+	<section>
+		<h2>
+			Product ID ##{shoe.productID}
+		</h2>
+		<img src="#{shoe.imgUrl}" alt="image of a dress shoe"/>
+		<p>#{shoe.name}</p>
+		<p> Description: #{shoe.description} </p>
+		<p>Price: $#{shoe.price}</p>
+		
+		<h:form>
+		
+        <p:commandButton action="#{item.deleteItem(shoe.productID)}" update="message" style = "width:185px"
+                 icon="ui-icon ui-icon-trash" value="Delete Product" >
+          <p:confirm header="LogIn" 
+               icon="ui-icon-alert"/>
+        </p:commandButton>
+          <p:confirmDialog global="true" showEffect="fade" hideEffect="fade"  message = "Are you sure about deleting this product?" > 
+             <p:commandButton  onclick = "true" value="Yes" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
+             <p:commandButton  value="No" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>
+          </p:confirmDialog>
+		<p:panel id="toggleable" header="Edit Product" toggleable="true" closable="false" toggleSpeed="500" closeSpeed="500"
+		 style="margin-top:20px" toggleableHeader="true" collapsed="true" ajax = "true">	
+		 <p:ajax id = "#{shoe.productID}" event="toggle" listener="#{item.assignProduct(shoe)}"/>
+		 
+         <p:panelGrid columns="2" cellpadding="5">
+		<p:outputLabel value = "Product ID:" /> <p:outputLabel value = "#{shoe.productID}" /> 
+		<p:outputLabel value = "Product Name:"/> <p:outputLabel value = "#{shoe.name}" />
+		<p:outputLabel value = "Category: "/><p:outputLabel value = "#{shoe.description}" />
+		<p:outputLabel value = "New Price:" style="margin-right:30px"/> 
+		<p:inputText value = "#{manageProduct.newPrice}" />
+		<p:outputLabel value = "New Color:" style="margin-right:30px"/> <h:inputText binding = "#{manageProduct.newColor}"/>
+		
+		</p:panelGrid><br/>
+		<p:messages styleClass = "error"/>
+		<p:commandButton action = "#{manageProduct.editItem(shoe.productID)}" style = "width:170px; margin-right:5px" 
+		value = "Edit Product" icon="fa fa-pencil-square">
+		</p:commandButton>
+		</p:panel>
+		
+		</h:form>
+    
+	</section>
+	</ui:repeat>
+	
+	</main>
+
+    <script src="./resources/js/jquery-3.3.1.js"></script>
+    
+    <h:outputScript target="head">
+    
+</h:outputScript>
+
+</body>
+</html>
