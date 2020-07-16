@@ -54,8 +54,7 @@ public class LoginFilter implements Filter{
 	        boolean isLoginRequest = httpRequest.getRequestURI().equals(loginURI);
 	        
 	        boolean isLoginPage = httpRequest.getRequestURI().endsWith("login.xhtml");
-	        
-	        
+	        	        
 	        if((!isAdminLoggedIn && isAdminLoginRequired()) || (!isCustomerLoggedIn && isCustomerLoginRequired())) {
 	        	
 	        	resp.sendRedirect(httpRequest.getContextPath() + "/faces/login.xhtml");

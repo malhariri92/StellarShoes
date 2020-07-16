@@ -50,7 +50,7 @@
            </div>
           
           <h:form > 
-           <ui:repeat var="shoe"  value="#{item.cartList}">
+           <ui:repeat var="shoe"  value="#{checkout.cartList}">
          <div class = "cartItems">
          
                 <h3> #{shoe.name}</h3>
@@ -58,16 +58,21 @@
 		<img style = "width:30%" src="#{shoe.imgUrl}" alt="image of a dress shoe"/>
 		<p>Product ID ##{shoe.productID}</p>
 		<p> Description: #{shoe.description} </p>
-		<p>Price: $#{shoe.price}</p>
-		<h:commandLink style = "color:red" value = "Remove Item" action = "#{item.removeFromCart(shoe.name)}"/>
+		<p>Price: $#{shoe.price}</p><br/>
+		
+		<p:commandLink style = "color:red" value = "Remove Item" action = "#{checkout.removeFromCart(shoe)}"/>
 		</div>
 		</ui:repeat>
 		</h:form>
-		
-		
+		<div style = "margin-left:600px;">
+		<p:outputLabel><strong>SUBTOTAL: </strong>   $#{checkout.subTotal}</p:outputLabel><br/>
+		<p:outputLabel><strong>TAX: </strong> $#{checkout.tax}</p:outputLabel> <br/>
+		<p:outputLabel><strong>TOTAL: </strong>$#{checkout.total}</p:outputLabel>
+		</div>
 		<p:growl id = "message"></p:growl>
            
 			<div class="panel-footer">
+			
 			<h:form id= "form">
 			
 			<h:commandButton value = "Continue Shopping" action = "category?faces-redirect=true"
@@ -86,8 +91,26 @@
               </p:commandButton>
               </h:form>
               
-              <p:dialog header = "Log in" widgetVar = "loginDialog" id = "login" showEffect="explode" hideEffect="bounce" height="100">    
-               <ui:include src="login.xhtml"></ui:include>
+              <p:dialog header = "Log in" widgetVar = "loginDialog" id = "login"
+               showEffect="explode" hideEffect="fade" height="200" width= "700">
+              <h:form>   
+               <h:outputLabel>Email: </h:outputLabel>
+
+					  <p:inputText id= "useremail" placeholder = "example@email.com" required = "true" requiredMessage = "Email is required" 
+					  validatorMessage = "Please enter a valid email" value="#{accountManager.email}" style = "width:400px;margin-left:80px">
+					  <f:validateRegex pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"/> 
+					  </p:inputText> <br/><br/>
+					  
+					  
+					  <p:outputLabel>Password:</p:outputLabel>
+					  
+					  <p:password id="pass" required = "true" requiredMessage = "Password is required"
+					       value = "#{accountManager.password}" style = "width:400px;margin-left:50px"> 
+					  </p:password><br/><br/>
+					     
+					<p:commandButton id="login" value="Log in" action= "#{accountManager.login}" onclick="PF('loginDialog').hide();" /><br/><br/>
+					<p:messages layout = "list" styleClass = "error"></p:messages>
+					</h:form> 
 			  </p:dialog>
 			  
 			  
@@ -127,33 +150,10 @@
 		</section>
 	</footer>
 
-    <script src="./resources/js/jquery-3.3.1.js" target="head" ></script>
-	<script src="./resources/js/hamburger-js.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <h:outputScript library="primefaces" name="jquery/jquery.js" />
+	<h:outputScript library="js" name="hamburger-js.js" />
+    
 
-	<script>
-	jQuery(document).ready(function() {
-
- 			// $('.method').on('click', function() {
-   			// 	$('.method').removeClass('blue-border');
-   			// 	$(this).addClass('blue-border');
- 			// });
-
-		})
-
-		var jQuerycardInput = jQuery('.input-fields input');
-
-	jQuery('.next-btn').on('click', function(e) {
-
-		jQuerycardInput.removeClass('warning');
-
-		jQuerycardInput.each(function() {    
-     			var jQuerythis = jQuery(this);
-     			if (!jQuerythis.val()) {
-     				jQuerythis.addClass('warning');
-     			}
-  			})
-		});
-	</script>
+	
 </body>
 </html>

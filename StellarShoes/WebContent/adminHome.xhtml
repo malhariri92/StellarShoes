@@ -58,29 +58,33 @@
 		
         <p:commandButton action="#{item.deleteItem(shoe.productID)}" update="message" style = "width:185px"
                  icon="ui-icon ui-icon-trash" value="Delete Product" >
-          <p:confirm header="LogIn" 
+          <p:confirm header="Confirm Delete" 
                icon="ui-icon-alert"/>
         </p:commandButton>
-          <p:confirmDialog global="true" showEffect="fade" hideEffect="fade"  message = "Are you sure about deleting this product?" > 
+          <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" 
+               message = "Are you sure about deleting this product?" > 
              <p:commandButton  onclick = "true" value="Yes" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
-             <p:commandButton  value="No" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>
+             <p:commandButton onclick = "false" value="No" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>
           </p:confirmDialog>
+          
 		<p:panel id="toggleable" header="Edit Product" toggleable="true" closable="false" toggleSpeed="500" closeSpeed="500"
 		 style="margin-top:20px" toggleableHeader="true" collapsed="true" ajax = "true">	
-		 <p:ajax id = "#{shoe.productID}" event="toggle" listener="#{item.assignProduct(shoe)}"/>
+		 <p:ajax event = "toggle" action = "manageProduct.assignProduct(shoe)" update = "container"></p:ajax>
 		 
-         <p:panelGrid columns="2" cellpadding="5">
-		<p:outputLabel value = "Product ID:" /> <p:outputLabel value = "#{shoe.productID}" /> 
-		<p:outputLabel value = "Product Name:"/> <p:outputLabel value = "#{shoe.name}" />
-		<p:outputLabel value = "Category: "/><p:outputLabel value = "#{shoe.description}" />
+        <p:panelGrid id = "container"  columns="2" cellpadding="5">
+		<p:outputLabel value = "Product ID:" /> <p:outputLabel value = "#{manageProduct.product.productID}" /> 
+		<p:outputLabel value = "Product Name:"/> <p:outputLabel value = "#{manageProduct.product.name}" />
+		<p:outputLabel value = "Category: "/><p:outputLabel value = "#{manageProduct.product.description}" />
 		<p:outputLabel value = "New Price:" style="margin-right:30px"/> 
-		<p:inputText value = "#{manageProduct.newPrice}" />
-		<p:outputLabel value = "New Color:" style="margin-right:30px"/> <h:inputText binding = "#{manageProduct.newColor}"/>
-		
+		<p:inputText value = "#{manageProduct.product.price}"><f:ajax/></p:inputText>
+		<p:outputLabel value = "New Color:" style="margin-right:30px"/> 
+		<p:inputText value = "#{manageProduct.product.color}"><f:ajax/></p:inputText>
+		<p:outputLabel value = "New Image URL:" style="margin-right:30px"/>
+		<p:inputText value = "#{manageProduct.product.color}"><f:ajax/></p:inputText>
 		</p:panelGrid><br/>
 		<p:messages styleClass = "error"/>
-		<p:commandButton action = "#{manageProduct.editItem(shoe.productID)}" style = "width:170px; margin-right:5px" 
-		value = "Edit Product" icon="fa fa-pencil-square">
+		<p:commandButton action = "#{manageProduct.print()}" style = "width:170px; margin-right:5px" 
+		value = "Save" icon="fa fa-pencil-square">
 		</p:commandButton>
 		</p:panel>
 		
@@ -91,11 +95,7 @@
 	
 	</main>
 
-    <script src="./resources/js/jquery-3.3.1.js"></script>
-    
-    <h:outputScript target="head">
-    
-</h:outputScript>
+   
 
 </body>
 </html>

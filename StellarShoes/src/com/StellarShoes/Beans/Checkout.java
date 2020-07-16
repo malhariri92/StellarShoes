@@ -5,6 +5,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.faces.context.FacesContext;
 
 import com.StellarShoes.*;
 import com.StellarShoes.utils.DatabaseConnector;
@@ -20,15 +25,32 @@ public class Checkout implements Serializable{
 	private static final String addressSQL = "SELECT STREET_ADDRESS1, STREET_ADDRESS2, CITY, STATE, ZIP "
 			+ "FROM ADDRESS WHERE CUSTOMER_ID = ?";
 			
-	private Customer customer = AccountManager.sessionCustomer == null ? null: AccountManager.sessionCustomer ;
+	private Customer customer ;
 	
-	private Address address = customer == null ? new Address() : getCustomerAddress();
+	private Address address;
 	
-	private Payment payment = customer == null ? new Payment() : getPaymentInfo();
+	private Payment payment;
 	
 	private int cvv2;
+	private double subTotal;
+	private final double taxRate = 0.0575;
+	private double tax;
+	private double total;
+	private Product product;
+	private List<Product> cartList = new ArrayList<>();
 	
-	public Checkout() {}
+	
+	public Checkout() {
+		
+		customer = AccountManager.sessionCustomer == null ? null: AccountManager.sessionCustomer ;
+		
+	    address = customer == null ? new Address() : getCustomerAddress();
+		
+	    payment = customer == null ? new Payment() : getPaymentInfo();
+	   
+	    cartList = new ArrayList<>();
+	    
+	}
 	
 	
 	
@@ -92,10 +114,70 @@ private Payment getPaymentInfo() {
 		}
 		return pmt;
 	}
-public void openLoginDlg() {
-    Messages.show("will open login page");
+     
+
+public String addToCart(Product item) {
+	product = item;
+	   cartList.add(product);
+	   
+	   addCost(product);
+	   
+	   
+	   Messages.show(product.getName()+" was added to your cart successfully!");
+	   
+	   FacesContext context = FacesContext.getCurrentInstance();
+	   context.getExternalContext().getFlash().setKeepMessages(true);
+	   
+	    return "item?itemID="+product.getProductID()+"faces-redirect=true"; 
 }
 
+    public String removeFromCart(Product item) {
+	   int index = 0;
+	   for(Product product : cartList) {
+		   if(product.equals(item)) {
+			   
+			 index = cartList.indexOf(product);
+			 break;
+			 
+		   }
+		   
+	   }
+	   cartList.remove(index);
+	   subtractCost(item);
+	   
+	   return "checkout1?faces-redirect=true";  
+	  
+}
+    private void addCost(Product item) {
+       subTotal += product.getPrice();
+ 	   
+ 	   tax = subTotal * taxRate;
+ 	    
+ 	   total = subTotal + tax;
+ 	   
+ 	  formatCost();
+    }
+     
+    
+    private void subtractCost(Product item) {
+    	   subTotal -= product.getPrice();
+	 	   
+	 	   tax = subTotal * taxRate;
+	 	    
+	 	   total = subTotal - tax;
+	 	   
+	 	  formatCost();	
+    }
+    
+    
+    private void formatCost() {
+    	DecimalFormat df = new DecimalFormat("#.00");
+    	
+    	subTotal = Double.parseDouble(df.format(subTotal));
+    	tax = Double.parseDouble(df.format(tax));
+    	total = Double.parseDouble(df.format(total));
+    }
+    
 	public Customer getCustomer() {
 		return customer;
 	}
@@ -148,7 +230,65 @@ public void openLoginDlg() {
 	public void setPayment(Payment payment) {
 		this.payment = payment;
 	}
-	
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
+
+	public List<Product> getCartList() {
+		return cartList;
+	}
+
+
+	public void setCartList(List<Product> cartList) {
+		this.cartList = cartList;
+	}
+
+
+
+
+	public double getSubTotal() {
+		return subTotal;
+	}
+
+
+
+
+	public void setSubTotal(double subTotal) {
+		this.subTotal = subTotal;
+	}
+
+
+
+
+	public double getTax() {
+		return tax;
+	}
+
+
+
+
+	public void setTax(double tax) {
+		this.tax = tax;
+	}
+
+
+
+
+	public double getTotal() {
+		return total;
+	}
+
+
+
+
+	public void setTotal(double total) {
+		this.total = total;
+	}
 
 	
 	}

@@ -184,6 +184,11 @@
   max-width: 700px;
     margin: 0 auto;
   }
+  
+.ui-growl {
+    top: 200px !important;
+    right: 600px !important;
+  }
   .createInput{
    margin-left: 200px;
   width: 300px;

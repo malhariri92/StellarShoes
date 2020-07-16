@@ -35,12 +35,12 @@ public class AccountManager implements Serializable {
 	public AccountManager() {
 	}
 
-	public String login() {
+	public void login() {
 		
 		if(PasswordValidator.validate(password) == false) {
 			
 			Messages.show(incorrectPasswordMsg);
-			return "login";
+			
 		}
 		
 		if(email.endsWith("@stellarshoes.com")) {
@@ -50,13 +50,13 @@ public class AccountManager implements Serializable {
 				HttpSession session = SessionManager.getSession();
 				session.setAttribute("admin", email);
 				
-				return "adminHome?faces-redirect=true";
+				
 			}
 			else {
 				
 				
 				Messages.show("Incorrect username or password!");
-				return "login";
+				
 			}
 		}
 		
@@ -65,14 +65,15 @@ public class AccountManager implements Serializable {
 				HttpSession session = SessionManager.getSession();
 				session.setAttribute("customer", email);
 				
-				getCustomerinfo();			
+				getCustomerinfo();
+				Messages.show("Incorrect username or password!");
 			isLoggedin = true;
-			return "success?faces-redirect=true";
+			
 		   } else {
 			
 			Messages.show("Incorrect username or password!");
 			
-			return "login";
+			
 		   }
 		}
 		

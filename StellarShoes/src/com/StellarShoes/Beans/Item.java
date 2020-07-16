@@ -21,6 +21,8 @@ public class Item implements Serializable {
 
 	private int itemID;
 	private Product product;
+	private double newPrice;
+	private String newColor;
 	private final String sql = "SELECT s.SHOE_ID, s.SHOE_NAME, s.SHOE_SIZE, "
 			+ "s.SHOE_COLOR, s.SHOE_PRICE, s.CATEGORY_ID, "
 			+ "s.IMAGE_URL, c.DESCRIPTION FROM SHOE as s "
@@ -35,7 +37,7 @@ public class Item implements Serializable {
 			"DROP CONSTRAINT FK_SHOE_ID " + 
 			"DELETE from SHOE WHERE SHOE_ID =?";
 	
-	private List<Product> cartList = new ArrayList<>();
+	
 	
 	public Item() {}
 	
@@ -82,7 +84,7 @@ public class Item implements Serializable {
 	 * @return the admin page 
 	 */
 	public String deleteItem(int itemID) {
-		
+		System.out.println("deleted " +itemID);
 //	     System.out.println("here is the product ID: " +itemID);
 //		   Connection conn = null;
 //			PreparedStatement pstmt = null;
@@ -117,36 +119,52 @@ public class Item implements Serializable {
 	 * 
 	 * @param shoe the product to be edited
 	 * @return admin page 
-	 */
+     */
+	public String editItem(Product item) {
+		product = item;
+		product.setColor(newColor);
+		product.setPrice(newPrice);
+		newPrice = 0.0;
+		newColor = null;
+	     System.out.println("here is the new Color: " +product.getColor() 
+	     +"\n new price "+product.getPrice() + " itemID "+product.getProductID());
+	     
+//		   Connection conn = null;
+//			PreparedStatement pstmt = null;
+//			
+//			try  {
+//				conn = DatabaseConnector.getConnection();
+//				
+//				pstmt = conn.prepareStatement(editSQL);
+//	            pstmt.setString(1,shoe.getColor());
+//	            pstmt.setString(2,shoe.getImgUrl());
+//	            pstmt.setDouble(3, shoe.getPrice());
+//	            pstmt.setInt(4, shoe.getProductID());
+//				int rs = pstmt.executeUpdate();
+//				
+//				if(rs > 0) {
+//					
+//				Messages.show("Your changes were saved");
+//				} else {
+//					Messages.show("no effect");
+//				}
+//				
+//	          pstmt.close();
+//	   
+//			} catch (SQLException ex) {
+//				
+//				System.out.println("error from editItem() -->" + ex.getMessage());
+//			} finally {
+//				DatabaseConnector.close(conn);
+//			}
+//			
+			return "adminHome?faces-redirect=true";
+		}
 	
-	   public String addToCart() {
-		   cartList.add(product);
-		   
-		   Messages.show("One item was added to your cart");
-		   
-		   return "checkout1?faces-redirect=true";
-	   }
 	   
-	   public String removeFromCart(String name) {
-		   int index = 0;
-		   for(Product product : cartList) {
-			   if(product.getName().equals(name)) {
-				 index = cartList.indexOf(product);
-				 
-			   }
-			  
-		   }
-		   cartList.remove(index);
-		   
-		   return "checkout1?faces-redirect=true";  
-		  
-	   }
 	   
 	 
-	   public void assignProduct(Product shoe) {
-		   product = shoe; 
-		   System.out.println("this is the id " +product.getProductID() + "name " + product.getName());
-	   }
+	   
 
 	public int getItemID() {
 		return itemID;
@@ -166,16 +184,21 @@ public class Item implements Serializable {
 		this.product = product;
 	}
 
-
-	public List<Product> getCartList() {
-		return cartList;
+	
+	public double getNewPrice() {
+		return newPrice;
 	}
 
-
-	public void setCartList(List<Product> cartList) {
-		this.cartList = cartList;
+	public void setNewPrice(double newPrice) {
+		this.newPrice = newPrice;
 	}
-	
-	
+
+	public String getNewColor() {
+		return newColor;
+	}
+
+	public void setNewColor(String newColor) {
+		this.newColor = newColor;
+	}
 	
 }

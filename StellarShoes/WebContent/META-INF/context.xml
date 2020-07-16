@@ -3,7 +3,7 @@
 <Context>
 <Resource name="jdbc/CyberLife Database"
 auth="Container" type='javax.sql.DataSource'
-maxActive="20" maxIdle="5" maxWait="10000"
+maxTotal="20" maxIdle="5" maxWaitMillis="10000"
 username="admin" password="1821191951212"
 driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
 url="jdbc:sqlserver://cyberlife.cxwimgssopil.us-east-1.rds.amazonaws.com:1433;DatabaseName=CyberLife Database" />
