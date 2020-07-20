@@ -16,11 +16,6 @@
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
-		<managed-bean-name>checkout</managed-bean-name>
-		<managed-bean-class>com.StellarShoes.Beans.Checkout</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
-	</managed-bean>
-	<managed-bean>
 		<managed-bean-name>resetPass</managed-bean-name>
 		<managed-bean-class>com.StellarShoes.Beans.ResetPassword</managed-bean-class>
 		<managed-bean-scope>request</managed-bean-scope>
@@ -33,12 +28,22 @@
 	<managed-bean>
 		<managed-bean-name>manageProduct</managed-bean-name>
 		<managed-bean-class>com.StellarShoes.Beans.ManageProduct</managed-bean-class>
-		<managed-bean-scope>request</managed-bean-scope>
+		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
 		<managed-bean-name>productBN</managed-bean-name>
 		<managed-bean-class>com.StellarShoes.Beans.ProductBN</managed-bean-class>
 		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>myCart</managed-bean-name>
+		<managed-bean-class>com.StellarShoes.Beans.MyCart</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>checkout</managed-bean-name>
+		<managed-bean-class>com.StellarShoes.Beans.Checkout</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 
 </faces-config>

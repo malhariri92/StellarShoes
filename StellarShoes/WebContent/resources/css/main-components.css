@@ -1,28 +1,66 @@
-#hero-space h1 {
-    background-color: #969026;
-    font-size: 3em;
-     font-weight: 400;
-     min-height: 200px;
-     padding-top: 4em;
-     text-align: center; 
- }
- 
-#categories h1 {
-     background-color: #C1746E;
-     font-size: 3em;
-      font-weight: 400;
-      min-height: 200px;
-      padding-top: 4em;
-      text-align: center; 
+/* Colors {
+  Primary Brand Colors
+  color: #7f2226;
+  color: #C1746E;
+
+  Secondary Brand Colors
+  color: #969026;
+  color: #269690;
+
+  Black and Grays
+  color: black;
+  color: #2a2a2a;
+  color: silver;
+  color: gainsboro;
+  color: #f1f1f1;
+
+  Shoe Colors
+  color: #2a2a2a;
+  color: sienna;
+  color: #b0b0b0;
+} */
+
+h1 {
+  color: black;
+  font-size: 3em;
+  font-weight: 400;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
 }
- 
-#testimonials h1 {
-     background-color: #269690;    
-     font-size: 3em;
-      font-weight: 400;
-      min-height: 200px;
-      padding-top: 4em;
-      text-align: center; 
+
+h2 {
+  font-size: 2em;
+  font-weight: 400;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2em;
+  /* width: 80%; */
+}
+
+h3 {
+  /* border: 3px solid black; */
+  color: #7f2226;
+  font-size: 1.25em;
+  font-weight: 600;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0;
+  /* width: 80%; */
+}
+
+p {
+  color: black;
+  font-size: 1em;
+  font-weight: 400;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: black; 
 }
 
 *:before,
@@ -138,12 +176,28 @@
   width: 40%;
 }
 
+article{
+  border-bottom: 1px solid #C1746E;
+  margin-bottom: 3em;
+}
+
+/* Article h3 is a duplicate of h3. Stretch goal = remove this CSS */
+article h3 {
+  /* border: 3px solid black; */
+  color: #7f2226;
+  font-size: 1.25em;
+  font-weight: 600;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0;
+  /* width: 80%; */
+}
+
+
 @media (min-width: 850px) {
   .two-column-container {
-    /* border: 3px solid blue; */
     margin-left: auto;
     margin-right: auto;
-    /*padding: 20px 40px 40px;*/
     max-width: 80%;
     display: flex;
   }  
@@ -166,6 +220,30 @@
     width: 100%;
   }
 }
+
+@media (min-width: 800px) {
+  .btn {
+     font-size: 1em;
+  }
+  }
+
+.back-btn {
+  color: #7f2226;
+  background: #fff;
+}
+
+.next-btn {
+  color: #fff;
+  background: #7f2226;
+}
+
+.btn:focus {
+  outline: none;
+}
+
+.btn:hover {
+}
+
   
   #loginform {
   max-width: 450px;

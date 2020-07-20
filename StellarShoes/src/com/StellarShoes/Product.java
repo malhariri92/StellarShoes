@@ -3,7 +3,7 @@ package com.StellarShoes;
 public class Product {
 	private int productID;
 	private String name;
-	private int size;
+	private double size;
 	private String color;
 	private double price;
 	private int categoryId;
@@ -23,7 +23,7 @@ public class Product {
 	 * @param imgUrl
 	 * @param description
 	 */
-	public Product(int productID, String name, int size, String color, double price, int categoryId, String imgUrl,
+	public Product(int productID, String name, double size, String color, double price, int categoryId, String imgUrl,
 			String description) {
 		super();
 		this.productID = productID;
@@ -47,10 +47,10 @@ public class Product {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getSize() {
+	public double getSize() {
 		return size;
 	}
-	public void setSize(int size) {
+	public void setSize(double size) {
 		this.size = size;
 	}
 	public String getColor() {

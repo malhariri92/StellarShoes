@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" 
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+<title>Admin Services</title>
+<meta content="width=device-width, initial-scale=1" name="viewport" />
+<link rel="stylesheet" type="text/css" href="./resources/css/reset.css"/>
+<link rel="stylesheet" type="text/css" href="./resources/css/innerweb-shell.css"/>
+<link rel="stylesheet" type="text/css" href="./resources/css/main-components.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+<link href="https://fonts.googleapis.com/css?family=Barlow:400,600,900" rel="stylesheet"/>
+</h:head>
+<body>
+	<header>
+		<div id="user-name">
+			<p>#{accountManager.email}</p>
+		</div>
+		<div id="top-icons">
+			<a href=""><i class="fa fa-cog fa-2x"></i></a> 
+			<h:form>
+			<h:commandLink action = "#{accountManager.logout()}"><i class="fa fa-sign-out fa-2x"></i></h:commandLink> 
+			</h:form>
+		</div>
+		<div class="nav-bar">
+			<a href="index.xhtml" class="nav-item"><img id="logo" src="./resources/images/stellar-shoes-logo.svg" ></img><br/>Main Site</a>
+			<a href="adminHome.xhtml" class="nav-item"><i class="fa fa-home fa-5x"></i><br/>Home</a>
+			<a href="adminProducts.xhtml" class="nav-item page-ni"><i class="fa fa-archive fa-5x"></i><br/>Products</a>
+            <a href="adminOrders.xhtml" class="nav-item"><i class="fa fa-truck fa-5x"></i><br/>Orders</a>
+			<a href="adminCustomers.xhtml" class="nav-item"><i class="fa fa-user-circle-o fa-5x"></i><br/>Customers</a>
+			<a href="adminPayments.xhtml" class="nav-item"><i class="fa fa-money fa-5x"></i><br/>Payments</a>
+        </div>
+	</header>
+
+	<main id="main">
+	<h1>Products</h1>
+	<section class = "search-section">
+		 <h:form>
+		<p:panel id="toggleable" header="Add Product" toggleable="true" closable="false" toggleSpeed="500" closeSpeed="500"
+		 toggleableHeader="true" collapsed="true" ajax = "true">	 	
+		 
+		  <p:panelGrid id = "container"  columns="2" cellpadding="5">
+		
+		<p:outputLabel value = "Product Name:"/>
+		<p:inputText value = "#{manageProduct.product.name}"><f:ajax event="keyup"/></p:inputText>
+		<p:outputLabel value = "Category:" style="margin-right:30px"/>
+		<p:selectOneMenu value = "#{manageProduct.product.categoryId}" style = "width:205px">
+		<f:selectItem itemValue = "0" itemLabel = "Select"/> 
+              <f:selectItem itemValue = "1" itemLabel = "Boots" /> 
+              <f:selectItem itemValue = "2" itemLabel = "Oxfords" /> 
+              <f:selectItem itemValue = "3" itemLabel = "Loafers" /> 
+		<f:ajax/>
+		</p:selectOneMenu>
+		<p:outputLabel value = "Price:" style="margin-right:30px"/> 
+		<p:inputText value = "#{manageProduct.product.price}"><f:ajax event="keyup"/></p:inputText>
+		<p:outputLabel value = "Color:" style="margin-right:30px"/> 
+		<p:inputText value = "#{manageProduct.product.color}"><f:ajax event="keyup"/></p:inputText>
+		<p:outputLabel value = "Image URL:" style="margin-right:30px"/>
+		<p:inputText value = "#{manageProduct.product.imgUrl}"><f:ajax event="keyup"/></p:inputText>
+		
+		</p:panelGrid><br/>
+          <p:commandButton action = "#{manageProduct.addItem()}" style = "width:170px; margin-right:5px" 
+		value = "Save" icon="fa fa-save">
+		</p:commandButton>
+		</p:panel>
+		</h:form>	
+	</section>
+	<p:growl id="message" life = "2000"/>
+	
+	<ui:repeat var="shoe"  value="#{productBN.loadProducts()}">
+	<section>
+		<h2>
+			Product ID ##{shoe.productID}
+		</h2>
+		<img src="#{shoe.imgUrl}" alt="image of a dress shoe"/>
+		<p>#{shoe.name}</p>
+		<p> Description: #{shoe.description} </p>
+		<p>Price: $#{shoe.price}</p>
+		
+		<h:form>
+		
+        <p:commandButton action="#{manageProduct.deleteItem(shoe.productID)}" update="message" style = "width:185px"
+                 icon="ui-icon ui-icon-trash" value="Delete Product" >
+          <p:confirm header="Confirm Delete" 
+               icon="ui-icon-alert"/>
+        </p:commandButton>
+          <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" 
+               message = "Are you sure about deleting this product?" > 
+             <p:commandButton  onclick = "true" value="Yes" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
+             <p:commandButton onclick = "false" value="No" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>
+          </p:confirmDialog>
+         </h:form>
+         <h:form>
+		<p:panel id="toggleable" header="Edit Product" toggleable="true" closable="false" toggleSpeed="500" closeSpeed="500"
+		 style="margin-top:20px" toggleableHeader="true" collapsed="true" ajax = "true">	 	
+		 
+		  <p:panelGrid id = "container"  columns="2" cellpadding="5">
+		
+       <p:outputLabel value = "Product ID:" /> <p:outputLabel value = "#{shoe.productID}" /> 
+		<p:outputLabel value = "Product Name:"/> <p:outputLabel value = "#{shoe.name}" />
+		<p:outputLabel value = "Category: "/><p:outputLabel value = "#{shoe.description}" />
+		<p:outputLabel value = "New Price:" style="margin-right:30px"/> 
+		<p:inputText value = "#{manageProduct.newPrice}"><f:ajax event="keyup"/></p:inputText>
+		<p:outputLabel value = "New Color:" style="margin-right:30px"/> 
+		<p:inputText value = "#{manageProduct.newColor}"><f:ajax event="keyup"/></p:inputText>
+		<p:outputLabel value = "New Image URL:" style="margin-right:30px"/>
+		<p:inputText value = "#{manageProduct.newImageUrl}"><f:ajax event="keyup"/></p:inputText>
+		</p:panelGrid><br/>
+		<p:commandButton action = "#{manageProduct.editItem(shoe)}" style = "width:170px; margin-right:5px" 
+		value = "Save" icon="fa fa-save">
+		</p:commandButton>
+		
+		</p:panel>
+		</h:form>
+		
+    
+	</section>
+	</ui:repeat>
+	
+	</main>
+
+    <h:outputScript library="primefaces" name="jquery/jquery.js" />
+	<h:outputScript library="js" name="hamburger-js.js" />
+
+</body>
+</html>

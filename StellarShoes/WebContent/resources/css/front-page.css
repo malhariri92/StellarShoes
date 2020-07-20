@@ -1,0 +1,48 @@
+/* Colors {
+  Primary Brand Colors
+  color: #7f2226;
+  color: #C1746E;
+
+  Secondary Brand Colors
+  color: #969026;
+  color: #269690;
+
+  Black and Grays
+  color: black;
+  color: #2a2a2a;
+  color: silver;
+  color: gainsboro;
+  color: #f1f1f1;
+
+  Shoe Colors
+  color: #2a2a2a;
+  color: sienna;
+  color: #b0b0b0;
+} */
+
+#hero-space h1 {
+    background-color: #969026;
+    font-size: 3em;
+     font-weight: 400;
+     min-height: 200px;
+     padding-top: 4em;
+     text-align: center; 
+ }
+ 
+#categories h1 {
+     background-color: #C1746E;
+     font-size: 3em;
+      font-weight: 400;
+      min-height: 200px;
+      padding-top: 4em;
+      text-align: center; 
+}
+ 
+#testimonials h1 {
+     background-color: #269690;    
+     font-size: 3em;
+      font-weight: 400;
+      min-height: 200px;
+      padding-top: 4em;
+      text-align: center; 
+}

@@ -13,6 +13,7 @@
 	<link rel="stylesheet" type="text/css" href="./resources/css/reset.css"/>
 	<link rel="stylesheet" type="text/css" href="./resources/css/store-shell.css"/>
 	<link rel="stylesheet" type="text/css" href="./resources/css/main-components.css"/>
+	<link rel="stylesheet" type="text/css" href="./resources/css/checkout.css"/>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
 	<link href="https://fonts.googleapis.com/css?family=Barlow:400,600,900" rel="stylesheet"/>
 	<h:outputScript library="primefaces" name="jquery/jquery.js" />
@@ -24,8 +25,8 @@
 			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 			<a href="index.xhtml" class="nav-item" onclick="closeNav()">Home</a>
 			<a href="category.xhtml" class="nav-item" onclick="closeNav()">Shop</a>
-            <a href="" class="nav-item" onclick="closeNav()">FAQs</a>
-			<a href="" class="nav-item" onclick="closeNav()">About</a>
+            <a href="FAQs.xhtml" class="nav-item" onclick="closeNav()">FAQs</a>
+			<a href="about.xhtml" class="nav-item" onclick="closeNav()">About</a>
         </div>
 		<a href=""><img id="logo" src="./resources/images/stellar-shoes-logo.svg" alt = "Stellar Shoes logo"></img></a>
 		<div id="top-icons">
@@ -44,13 +45,32 @@
 		
         <div class="two-column-text">
             <h1>#{item.product.name}</h1>           
-            <p>ID: #{item.product.productID}</p>
-            
+            <p>ID: #{item.product.productID}</p>  
+            <p>Description: #{item.product.description}</p>
+            <p>Color: #{item.product.color}</p>
             <p>Price: $#{item.product.price}</p>
             <h:form prependId = "false">
-           
-            <p:commandButton action = "#{checkout.addToCart(item.product)}" value = "ADD TO CART" update="message"/>
-           
+            <h:outputLabel value = "Select Size: "/>
+           <h:selectOneMenu width = "100" value = "#{item.product.size}">
+              <f:selectItem itemValue = "0" itemLabel = "Select"/> 
+              <f:selectItem itemValue = "7.5" itemLabel = "7.5" /> 
+              <f:selectItem itemValue = "8" itemLabel = "8" /> 
+              <f:selectItem itemValue = "8.5" itemLabel = "8.5" /> 
+              <f:selectItem itemValue = "9" itemLabel = "9" /> 
+              <f:selectItem itemValue = "9.5" itemLabel = "9.5" /> 
+              <f:selectItem itemValue = "10" itemLabel = "10" />
+              <f:selectItem itemValue = "10.5" itemLabel = "10.5" /> 
+              <f:selectItem itemValue = "11" itemLabel = "11" /> 
+              <f:ajax excute = "@this" />
+           </h:selectOneMenu><br/><br/>
+           <div style= "min-width:600px">
+           <p:commandButton action = "category?faces-redirect=true" value = "Back"
+             update="message" styleClass = "btn next-btn" style = "width:170px; margin-right:20px; margin-bottom:20px;"/>
+            <p:commandButton action = "#{myCart.addToCart(item.product)}" value = "ADD TO CART"
+             update="message" styleClass = "btn next-btn" style = "width:170px; margin-right:20px"/>
+           <p:commandButton action = "checkout1?faces-redirect=true" value = "Checkout Now" 
+           rendered= "#{myCart.cartList.size() > 0}" styleClass = "btn next-btn" style = "width:170px"/>
+           </div>
            </h:form>
 
         </div>
@@ -60,17 +80,17 @@
 		<section>
 			<h2>Customer Service</h2>
 			<ul>
-				<li>Frequently Asked Questions</li>
-				<li>Contact Us</li>
-				<li>About Us</li>
+				<li><a href = "createAccount.xhtml" style = "color: white" >Frequently Asked Questions</a></li>
+				<li><a href = "contact.xhtml" style = "color: white" >Contact Us</a></li>
+				<li><a href = "about.xhtml" style = "color: white" >About Us</a></li>
 			</ul>
 		</section>
 		<section>
 			<h2>My Account</h2>
 			<ul>
-				<li>Create Account</li>
-				<li>Manage Account</li>
-				<li>Track Order</li>
+				<li><a href = "createAccount.xhtml" style = "color: white" >Create Account</a></li>
+				<li><a href = "success.xhtml" style = "color: white">Manage Account</a></li>
+				
 			</ul>
 		</section>
 		<section>
@@ -83,7 +103,9 @@
 		<section>
 			<h2>Connect With Us</h2>
 			<ul>
-				<li><a href=""><i class="fa fa-twitter"></i></a> <a href=""><i class="fa fa-facebook"></i></a> <a href=""><i class="fa fa-instagram"></i></a> </li>
+				<li><a href="https://twitter.com/stellarshoes1"><i class="fa fa-twitter"></i></a> 
+				<a href="https://nam10.safelinks.protection.outlook.com/?url=https%3A%2F%2Fwww.facebook.com%2Fstellar.shoe.33&amp;data=02%7C01%7Chmckinleyaluma1%40student.cscc.edu%7C29228caabe0944d49dfc08d8246babad%7Cffa1db08d129474b92feae219e4319a3%7C0%7C0%7C637299392146408489&amp;sdata=8dW4ggAPl6xpQMcfDP3jeGFIy5IoPC8RajLaqXKBNkY%3D&amp;reserved;=0"><i class="fa fa-facebook"></i></a> 
+				<a href="https://www.instagram.com/_stellarshoes/"><i class="fa fa-instagram"></i></a> </li>
 			</ul>
 		</section>
 	</footer>

@@ -217,7 +217,7 @@ main {
     }
 }
 
-h1 {
+/* h1 {
     color: black;
     font-size: 3em;
     font-weight: 400;
@@ -225,6 +225,17 @@ h1 {
     margin-right: auto;
     width: 80%;
 }
+
+h2 {
+    font-size: 2em;
+    font-weight: 400;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2em;
+    /* width: 80%; */
+}
+
+
 
 p {
     color: black;
@@ -238,7 +249,7 @@ p {
 a {
     text-decoration: none;
     color: black; 
-}
+} */
 
 
 ul {
@@ -264,6 +275,7 @@ footer {
 }
 
 footer section {
+    background-color: #C1746E;
     display: block;
     padding-left: .5em;
     width: 100%;

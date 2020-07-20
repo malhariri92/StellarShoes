@@ -15,7 +15,10 @@
 	<link rel="stylesheet" type="text/css" href="./resources/css/main-components.css"/>
 	<link rel="stylesheet" type="text/css" href="./resources/css/checkout.css"/>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+	<script src="https://www.paypal.com/sdk/js?client-id=AfSNSeK3ONkZKOF8-uCXuZvVz_Orz6cMXfqXwZzu2ms-SS0hMjr1iZU72cvS9YmxxA6rOaI1vuNqy7na"
+	 data-sdk-integration-source="button-factory"></script>
 	<link href="https://fonts.googleapis.com/css?family=Barlow:400,600,900" rel="stylesheet"/>
+	<h:outputScript></h:outputScript>
 </h:head>
 <body>
 	<header>
@@ -23,8 +26,8 @@
 			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 			<a href="index.xhtml" class="nav-item" onclick="closeNav()">Home</a>
 			<a href="category.xhtml" class="nav-item" onclick="closeNav()">Shop</a>
-            <a href="" class="nav-item" onclick="closeNav()">FAQs</a>
-			<a href="" class="nav-item" onclick="closeNav()">About</a>
+            <a href="FAQs.xhtml" class="nav-item" onclick="closeNav()">FAQs</a>
+			<a href="about.xhtml" class="nav-item" onclick="closeNav()">About</a>
         </div>
 		<a href="index.xhtml"><img id="logo" src="./resources/images/stellar-shoes-logo.svg" ></img></a>
 		<div id="top-icons">
@@ -36,9 +39,10 @@
 	</header>
 	
 		<main id="main">
+		<h:form id = "paymentForm">
 		<div class="checkout-panel">
 			<div class="panel-body">
-			  <h1>Checkout</h1>
+			  <h1>Check Out</h1>
 
 
 				<!-- This is the HTML for a progress bar (4 steps). -->
@@ -50,98 +54,276 @@
 			  </div> -->
 
 			  <fieldset class="payment-method">
-				<legend>Payment Type:</legend>
+				
 				
 				<label for="card" class="method card">
+				<h4 style="color:blue">Please select Payment Type</h4>
 				  <div class="card-logos">
-					<i class="fa fa-cc-visa fa-2x"></i> 
-					<i class="fa fa-cc-mastercard fa-2x"></i>
-				  </div>
-
-				  <div class="radio-input">
-				  <label for ="card">Pay with credit card</label>
-				  
-					
-				  </div>
-				</label>
-
-				<label for="paypal" class="method paypal">
+					<i class="fa fa-credit-card fa-2x"></i> 
 					<i class="fa fa-paypal fa-2x"></i>
-				  <div class="radio-input">
-				  <label for ="paypal">Pay with PayPal</label>
-				  
-					
 				  </div>
-				</label>
+				  
+               <p:selectOneRadio id="console" value="#{checkout.selectedMethod}" unselectable="true"
+               requiredMessage = "Please select payment method.">
+   
+                   <f:selectItem itemLabel="Pay with credit card" itemValue="1" />
+           
+				   <f:selectItem itemLabel="Pay with PayPal" itemValue="2" />
+	             <f:ajax event="click" execute="@this" render="@form"/>
+				</p:selectOneRadio>
+				
+				 </label>
+				 <p:commandButton action = "checkout1?faces-redirect=true" value = "Go Back" rendered="#{checkout.selectedMethod == 0}"
+               styleClass = "btn next-btn" style = "width:170px; margin-right:20px; margin-bottom:20px;"/>
+             
+             
+				 <p:growl id = "message" style = "top: 200px; right: 600px;" autoUpdate = "true"/>
 			  </fieldset>
+
+
+			  <h:panelGroup id="creditPanel"
+			  				rendered="#{checkout.selectedMethod == 1}">
+			  				
+			 <h1>Shipping Address</h1>
+
 
 			  <div class="input-fields">
 				<div class="column-1">
-				<div>
 				
-				  <label for="cardholder">Cardholder's Name</label>
-				  <div class="small-inputs">
-				  <p:inputText value = "#{checkout.payment.cardHolder}" id="cardholder" required = "true"/>
-				  </div>
-				 </div>
-
-				  <div class="small-inputs">
-					<div>
-					  <label for="date">Valid thru</label>
-					  <p:inputText value = "#{checkout.payment.expiration}" id="date" placeholder="MM / YY" required = "true"/>
-					  
-					</div>
-
-					<div>
-					  <label for="verification">CVV / CVC *</label>
-					  <p:inputText value = "#{checkout.payment.cvv}" id="verification" required = "true"/>
-					  
-					</div>
-				  </div>
-
-				</div>
-				<div class="column-2">
+				<div class="small-inputs">	
 				<div>
-				  <label for="cardnumber">Card Number</label>
-				   <div class="small-inputs">
-				  <p:inputText value = "#{checkout.payment.cardNumber}" id="cardnumber" required = "true"/>
+				  <label for="">First Name *</label>
+                  <p:inputText value = "#{checkout.customer.fName}" type="text" 
+                   validatorMessage = "Please enter your first name">
+                   <f:validateRegex pattern="^[a-zA-Z]+$"></f:validateRegex>
+                   </p:inputText>
+                   </div>                 
+                   <div>
+                   <label for="">Last Name *</label>
+                  <p:inputText value = "#{checkout.customer.lastName}" type="text" 
+                   required = "true" validatorMessage = "Please enter your last name">
+                   <f:validateRegex pattern="^[a-zA-Z]+$"></f:validateRegex>
+                   </p:inputText>
+                  </div>
+                  </div>
+                  
+                  
+                  <div class="small-inputs">
+                  <div>
+                  <label for="">Address Line1 *</label>
+				  <p:inputText value = "#{checkout.address.address1}" type="text" 
+				   required = "true" />
 				   </div>
+				   <div>
+				   <label for="">Address Line2</label>
+				  <p:inputText value = "#{checkout.address.address2}" type="text"/>
+                   </div>
 				 </div>
+				 
+				   <div class="small-inputs">
+					<div>
+					  <label for="">City *</label>
+					  <p:inputText value = "#{checkout.address.city}" type="text" required = "true"/>
+					</div>
 
-				  <span class="info">* CVV or CVC is the card security code, unique three digits number 
-				  on the back of your card separate from its number.</span>
+					<div>
+					  <label for="">State *</label>
+                      <p:inputText value = "#{checkout.address.state}" type="text"  required = "true" />
+                      
+                      <!-- Intention is to add a drop-down of state names, but this hasn't been added yet. -->
+					</div>
+                      </div>   
+                       <div class="small-inputs">     
+					<div>
+					  <label for="">Zip Code *</label>
+					  <p:inputText value = "#{checkout.address.zip}" required = "true"
+					   requiredMessage = "Please enter a valid Zip code"></p:inputText>
+					</div>
+                   <div>
+					  <label for="">Phone *</label>
+					  <p:inputMask mask = "999-999-9999" value = "#{checkout.customer.phone}" required = "true"
+					   requiredMessage = "Please enter a valid phone number"></p:inputMask>
+					</div>
+				  </div>
+
 				</div>
+             
 			  </div>
-			</div>
+			  	<div class="column-1">
 
-			<div class="panel-footer">
-			  <h:form>
+			  		<div class="input-fields">
+			  			<h1>Payment Information</h1>
+			  				<div> 
+
+			  					<label for="cardholder">
+			  						Cardholder's Name *
+			  					</label>
+			  					<div class="small-inputs">
+			  						<p:inputText value="#{checkout.payment.cardHolder}" id="cardholder" type ="text"
+			  					      validatorMessage = "Please enter your name as it appears on your card.">
+			  						<f:validateRegex pattern="^([a-zA-Z-']{2,}[\s][a-zA-Z'-]+)$"/>
+			  							</p:inputText>
+			  					</div>
+			  				</div>
+
+			  				<div class="small-inputs">
+			  					<div>
+			  						<label for="date">
+			  							Valid thru *
+			  						</label>
+			  						<p:inputMask mask="99/99" placeholder = "MM/YY" value="#{checkout.payment.expiration}" 
+			  						id="date" required="true"
+			  						requiredMessage = "Please enter card expiration date."	 />
+
+			  					</div>
+
+			  					<div>
+			  						<label for="verification">
+			  							CVV / CVC *
+			  						</label>
+			  						<p:password id="verification" placeholder = "123" required="true" 
+			  							value="#{checkout.payment.cvv}" validatorMessage = "Please enter a valid CVV."
+			  							requiredMessage = "Please enter a valid CVV.">
+			  							
+			  							<f:validateLength minimum = "3" maximum = "4"></f:validateLength>
+			  							</p:password>
+
+			  					</div>
+			  				</div>
+
+			  		</div>
+			  		<div class="column-2">
+			  			<div>
+			  				<label for="cardnumber">
+			  					Card Number *
+			  				</label>
+			  				<div class="small-inputs">
+			  					<p:inputMask mask="9999-9999-9999-9999" value="#{checkout.payment.cardNumber}" id="cardnumber"
+			  						validatorMessage = "Please enter your card number." required="true"
+			  						requiredMessage = "Please enter a valid card number." >
+			  						<f:validateLength minimum = "19"></f:validateLength>
+			  						</p:inputMask>
+                                  
+			  				</div>
+			  			</div>
+
+			  			<span class="info">
+			  				* CVV or CVC is the card security code,
+			  				unique three digits number on the back of
+			  				your card separate from its number.
+			  			</span>
+			  			
+			  		</div>
+			  		<h1>Billing Address</h1>
+			  		<p:selectBooleanCheckbox value="#{checkout.sameAddresses}" itemLabel="Same as Shipping address">
+                      <f:ajax execute="@this" render = "@form"/>
+                   </p:selectBooleanCheckbox>
+                   
+                   <h:panelGroup id="billingPanel"
+			  				rendered="#{checkout.sameAddresses == false}">
+			  				
+                  <div class="small-inputs">
+                  <div>
+                  <label for="">Address Line1 *</label>
+				  <p:inputText value = "#{checkout.billingAddress.address1}" type="text" 
+				   required = "true" />
+				   </div>
+				   <div>
+				   <label for="">Address Line2</label>
+				  <p:inputText value = "#{checkout.billingAddress.address2}" type="text"/>
+                   </div>
+				 </div>
+				 
+				   <div class="small-inputs">
+					<div>
+					  <label for="">City *</label>
+					  <p:inputText value = "#{checkout.billingAddress.city}" type="text" required = "true"/>
+					</div>
+
+					<div>
+					  <label for="">State *</label>
+                      <p:inputText value = "#{checkout.billingAddress.state}" type="text"  required = "true" />
+                      
+                      <!-- Intention is to add a drop-down of state names, but this hasn't been added yet. -->
+					</div>
+                      </div>   
+                       <div class="small-inputs">     
+					<div>
+					  <label for="">Zip Code *</label>
+					  <p:inputText value = "#{checkout.billingAddress.zip}" required = "true"
+					   requiredMessage = "Please enter a valid Zip code"></p:inputText>
+					</div>
+
+				  </div>
+				  </h:panelGroup>
+				  <div class="panel-footer">
+			 
 			  
 			  <h:commandButton value = "Back" action = "checkout2?faces-redirect=true" 
 			  styleClass = "btn back-btn" style = "width:250px"/>
 			 
-			  <h:commandButton value = "Next" action = "checkout4?faces-redirect=true" 
+			  <h:commandButton value = "Place Order" action = "#{checkout.placeOrder(myCart.total, myCart.cartList)}" 
 			  styleClass = "btn next-btn" style = "width:406.9px; margin-left:165px;"/>
-			  </h:form>
+			 
 			</div>
+			  	</div>
+			  	
+			  </h:panelGroup>
+			</div>
+                    <h:panelGroup id="payPalPanel" rendered="#{checkout.selectedMethod == 2}">
+                    
+                    <div id="paypal-button-container" style="width: 50%; margin:0 auto;"></div>
+                    <input type = "hidden" id = "item1" value = "10"></input>
+			  			<script>
+			  			 paypal.Buttons({
+			  			      style: {
+			  			          shape: 'pill',
+			  			          color: 'gold',
+			  			          layout: 'horizontal',
+			  			          label: 'pay',
+			  			          
+			  			      },
+			  			      createOrder: function(data, actions) {
+			  			          return actions.order.create({
+			  			              purchase_units: [{'description': '#{myCart.cartList.get(0).name}', 
+			  			                  amount: {
+			  			                      value: '#{myCart.total}',
+			  			                  }
+			  			              }]
+			  			          });
+			  			      },
+			  			      onApprove: function(data, actions) {
+			  			          return actions.order.capture().then(function(details) {
+			  			              
+			  			            window.location.replace("http://localhost:8080/StellarShoes/faces/checkout4.xhtml");
+			  			          });
+			  			      }
+			  			  }).render('#paypal-button-container');
+			  			
+			  			</script>
+			  		</h:panelGroup>
+			
+			
 		  </div>
+		    
+		</h:form>
 	</main>
 
 	<footer>
 		<section>
 			<h2>Customer Service</h2>
 			<ul>
-				<li>Frequently Asked Questions</li>
-				<li>Contact Us</li>
-				<li>About Us</li>
+				<li><a href = "createAccount.xhtml" style = "color: white" >Frequently Asked Questions</a></li>
+				<li><a href = "contact.xhtml" style = "color: white" >Contact Us</a></li>
+				<li><a href = "about.xhtml" style = "color: white" >About Us</a></li>
 			</ul>
 		</section>
 		<section>
 			<h2>My Account</h2>
 			<ul>
-				<li>Create Account</li>
-				<li>Manage Account</li>
-				<li>Track Order</li>
+				<li><a href = "createAccount.xhtml" style = "color: white" >Create Account</a></li>
+				<li><a href = "success.xhtml" style = "color: white">Manage Account</a></li>
+				
 			</ul>
 		</section>
 		<section>
@@ -154,41 +336,19 @@
 		<section>
 			<h2>Connect With Us</h2>
 			<ul>
-				<li><a href=""><i class="fa fa-twitter"></i></a> <a href=""><i class="fa fa-facebook"></i></a> <a href=""><i class="fa fa-instagram"></i></a> </li>
+				<li><a href="https://twitter.com/stellarshoes1"><i class="fa fa-twitter"></i></a> 
+				<a href="https://nam10.safelinks.protection.outlook.com/?url=https%3A%2F%2Fwww.facebook.com%2Fstellar.shoe.33&amp;data=02%7C01%7Chmckinleyaluma1%40student.cscc.edu%7C29228caabe0944d49dfc08d8246babad%7Cffa1db08d129474b92feae219e4319a3%7C0%7C0%7C637299392146408489&amp;sdata=8dW4ggAPl6xpQMcfDP3jeGFIy5IoPC8RajLaqXKBNkY%3D&amp;reserved;=0"><i class="fa fa-facebook"></i></a> 
+				<a href="https://www.instagram.com/_stellarshoes/"><i class="fa fa-instagram"></i></a> </li>
 			</ul>
 		</section>
 	</footer>
 	
 	
-	<script src="./resources/js/jquery-3.3.1.js"></script>
-	<script src="./resources/js/hamburger-js.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<h:outputScript library="primefaces" name="jquery/jquery.js" />
+	<h:outputScript library="js" name="hamburger-js.js" />
     
-    	<script>
-		$(document).ready(function() {
-
- 			// $('.method').on('click', function() {
-   			// 	$('.method').removeClass('blue-border');
-   			// 	$(this).addClass('blue-border');
- 			// });
-
-		})
-
-		var $cardInput = $('.input-fields input');
-
-		$('.next-btn').on('click', function(e) {
-
- 			$cardInput.removeClass('warning');
-
-  			$cardInput.each(function() {    
-     			var $this = $(this);
-     			if (!$this.val()) {
-       				$this.addClass('warning');
-     			}
-  			})
-		});
-	</script>
-
+    
+    	
 </body>
 </html> 
 	

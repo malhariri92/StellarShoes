@@ -1,10 +1,10 @@
 package com.StellarShoes;
 
 public class Payment {
-
+    private int paymentID;
 	private int method;
 	private String cardHolder;
-	private long cardNumber;
+	private String cardNumber;
 	private int cvv;
 	private String expiration;
 	
@@ -17,13 +17,23 @@ public class Payment {
 	 * @param cvv
 	 * @param expiration
 	 */
-	public Payment(int method, String cardHolder, long cardNumber, int cvv, String expiration) {
+	public Payment(int paymentID,int method, String cardHolder, String cardNumber, int cvv, String expiration) {
 		super();
+		this.paymentID = paymentID;
 		this.method = method;
 		this.cardHolder = cardHolder;
 		this.cardNumber = cardNumber;
 		this.cvv = cvv;
 		this.expiration = expiration;
+	}
+	
+
+	public int getPaymentID() {
+		return paymentID;
+	}
+
+	public void setPaymentID(int paymentID) {
+		this.paymentID = paymentID;
 	}
 
 	public int getMethod() {
@@ -42,11 +52,11 @@ public class Payment {
 		this.cardHolder = cardHolder;
 	}
 
-	public long getCardNumber() {
+	public String getCardNumber() {
 		return cardNumber;
 	}
 
-	public void setCardNumber(long cardNumber) {
+	public void setCardNumber(String cardNumber) {
 		this.cardNumber = cardNumber;
 	}
 

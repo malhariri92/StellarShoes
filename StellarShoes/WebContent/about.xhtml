@@ -3,10 +3,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core" 
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
 <h:head>
-<title>Log In</title>
+<title>Manage Account</title>
 <meta content="width=device-width, initial-scale=1" name="viewport" />
 <link rel="stylesheet" type="text/css" href="./resources/css/reset.css"/>
 <link rel="stylesheet" type="text/css" href="./resources/css/store-shell.css"/>
@@ -17,6 +16,7 @@
 <h:body id="body">
 <header>
 <div id="mySlideNav" class="slideNav">
+			
 			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 			<a href="index.xhtml" class="nav-item" onclick="closeNav()">Home</a>
 			<a href="category.xhtml" class="nav-item" onclick="closeNav()">Shop</a>
@@ -33,31 +33,7 @@
 		<span id="hamburger" onclick="openNav()">&nbsp;</span>
 </header>
 <main>
-<div id = "forms-heading">
-<h2>Log in</h2>
-</div>
-<h:form id="loginform" prependId = "false">
-
-  <h:outputLabel>Email: </h:outputLabel>
-
-  <h:inputText id= "email" pt:placeholder = "example@email.com" required = "true" requiredMessage = "Email is required" 
-  validatorMessage = "Please enter a valid email" value="#{accountManager.email}">
-  <f:validateRegex pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"/> 
-  </h:inputText> <br/><br/>
-  
-  
-  <h:outputLabel>Password:</h:outputLabel>
-  
-  <h:inputSecret id="password" required = "true" requiredMessage = "Password is required"
-       value = "#{accountManager.password}"> 
-  </h:inputSecret><br/><br/>
-     
-<h:commandButton id="submit" value="Log in" action= "#{accountManager.login}" /><br/><br/>
-<h:messages layout = "list" styleClass = "error"></h:messages>
-<a href = "forgotPassword.xhtml" style = "margin-right: 50px;">Forgot Password?</a>
-<a href = "createAccount.xhtml">Create a New Account?</a> 
-</h:form>
-
+   
 </main>
 <footer>
 		<section>

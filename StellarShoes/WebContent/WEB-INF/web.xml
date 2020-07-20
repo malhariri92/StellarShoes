@@ -29,5 +29,17 @@
    <param-name>primefaces.FONT_AWESOME</param-name>
    <param-value>true</param-value>
 </context-param>
-  
+
+  <context-param>
+  <param-name>authtoken</param-name>
+  <param-value>AfSNSeK3ONkZKOF8-uCXuZvVz_Orz6cMXfqXwZzu2ms-SS0hMjr1iZU72cvS9YmxxA6rOaI1vuNqy7na</param-value>
+  </context-param>
+  <context-param>
+  <param-name>posturl</param-name>
+  <param-value>https://www.sandbox.paypal.com/cgi-bin/webscr</param-value>
+  </context-param>
+  <context-param>
+  <param-name>business</param-name>
+  <param-value>sb-e0bpb2654258@business.example.com</param-value>
+  </context-param>
 </web-app>

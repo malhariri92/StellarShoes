@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+		"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core" 
@@ -10,6 +10,7 @@
 <link rel="stylesheet" type="text/css" href="./resources/css/reset.css"/>
 <link rel="stylesheet" type="text/css" href="./resources/css/store-shell.css"/>
 <link rel="stylesheet" type="text/css" href="./resources/css/main-components.css"/>
+<link rel="stylesheet" type="text/css" href="./resources/css/checkout.css"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
 <link href="https://fonts.googleapis.com/css?family=Barlow:400,600,900" rel="stylesheet"/>
 </h:head>
@@ -33,16 +34,32 @@
 		<span id="hamburger" onclick="openNav()">&nbsp;</span>
 </header>
 <main>
-    <h:form id = "logoutform">
-<p>Welcome #{accountManager.customer.getfName()}</p><br/><br/>
-<p>Continue Shopping</p><br/><br/>
-<p>Change password</p><br/><br/>
-<p>Change Email</p><br/><br/>
-<p>Change Address</p><br/><br/>
-<p>Remove Account</p><br/><br/>
-<h:commandButton action="#{accountManager.logout}" value="Logout"></h:commandButton>
+	<div class="checkout-panel">
+		<h:form id = "logoutform">
+		<h1>Customer Account</h1>
+		<p>Welcome #{accountManager.customer.getfName()}. Thank you for being a customer at Stellar Shoes. It is your business that allows us to provide exemplary service.</p>
+		
+		<h2>#{accountManager.customer.getfName()}'s Orders</h2>
 
-	</h:form>
+		<h2>#{accountManager.customer.getfName()}'s Address</h2>
+		<button class="btn next-btn">Change Address</button>
+
+		<h2>#{accountManager.customer.getfName()}'s Account Information</h2>
+		<button class="btn next-btn">Change E-mail</button>
+		<button class="btn next-btn">Change Password</button>
+		<button class="btn next-btn">Delete Account</button>
+
+		<br/><br/><br/><br/>
+		<!-- <div class="checkout-panel"> -->
+			<button class="btn next-btn">Shop</button>
+			<h:commandButton action="#{accountManager.logout}" styleClass = "btn next-btn" value="Logout"></h:commandButton>
+		<!-- </div> -->
+		</h:form>
+	</div>
+
+
+	
+
 </main>
 <footer>
 		<section>

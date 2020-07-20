@@ -6,6 +6,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Map;
+
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import com.StellarShoes.*;
@@ -32,15 +36,18 @@ public class AccountManager implements Serializable {
 			"digit, and one of these special characters (/<>@#!%+&^). " + 
 			"Password cannot contain white spaces.";
 	
+	
+	   private String pageId; 
+	
 	public AccountManager() {
 	}
 
-	public void login() {
+	public String login() {
 		
 		if(PasswordValidator.validate(password) == false) {
 			
 			Messages.show(incorrectPasswordMsg);
-			
+			return "login";
 		}
 		
 		if(email.endsWith("@stellarshoes.com")) {
@@ -50,34 +57,43 @@ public class AccountManager implements Serializable {
 				HttpSession session = SessionManager.getSession();
 				session.setAttribute("admin", email);
 				
-				
+				return "adminHome?faces-redirect=true";
 			}
 			else {
 				
 				
 				Messages.show("Incorrect username or password!");
-				
+				return "login";
 			}
-		}
-		
-		else {
-			if(LoginValidator.validateCustomer(email, password)) {
+			
+		}else if(LoginValidator.validateCustomer(email, password)) {
 				HttpSession session = SessionManager.getSession();
 				session.setAttribute("customer", email);
 				
-				getCustomerinfo();
-				Messages.show("Incorrect username or password!");
+				getCustomerinfo();		
+				
 			isLoggedin = true;
+			FacesContext fc = FacesContext.getCurrentInstance();
+			Map<String,String> params =
+	                fc.getExternalContext().getRequestParameterMap();
+			pageId = params.get("pageId");
+			 
 			
-		   } else {
+			if(pageId != null) {
+		         return "checkout3?faces-redirect=true";
+		      }else {
+		    	  
+			return "success?faces-redirect=true";}
+	    }
+		else {
 			
 			Messages.show("Incorrect username or password!");
 			
-			
+			return "login";
 		   }
 		}
 		
-	}
+	
 	//logout method, invalidate session
 		public String logout() {
 			HttpSession session = SessionManager.getSession();
@@ -107,7 +123,7 @@ public class AccountManager implements Serializable {
 				if (rs.next()) {
 				Address address = new Address(rs.getString(5),rs.getString(6),
 						rs.getString(7),rs.getString(8),rs.getInt(9));
-				customer = new Customer(rs.getString(1), rs.getString(2), rs.getInt(3), email, rs.getString(4), 
+				customer = new Customer(rs.getString(1).strip(), rs.getString(2).strip(), rs.getInt(3), email, rs.getString(4), 
 						password, address);
 				sessionCustomer = customer;
 				}
@@ -160,6 +176,14 @@ public class AccountManager implements Serializable {
 
 	public void setLoggedin(boolean isLoggedin) {
 		this.isLoggedin = isLoggedin;
+	}
+
+	public String getPageId() {
+		return pageId;
+	}
+
+	public void setPageId(String pageId) {
+		this.pageId = pageId;
 	}
 
 	
