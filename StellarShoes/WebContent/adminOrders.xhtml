@@ -11,6 +11,7 @@
 <link rel="stylesheet" type="text/css" href="./resources/css/reset.css"/>
 <link rel="stylesheet" type="text/css" href="./resources/css/innerweb-shell.css"/>
 <link rel="stylesheet" type="text/css" href="./resources/css/main-components.css"/>
+<link rel="stylesheet" type="text/css" href="./resources/css/table.css"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
 <link href="https://fonts.googleapis.com/css?family=Barlow:400,600,900" rel="stylesheet"/>
 </h:head>
@@ -30,19 +31,86 @@
 			<a href="adminHome.xhtml" class="nav-item"><i class="fa fa-home fa-5x"></i><br/>Home</a>
 			<a href="adminProducts.xhtml" class="nav-item"><i class="fa fa-archive fa-5x"></i><br/>Products</a>
             <a href="adminOrders.xhtml" class="nav-item page-ni"><i class="fa fa-truck fa-5x"></i><br/>Orders</a>
-			<a href="adminCustomers.xhtml" class="nav-item"><i class="fa fa-user-circle-o fa-5x"></i><br/>Customers</a>
 			<a href="adminPayments.xhtml" class="nav-item"><i class="fa fa-money fa-5x"></i><br/>Payments</a>
         </div>
 	</header>
 
 	<main id="main">
-	<h1>Orders</h1>
 	
+	<h1>Orders</h1> <p:button styleClass = "btn next-btn" target="_blank" href="https://www.sandbox.paypal.com/us/signin"
+  value="Manage PayPal Orders" style="width:250px; display:inline; margin-left: 450px" icon ="fa fa-external-link"/>
+
+		  
+<section>
+	<!-- <div class="break"></div> -->
 	
-	
+	<p:growl id="message" life = "4000"/>
+<table  id="order-table">
+  	<thead>
+		<tr align="center">
+	  		<th class="order-table-column width-40">Order items</th>
+	  		<th class="order-table-column width-40">Shipping Address</th>
+	  		<th class="order-table-column">Order Status</th>
+	  		<th class="order-table-column">Actions</th>
+		</tr>
+  	</thead>
+  	<tbody>
+  	
+  	<ui:repeat var="order" value="#{manageOrders.loadOrders()}">
+  	
+		<tr>
+	  		<td class="order-table-column">
+	  		
+	  		<ui:repeat var="product" value="#{order.products}">
+				<div class = "order-item">
+
+					<div class = "order-item-text">
+					<div class = "order-item-image">
+						<img src="#{product.imgUrl}" alt="image of a dress shoe"/>
+					</div>
+						<p>Product ID ##{product.productID}, #{product.name}</p>
+						<p>Quantity: #{product.quantity}</p>
+						<p>Size: #{product.size}</p>
+						<p>Color: #{product.color}</p>
+					</div>
+					
+				</div>	
+				</ui:repeat>	
+			</td> 
+	  		<td class="order-table-column"><p>Full Name:  #{order.fName} #{order.lastName}<br/><br/>
+	  		#{order.address.address1} #{order.address.address2}, 
+	  		#{order.address.city}, #{order.address.state}<br/> #{order.address.zip}<br/><br/>
+	  		</p><br/><br/>
+	  		
+	  		</td>
+	  		<h:form>
+	  		<td class="order-table-column">
+	  		
+	  		<p:selectOneMenu value = "#{order.status}" style = "width:205px" >
+		      <f:selectItem itemValue = "A" itemLabel = "Active"/> 
+              <f:selectItem itemValue = "S" itemLabel = "Shipped"/> 
+              <f:selectItem itemValue = "C" itemLabel = "Canceled"/> 
+              <p:ajax event="change" listener="#{manageOrders.handleChange}" execute="@this"/>
+		    </p:selectOneMenu>
+		    
+		    </td>
+	  		<td class="order-table-column">
+				
+            
+            <p:commandButton styleClass = "btn next-btn" value="Change Status" icon="pi pi-print"
+				 style="display:block;margin-bottom: 20px" action = "#{manageOrders.changeStatus(order.orderID)}"/>
+
+			</td>
+			</h:form>
+		</tr>
+		
+		</ui:repeat>
+		
+  	</tbody>
+           </table>
+          
+</section>
 	</main>
- 
-   
 
 </body>
 </html>

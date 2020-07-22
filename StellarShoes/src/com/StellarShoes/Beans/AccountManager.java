@@ -9,7 +9,6 @@ import java.sql.SQLException;
 import java.util.Map;
 
 import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import com.StellarShoes.*;
@@ -22,6 +21,7 @@ public class AccountManager implements Serializable {
 	private String email;
 	private String password;
 	private Customer customer = null;
+	private Employee employee = null;
 	private boolean isLoggedin = false;
 	public static Customer sessionCustomer = null;
 	private static final String customerSql = "Select c.FIRST_NAME, c.LAST_NAME, c.CUSTOMER_ID, c.PHONE_NUMBER, "
@@ -29,7 +29,7 @@ public class AccountManager implements Serializable {
 			+ "LEFT JOIN ADDRESS a "
 			+ "ON c.CUSTOMER_ID = a.CUSTOMER_ID "
 			+ "WHERE c.EMAIL_ADDRESS = ?";
-    
+	private static final String adminSql = "SELECT FIRST_NAME FROM ADMIN WHERE EMAIL_ADDRESS = ? AND PASSWORD =?";
 	
 	private static final String incorrectPasswordMsg = "Incorrect password! Password must be between 8 and 13 " + 
 			"characters and must contain at least one of each of the following: uppercase, lowercase, " + 
@@ -56,6 +56,8 @@ public class AccountManager implements Serializable {
 				
 				HttpSession session = SessionManager.getSession();
 				session.setAttribute("admin", email);
+				
+				getAdminInfo();
 				
 				return "adminHome?faces-redirect=true";
 			}
@@ -102,6 +104,7 @@ public class AccountManager implements Serializable {
 			email = "";
 			password = "";
 			customer = null;
+			employee = null;
 			sessionCustomer = null;
 			return "login.xhtml?faces-redirect=true";
 		}
@@ -138,6 +141,34 @@ public class AccountManager implements Serializable {
 			}
 		}
 	}
+	
+	private void getAdminInfo() {
+		boolean valid = LoginValidator.validateAdmin(email, password);
+		 if(valid && employee == null) {
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+	
+			try  {
+				conn = DatabaseConnector.getConnection();
+				pstmt = conn.prepareStatement(adminSql);
+				pstmt.setString(1, email);
+				pstmt.setString(2, password);
+				ResultSet rs = pstmt.executeQuery();
+				if (rs.next()) {
+				employee = new Employee(rs.getString(1), null, 0, email, password );
+				}
+
+				rs.close();
+			} catch (SQLException ex) {
+				
+				System.out.println("error -->" + ex.getMessage());
+				
+			} finally {
+				DatabaseConnector.close(conn);
+			}
+		}
+	}
+	
 	public String getEmail() {
 		return email;
 	}
@@ -186,6 +217,14 @@ public class AccountManager implements Serializable {
 		this.pageId = pageId;
 	}
 
+	public Employee getEmployee() {
+		return employee;
+	}
+
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
+    
 	
 
 	

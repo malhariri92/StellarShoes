@@ -28,9 +28,8 @@
         </div>
 		<a href="index.xhtml"><img id="logo" src="./resources/images/stellar-shoes-logo.svg" ></img></a>
 		<div id="top-icons">
-			<a href=""><i class="fa fa-search fa-2x"></i></a> 
 			<a href="login.xhtml"><i class="fa fa-user fa-2x"></i></a> 
-			<a href="checkout1"><i class="fa fa-shopping-cart fa-2x"></i></a> 
+			<a href="checkout1.xhtml"><i class="fa fa-shopping-cart fa-2x"></i></a> 
 		</div>
 		<span id="hamburger" onclick="openNav()">&nbsp;</span>
 	</header>
@@ -41,58 +40,33 @@
 	<h:form>
 		<div class="checkout-panel">
 			<div class="panel-body">
-			 <h1>Order Shipment</h1>
+			 <h1>New Address</h1>
 
-				<!-- This is the HTML for a progress bar (4 steps). -->
-			  <!-- <div class="progress-bar">
-				<div class="step active"></div>
-				<div class="step active"></div>
-				<div class="step"></div>
-				<div class="step"></div>
-			  </div> -->
-
+				
 			  <div class="input-fields">
 				<div class="column-1">
 				
-				<div class="small-inputs">	
-				<div>
-				  <label for="">First Name *</label>
-                  <p:inputText value = "#{checkout.customer.fName}" type="text" 
-                   validatorMessage = "Please enter your first name">
-                   <f:validateRegex pattern="^[a-zA-Z]+$"></f:validateRegex>
-                   </p:inputText>
-                   </div>                 
-                   <div>
-                   <label for="">Last Name *</label>
-                  <p:inputText value = "#{checkout.customer.lastName}" type="text" 
-                   required = "true" validatorMessage = "Please enter your last name">
-                   <f:validateRegex pattern="^[a-zA-Z]+$"></f:validateRegex>
-                   </p:inputText>
-                  </div>
-                  </div>
-                  
-                  
                   <div class="small-inputs">
                   <div>
                   <label for="">Address Line1 *</label>
-				  <p:inputText value = "#{checkout.address.address1}" type="text" 
+				  <p:inputText value = "#{manageAccount.newAddress.address1}" type="text" 
 				   required = "true" />
 				   </div>
 				   <div>
 				   <label for="">Address Line2</label>
-				  <p:inputText value = "#{checkout.address.address2}" type="text"/>
+				  <p:inputText value = "#{manageAccount.newAddress.address2}" type="text"/>
                    </div>
 				 </div>
 				 
 				   <div class="small-inputs">
 					<div>
 					  <label for="">City *</label>
-					  <p:inputText value = "#{checkout.address.city}" type="text" required = "true"/>
+					  <p:inputText value = "#{manageAccount.newAddress.city}" type="text" required = "true"/>
 					</div>
 
 					<div>
 					  <label for="">State *</label>
-                      <p:inputText value = "#{checkout.address.state}" type="text"  required = "true" />
+                      <p:inputText value = "#{manageAccount.newAddress.state}" type="text"  required = "true" />
                       
                       <!-- Intention is to add a drop-down of state names, but this hasn't been added yet. -->
 					</div>
@@ -100,7 +74,7 @@
                        <div class="small-inputs">     
 					<div>
 					  <label for="">Zip Code *</label>
-					  <p:inputText value = "#{checkout.address.zip}" required = "true"
+					  <p:inputText value = "#{manageAccount.newAddress.zip}" required = "true"
 					   requiredMessage = "Please enter a valid Zip code"></p:inputText>
 					</div>
 
@@ -112,12 +86,8 @@
 			</div>
 
 			<div class="panel-footer">
-			
-			  
-			  <h:commandButton value = "Back" action = "checkout1?faces-redirect=true" 
-			  styleClass = "btn back-btn" style = "width:250px"/>
 			 
-			  <h:commandButton value = "Next" action = "#{checkout.printAddress()}" 
+			  <h:commandButton value = "Submit" action = "#{manageAccount.changeAddress()}" 
 			  styleClass = "btn next-btn" style = "width:406.9px; margin-left:165px;"/>
 			  
 			</div>

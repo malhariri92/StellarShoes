@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,10 +28,10 @@ public class ManageProduct {
 			+ "SET SHOE_COLOR = ?,IMAGE_URL = ?, SHOE_PRICE = ? "
 			+ "WHERE SHOE_ID =?";
 	
-	private static final String insertProductSQL = "ALTER TABLE SHOE DROP CONSTRAINT FK__SHOE__CATEGORY_I__01142BA1 "
-			+ "INSERT INTO SHOE (SHOE_NAME, SHOE_SIZE, CATEGORY_ID, SHOE_COLOR, IMAGE_URL, SHOE_PRICE) "
+	private static final String insertProductSQL = "INSERT INTO SHOE (SHOE_NAME, SHOE_SIZE, CATEGORY_ID, SHOE_COLOR, IMAGE_URL, SHOE_PRICE) "
 			+ "VALUES (?, null, ?, ?, ?, ?)";
-	private static final String removeSQL = "DELETE from SHOE WHERE SHOE_ID = ?";
+	private static final String removeSQL = "Alter table ORDER_DETAILS DROP CONSTRAINT FK_SHOE_ID "
+			+ "DELETE from SHOE WHERE SHOE_ID = ?";
 	
 	private double newPrice;
 	private String newColor;
@@ -47,37 +49,37 @@ public class ManageProduct {
 		System.out.println("here is the new Color: " +product.getColor() 
 	     +"\n new price "+product.getPrice() + " newURL " + product.getImgUrl() + " itemID "+product.getProductID()
 	     + " product name " + product.getName() + " categoryID " + product.getCategoryId());
-		product = new Product();
-//		   Connection conn = null;
-//			PreparedStatement pstmt = null;
-//			
-//			try  {
-//				conn = DatabaseConnector.getConnection();
-//				
-//				pstmt = conn.prepareStatement(insertProductSQL);
-//	            pstmt.setString(1, product.getName());	            
-//	            pstmt.setInt(2,product.getCategoryId());
-//	            pstmt.setString(3, product.getColor());
-//	            pstmt.setString(4, product.getImgUrl());
-//	            pstmt.setDouble(5, product.getPrice());
-//	            
-//				int rs = pstmt.executeUpdate();
-//				
-//				if(rs > 0) {
-//					
-//				Messages.show(product.getName() +" has been successfully added.");
-//				} else {
-//					Messages.show("An error has occurred. Please try again");
-//				}
-//				
-//	          pstmt.close();
-//	   
-//			} catch (SQLException ex) {
-//				
-//				System.out.println("error from Add Item() -->" + ex.getMessage());
-//			} finally {
-//				DatabaseConnector.close(conn);
-//			}
+		
+		   Connection conn = null;
+			PreparedStatement pstmt = null;
+			
+			try  {
+				conn = DatabaseConnector.getConnection();
+				
+				pstmt = conn.prepareStatement(insertProductSQL);
+	            pstmt.setString(1, product.getName());	            
+	            pstmt.setInt(2,product.getCategoryId());
+	            pstmt.setString(3, product.getColor());
+	            pstmt.setString(4, product.getImgUrl());
+	            pstmt.setDouble(5, product.getPrice());
+	            
+				int rs = pstmt.executeUpdate();
+				
+				if(rs > 0) {
+					
+				Messages.show(product.getName() +" has been successfully added.");
+				} else {
+					Messages.show("An error has occurred. Please try again");
+				}
+				
+	          pstmt.close();
+	   
+			} catch (SQLException ex) {
+				
+				System.out.println("error from Add Item() -->" + ex.getMessage());
+			} finally {
+				DatabaseConnector.close(conn);
+			}
 		   
 		    product = new Product();
 		   FacesContext context = FacesContext.getCurrentInstance();
@@ -85,37 +87,39 @@ public class ManageProduct {
 		   
 			return "adminProducts?faces-redirect=true";
 	}
-//	public List<Product> getProductsList() {
-//		Connection conn = null;
-//		Statement stmt = null;
-//		List<Product> products = new ArrayList<>();
-//		try  {
-//			conn = DatabaseConnector.getConnection();
-//			
-//			stmt = conn.createStatement();
-//
-//			ResultSet rs = stmt.executeQuery(productSQL);
-//			
-//			while(rs.next()) {
-//				
-//			Product	product = new Product(rs.getInt(1), rs.getString(2), 0, rs.getString(4),
-//						rs.getDouble(5), rs.getInt(6), rs.getString(7), rs.getString(8));
-//				
-//				products.add(product);
-//			}
-//			
-//           stmt.close();
-//           rs.close();
-//           
-//		} catch (SQLException ex) {
-//			
-//			System.out.println("error -->" + ex.getMessage());
-//		} finally {
-//			DatabaseConnector.close(conn);
-//		}
-//		
-//		return products;
-//	}
+	
+	
+	public List<Product> getProductsList() {
+		Connection conn = null;
+		Statement stmt = null;
+		List<Product> products = new ArrayList<>();
+		try  {
+			conn = DatabaseConnector.getConnection();
+			
+			stmt = conn.createStatement();
+
+			ResultSet rs = stmt.executeQuery(productSQL);
+			
+			while(rs.next()) {
+				
+			Product	product = new Product(rs.getInt(1), rs.getString(2), 0, rs.getString(4),
+						rs.getDouble(5), rs.getInt(6), rs.getString(7), rs.getString(8), 0);
+				
+				products.add(product);
+			}
+			
+           stmt.close();
+           rs.close();
+           
+		} catch (SQLException ex) {
+			
+			System.out.println("error -->" + ex.getMessage());
+		} finally {
+			DatabaseConnector.close(conn);
+		}
+		
+		return products;
+	}
 	
 	/**
 	 * 
@@ -125,7 +129,13 @@ public class ManageProduct {
 	public String editItem(Product item) {
 		product = item;
 		
-		if(newPrice != 0) { product.setPrice(newPrice);}
+		if(newPrice != 0 && newPrice >= 20) {
+			product.setPrice(newPrice);
+			}else {
+				Messages.show("Please enter a valid price. Prices must be between $20 and $200");
+				return "adminProducts";
+			}
+		
 		if(newColor != null && newColor != "") { product.setColor(newColor); }
 		if(newImageUrl != null && newImageUrl != "") {product.setImgUrl(newImageUrl);}
 
@@ -136,35 +146,35 @@ public class ManageProduct {
 	     System.out.println("here is the new Color: " +product.getColor() 
 	     +"\n new price "+product.getPrice() + "newURL " + product.getImgUrl() + " itemID "+product.getProductID());
 	     
-//		   Connection conn = null;
-//			PreparedStatement pstmt = null;
-//			
-//			try  {
-//				conn = DatabaseConnector.getConnection();
-//				
-//				pstmt = conn.prepareStatement(editSQL);
-//	            pstmt.setString(1,product.getColor());
-//	            pstmt.setString(2,product.getImgUrl());
-//	            pstmt.setDouble(3, product.getPrice());
-//	            pstmt.setInt(4, product.getProductID());
-//				int rs = pstmt.executeUpdate();
-//				
-//				if(rs > 0) {
-//					
-//				Messages.show("Your changes have been saved!");
-//				} else {
-//					Messages.show("An error has occurred. Please try again");
-//				}
-//				
-//	          pstmt.close();
-//	   
-//			} catch (SQLException ex) {
-//				
-//				System.out.println("error from editItem() -->" + ex.getMessage());
-//			} finally {
-//				DatabaseConnector.close(conn);
-//			}
-//  		   
+		   Connection conn = null;
+			PreparedStatement pstmt = null;
+			
+			try  {
+				conn = DatabaseConnector.getConnection();
+				
+				pstmt = conn.prepareStatement(editSQL);
+	            pstmt.setString(1,product.getColor());
+	            pstmt.setString(2,product.getImgUrl());
+	            pstmt.setDouble(3, product.getPrice());
+	            pstmt.setInt(4, product.getProductID());
+				int rs = pstmt.executeUpdate();
+				
+				if(rs > 0) {
+					
+				Messages.show("Your changes have been saved!");
+				} else {
+					Messages.show("An error has occurred. Please try again");
+				}
+				
+	          pstmt.close();
+	   
+			} catch (SQLException ex) {
+				
+				System.out.println("error from editItem() -->" + ex.getMessage());
+			} finally {
+				DatabaseConnector.close(conn);
+			}
+  		   
   		    product = new Product();
   		   FacesContext context = FacesContext.getCurrentInstance();
 		   context.getExternalContext().getFlash().setKeepMessages(true);
@@ -184,35 +194,41 @@ public class ManageProduct {
 		   Connection conn = null;
 			PreparedStatement pstmt = null;
 			
-//			try  {
-//				conn = DatabaseConnector.getConnection();
-//				
-//				pstmt = conn.prepareStatement(removeSQL);
-//	            pstmt.setInt(1,itemID);
-//				int rs = pstmt.executeUpdate();
-//				
-//				if(rs > 0) {
-//					
-//					Messages.show("Product with ID "+itemID+" was deleted");
-//				} else {
-//					Messages.show("You cannot remove this product!");
-//				}
-//				
-//	          pstmt.close();
-//	   
-//			} catch (SQLException ex) {
-//				
-//				System.out.println("error from deleteItem() -->" + ex.getMessage());
-//			} finally {
-//				DatabaseConnector.close(conn);
-//			}
+			try  {
+				conn = DatabaseConnector.getConnection();
+				
+				pstmt = conn.prepareStatement(removeSQL);
+	            pstmt.setInt(1,itemID);
+				int rs = pstmt.executeUpdate();
+				
+				if(rs > 0) {
+					
+					Messages.show("Product with ID "+itemID+" was deleted");
+				} else {
+					Messages.show("You cannot remove this product!");
+				}
+				
+	          pstmt.close();
+	   
+			} catch (SQLException ex) {
+				
+				System.out.println("error from deleteItem() -->" + ex.getMessage());
+			} finally {
+				DatabaseConnector.close(conn);
+			}
 			FacesContext context = FacesContext.getCurrentInstance();
 			   context.getExternalContext().getFlash().setKeepMessages(true);
 			
 			return "adminProducts?faces-redirect=true";
 		}
 	
-
+	public String getDate() {
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy");  
+		   LocalDateTime date = LocalDateTime.now(); 
+		   String strDate = dtf.format(date);
+		   return strDate;
+	} 
+	
 	public Product getProduct() {
 		return product;
 	}

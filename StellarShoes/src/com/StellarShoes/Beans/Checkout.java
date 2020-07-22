@@ -40,8 +40,8 @@ public class Checkout implements Serializable{
 	private final String insertAddressSQL = "INSERT INTO ADDRESS (CUSTOMER_ID, STREET_ADDRESS1, STREET_ADDRESS2, CITY, STATE, ZIP) "
 			+ "VALUES (?, ?, ?, ?, ?, ?)";
 	
-	private static final  String orderDetailsSQL = "INSERT INTO ORDER_DETAILS (ORDER_ID, SHOE_ID, QUANTITY) "			
-			+ "VALUES (?, ?, ?)";
+	private static final  String orderDetailsSQL = "INSERT INTO ORDER_DETAILS (ORDER_ID, SHOE_ID, QUANTITY, SHOE_SIZE) "			
+			+ "VALUES (?, ?, ?, ?)";
 	
 	private Customer customer;
 	
@@ -400,6 +400,7 @@ private void getPaymentID() {
 				pstmt.setInt(1, orderID);
 				pstmt.setInt(2, item.getProductID());
 				pstmt.setInt(3, quantity);
+				pstmt.setDouble(4, item.getSize());
 				
 				int rs = pstmt.executeUpdate();
 				if (rs > 0) {

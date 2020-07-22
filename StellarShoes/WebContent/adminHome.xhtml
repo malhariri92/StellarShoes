@@ -30,17 +30,16 @@
 			<a href="adminHome.xhtml" class="nav-item page-ni"><i class="fa fa-home fa-5x"></i><br/>Home</a>
 			<a href="adminProducts.xhtml" class="nav-item"><i class="fa fa-archive fa-5x"></i><br/>Products</a>
             <a href="adminOrders.xhtml" class="nav-item"><i class="fa fa-truck fa-5x"></i><br/>Orders</a>
-			<a href="adminCustomers.xhtml" class="nav-item"><i class="fa fa-user-circle-o fa-5x"></i><br/>Customers</a>
 			<a href="adminPayments.xhtml" class="nav-item"><i class="fa fa-money fa-5x"></i><br/>Payments</a>
         </div>
 	</header>
 
 	<main id="main">
-	<h1>Hi [Person's Name]</h1>
+	<h1>Hi #{accountManager.employee.fName}</h1>
 	
 	<section>
-		<p>Thank you for coming into work today. Today's it's [insert date].</p>
-		<p>There are [X] orders to be filled today.</p>
+		<p>Thank you for coming into work today. Today's date is #{manageProduct.getDate()}.</p>
+		<p>There are [#{manageOrders.loadOrders().size()}] orders to be filled today.</p>
 		<p>There's our summer sale going on between July 15th and August 15th.</p>
 		<p>Management looks forward to seeing you at the staff meeting on July 28th at 10am. </p>
 	</section>

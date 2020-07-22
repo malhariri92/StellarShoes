@@ -294,8 +294,15 @@ footer ul {
     text-decoration: none;
 }
 
+footer ul a, footer ul a:hover, footer ul a:active {
+	font-size: 1em;
+    color: white;
+    text-decoration: none;
+}
+
 footer ul li {
     padding-top: .5em;
+    
 }
 
 footer .fa {

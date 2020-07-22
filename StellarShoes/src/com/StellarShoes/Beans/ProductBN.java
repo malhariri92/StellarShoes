@@ -41,7 +41,7 @@ public class ProductBN implements Serializable {
 			while(rs.next()) {
 				
 				product = new Product(rs.getInt(1), rs.getString(2), 0, rs.getString(4),
-						rs.getDouble(5), rs.getInt(6), rs.getString(7), rs.getString(8));
+						rs.getDouble(5), rs.getInt(6), rs.getString(7), rs.getString(8), 0);
 				
 				products.add(product);
 			}

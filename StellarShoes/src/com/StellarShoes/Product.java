@@ -9,10 +9,11 @@ public class Product {
 	private int categoryId;
 	private String imgUrl;
 	private String description;
-	
+	private int quantity;
 	
 	
 	public Product() {}
+	
 	/**
 	 * @param productID
 	 * @param name
@@ -22,9 +23,10 @@ public class Product {
 	 * @param categoryId
 	 * @param imgUrl
 	 * @param description
+	 * @param quantity
 	 */
 	public Product(int productID, String name, double size, String color, double price, int categoryId, String imgUrl,
-			String description) {
+			String description, int quantity) {
 		super();
 		this.productID = productID;
 		this.name = name;
@@ -34,7 +36,9 @@ public class Product {
 		this.categoryId = categoryId;
 		this.imgUrl = imgUrl;
 		this.description = description;
+		this.quantity = quantity;
 	}
+
 	public int getProductID() {
 		return productID;
 	}
@@ -82,6 +86,12 @@ public class Product {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	public int getQuantity() {
+		return quantity;
+	}
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
 	}
 	
 	

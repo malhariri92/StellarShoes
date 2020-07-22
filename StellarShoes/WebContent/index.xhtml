@@ -20,16 +20,14 @@
 <body>
 	<header>
         <div id="mySlideNav" class="slideNav">
-			
 			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-			<a href="index.xhtml" class="nav-item" onclick="closeNav()">Home</a>
-			<a href="category.xhtml" class="nav-item" onclick="closeNav()">Shop</a>
-            <a href="FAQs.xhtml" class="nav-item" onclick="closeNav()">FAQs</a>
-			<a href="about.xhtml" class="nav-item" onclick="closeNav()">About</a>
+			<a href="category.xhtml" class="nav-item" onclick="closeNav()">Boots</a>
+			<a href="category.xhtml" class="nav-item" onclick="closeNav()">Loafers</a>
+            <a href="category.xhtml" class="nav-item" onclick="closeNav()">Oxfords</a>
         </div>
 		<a href="index.xhtml"><img id="logo" src="./resources/images/stellar-shoes-logo.svg" ></img></a>
 		<div id="top-icons">
-			<a href=""><i class="fa fa-search fa-2x"></i></a> 
+			<!-- <a href=""><i class="fa fa-search fa-2x"></i></a>  -->
 			<a href="login.xhtml"><i class="fa fa-user fa-2x"></i></a> 
 			<a href="checkout1.xhtml"><i class="fa fa-shopping-cart fa-2x"></i></a> 
 		</div>
@@ -37,17 +35,55 @@
 	</header>
 
 	<main id="main">
-    <section id="hero-space">
-        <h1>Carousel with hero image and animation</h1>		
-    </section>
-
-	<section id="categories">
-		<h1>Category pics and decriptions</h1>
-    </section>
-    
+   <section id="hero-space">
+        <h1>We have shoes that take you where you want to go.</h1>		
+	</section>
+	    
 	<section id="testimonials">
 		<h1>This is where testimonials will go.</h1>
+	</section>
+
+	<section id="category-container">
+		<a href="category.xhtml">
+			<article id = "boots">
+				<h3>Boots</h3>
+				<h4>Make an Impression</h4>
+				<a href="#" class="discover">Discover</a>
+			</article>
+		</a>
+		<a href="category.xhtml">
+			<article id = "oxfords">
+				<h3>Oxfords</h3>
+				<h4>Epitome of Luxury</h4>
+				<a href="#" class="discover">Discover</a>
+			</article>
+		</a>
+		<a href="category.xhtml">
+			<article id = "loafers">
+				<h3>Loafers</h3>
+				<h4>Take it Easy</h4>
+				<a href="#" class="discover">Discover</a>
+			</article>
+		</a>
+		
     </section>
+	
+	<section id="why">
+		<h2>Why Stellar?</h2>
+		<p>We provide you products with style, quality and superior customer service in mind. You are spectacular. Your footware should be too.</p>
+	</section>
+
+	<section id="subscribe">
+		<img src="https://raw.githubusercontent.com/hmcka/StellarShoes/master/two-guys.jpg" width="auto" height="475" ></img>
+		<div>
+			<h2>Do you love shoes? We do too. Subscribe to our mailing list and receive 15% off your next order.</h2>
+			<p>
+				<label for="">Email Address:<br/></label>
+				<input type="text" id="make same as label"/>
+			</p>
+		</div>
+		<img src="https://raw.githubusercontent.com/hmcka/StellarShoes/master/clean-shoe-2.jpg" ></img>
+	</section>
 
     <footer>
 		<section>
@@ -84,8 +120,8 @@
 	</footer>
 	</main>
 
-    <script src="./resources/js/jquery-3.3.1.js"></script>
-	<script src="./resources/js/hamburger-js.js"></script>
+    <h:outputScript library="primefaces" name="jquery/jquery.js" />
+	<h:outputScript library="js" name="hamburger-js.js" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
 </body>

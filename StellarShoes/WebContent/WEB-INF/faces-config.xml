@@ -45,5 +45,15 @@
 		<managed-bean-class>com.StellarShoes.Beans.Checkout</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>manageOrders</managed-bean-name>
+		<managed-bean-class>com.StellarShoes.Beans.ManageOrders</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>manageAccount</managed-bean-name>
+		<managed-bean-class>com.StellarShoes.Beans.ManageAccount</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
 
 </faces-config>
