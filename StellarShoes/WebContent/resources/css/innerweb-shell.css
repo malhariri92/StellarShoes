@@ -3,6 +3,58 @@ body {
     font-family: 'Barlow', sans-serif;
 }
 
+h1 {
+    color: black;
+    font-size: 3em;
+    font-weight: 400;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: .5em;
+    /* width: 80%; */
+  }
+
+  h2 {
+    font-size: 2em;
+    font-weight: 400;
+    margin-left: auto;
+    margin-right: auto;
+    /* margin-top: 2em; */
+    /* width: 80%; */
+  }
+
+#order-two-column-container {
+    margin-left: 1em;
+    margin-right: 1em;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 0;
+    /* margin-right: auto; */
+    display: flex;
+  } 
+
+#order-two-column-container h2 {
+    background-color: white;
+    border-top-right-radius: 25px;
+    font-size: 1.5em;
+    font-weight: 400;
+    margin-bottom: 0;
+    
+    margin-top: 0;
+    margin-right: 5px;
+    max-width: 50%;
+    padding: 1em;
+    text-align: center;
+}
+
+@media (min-width: 425px) {
+    #order-two-column-container h2 {
+        font-size: 2em;
+        margin-left: 0; 
+        /* margin-right: auto; */
+        max-width: 25%;
+      }
+  }
+
 #user-name {
     background-color: black;
     color: white;    
@@ -146,6 +198,7 @@ section {
     background-color: white;
     min-height: 200px;
     margin: 1em;
+    margin-top: 0;
     padding: 1em;
     z-index: 1;
 }
@@ -159,7 +212,7 @@ section img {
 }
 
 section p {
-    width: 80%;
+    /* width: 80%; */
 }
 
 .search-section {
