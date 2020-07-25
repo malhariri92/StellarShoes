@@ -3,13 +3,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core" 
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
 <h:head>
 <title>Create Account</title>
 <meta content="width=device-width, initial-scale=1" name="viewport" />
 <link rel="stylesheet" type="text/css" href="./resources/css/reset.css"/>
 <link rel="stylesheet" type="text/css" href="./resources/css/store-shell.css"/>
 <link rel="stylesheet" type="text/css" href="./resources/css/main-components.css"/>
+<link rel="stylesheet" type="text/css"
+		href="./resources/css/checkout.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
 <link href="https://fonts.googleapis.com/css?family=Barlow:400,600,900" rel="stylesheet"/>
 </h:head>
@@ -35,62 +38,72 @@
 <div id = "forms-heading">
 <h2>Create Admin Account</h2>
 </div>
-<h:form id="registerForm" prependId = "false">
-         <table class="register-form-group">
-             <tr>
-                 <td><h:outputText value="First Name: " /></td>
-                 <td><h:inputText id="fname" value="#{createBN.employee.fName}" validatorMessage = "First name may contain letters only."
+
+         <div class="checkout-panel">
+			<div class="panel-body">
+
+				<div class="input-fields">
+					<div class="column-1">
+					<h:form id="registerForm" prependId="false">
+						<div class="small-inputs">
+						<div>	
+                 <p:outputLabel for = "fname" value="First Name" />
+                 <p:inputText id="fname" value="#{createBN.employee.fName}" validatorMessage = "First name may contain letters only."
                                   required="true" requiredMessage="Please enter your first name" >
                                   <f:validateRegex pattern="[a-zA-Z]+?"></f:validateRegex>
-                                  </h:inputText></td>
-                 
-             
-                 <td><h:outputText value="Last Name: " /></td>
-                 <td><h:inputText id="lname" value="#{createBN.employee.lastName}"  validatorMessage = "Last name may contain letters only."
+                                  </p:inputText>
+                 </div>
+                 <div>
+                 <p:outputLabel for = "lname" value="Last Name" />
+                 <p:inputText id="lname" value="#{createBN.employee.lastName}"  validatorMessage = "Last name may contain letters only."
                                   required="true" requiredMessage="Please enter your last name">
                                   <f:validateRegex pattern="[a-zA-Z]+?"></f:validateRegex>
-                                  </h:inputText></td>
-                 
-             </tr>
-             <tr>
-                 <td><h:outputText value="Company Email :" /></td>
-                 <td><h:inputText id="email1" value="#{createBN.employee.email}"
-                                  required="true" requiredMessage="Please enter your email" /></td>
-                 
+                                  </p:inputText>
+                     </div>             
+                 </div>
+             <div class="small-inputs">
+             <div>
+                 <p:outputLabel  for = "email1" value="Company Email" />
+                 <p:inputText id="email1" value="#{createBN.employee.email}"
+                                  required="true" requiredMessage="Please enter your email" />
+                 </div>
+             <div>
+                 <p:outputLabel for = "email2" value="Confirm Email" />
+                 <p:inputText id="email2" value="#{createBN.email2}"
+                                    required="true" requiredMessage="Please confirm your email" />
+                  </div>
+                  </div>
+             <div class="small-inputs">
+             <div>
+                 <p:outputLabel for = "password1" value="Password" />
+                 <p:password id="password1" value="#{createBN.employee.password}"
+                                  required="true" requiredMessage="Please enter password" />
+                 </div>
+            <div>
+                 <p:outputLabel for = "password2" value="Confirm Password" />
+                 <p:password id="password2" required="true" value="#{createBN.password2}" 
+                 requiredMessage="Please confirm your password"/>
+                        </div> 
+                        </div>          
+                     <div class="small-inputs">  
+                     <div>           
+                 <p:outputLabel for = "employeeid" value="Employee ID" />
+                 <p:inputText id="employeeid" value="#{createBN.employee.employeeID}"
+                                  required="true" requiredMessage="Please enter your phone number" />
+                 </div>
              
-                 <td><h:outputText value="Confirm Email :" /></td>
-                 <td><h:inputText id="email2" value="#{createBN.email2}"
-                                    required="true" requiredMessage="Please confirm your email" /></td>
-                 
-             </tr>
-             <tr>
-                 <td><h:outputText value="Password: " /></td>
-                 <td><h:inputSecret id="password1" value="#{createBN.employee.password}"
-                                  required="true" requiredMessage="Please enter password" /></td>
-                 
+              </div>
             
-                 <td><h:outputText value="Confirm Password: " /></td>
-                 <td><h:inputSecret id="password2" required="true" value="#{createBN.password2}" 
-                 requiredMessage="Please confirm your password">
-                                  </h:inputSecret>
-                                  </td>                 
-             </tr>
-             <tr>
-                 <td><h:outputText value="Employee ID :" /></td>
-                 <td><h:inputText id="employeeid" value="#{createBN.employee.employeeID}"
-                                  required="true" requiredMessage="Please enter your phone number" /></td>
-                 
-             </tr>
-             
-             <tr>
-                 <td />
-                 <td><h:commandButton id="regButton"  value = "Create Account" action="#{createBN.registerAdmin()}" > </h:commandButton></td>
-             </tr>
-             
-         </table><br/>
+                 <p:commandButton id="regButton"  value = "Create Account" action="#{createBN.registerAdmin()}"
+                 styleClass="btn next-btn" update = "message"/> 
+            
           
-         <h:messages styleClass = "error"></h:messages>
+         <h:messages id = "message" styleClass = "error"></h:messages>
      </h:form>
+					</div>
+				</div>
+			</div>
+		</div>
 </main>
 <footer>
 		<section>

@@ -83,13 +83,17 @@
 				</div>	
 				</ui:repeat>	
 			</td> 
-	  		<td class="order-table-column"><p>Full Name:  #{order.fName} #{order.lastName}<br/><br/>
+			<h:form>
+	  		<td class="order-table-column"><p:outputPanel id = "address-#{order.orderID}"><p>Full Name:  #{order.fName} #{order.lastName}<br/><br/>
 	  		#{order.address.address1} #{order.address.address2}, 
 	  		#{order.address.city}, #{order.address.state}<br/> #{order.address.zip}<br/><br/>
 	  		</p><br/><br/>
+	  		<img src = "./resources/images/barcode.png" style="width:100%"></img>
+	  		</p:outputPanel><br/><br/>
 	  		
 	  		</td>
-	  		<h:form>
+	  		
+	  		
 	  		<td class="order-table-column">
 	  		
 	  		<p:selectOneMenu value = "#{order.status}" > 
@@ -103,9 +107,11 @@
 	  		<td class="order-table-column">
 				
             
-            <p:commandButton styleClass = "btn next-btn" value="Change Status" icon="pi pi-print"
-				 action = "#{manageOrders.changeStatus(order.orderID)}"/> 
-
+            <p:commandButton styleClass = "btn next-btn" value="Change Status"
+				 action = "#{manageOrders.changeStatus(order.orderID)}"/> <br/><br/>
+           <p:commandButton value="Print" type="button" icon="fa fa-print" styleClass = "btn next-btn">
+              <p:printer target="address-#{order.orderID}" />
+           </p:commandButton>
 			</td>
 			</h:form>
 		</tr>

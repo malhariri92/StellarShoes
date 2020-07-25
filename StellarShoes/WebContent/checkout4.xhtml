@@ -43,11 +43,11 @@
 				<p >Thank You for your order!<br/> <br/>
 				 We received your order and we'll begin processing it soon.</p>
 				 
-				 <h:panelGroup rendered = "#{checkout.orderID > 0}">
-				<p ><strong>ORDER ID: </strong> ##{checkout.orderID}<br/> 
-				<strong>Transaction ID: </strong> ##{checkout.payment.paymentID}</p>
+				 <h:panelGroup rendered = "#{orderBN.orderID > 0}">
+				<p ><strong>ORDER ID: </strong> ##{orderBN.orderID}<br/> 
+				<strong>Transaction ID: </strong> ##{orderBN.paymentID}</p>
 				</h:panelGroup>
-				<h:panelGroup rendered = "#{checkout.orderID == 0}">
+				<h:panelGroup rendered = "#{orderBN.orderID == 0}">
 				<p  >Your order details will be sent to your email.</p> 
 				</h:panelGroup>
 			</div>
