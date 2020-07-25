@@ -35,7 +35,7 @@
 	</header>
 
 	<main id="main">
-	      <p:growl id = "message" style = "top: 200px; right: 600px;"></p:growl>
+	      <p:growl id = "message" ></p:growl> <!--REMOVED: style = "top: 200px; right: 600px;"-->
 	
 	<h:form>
 		<div class="checkout-panel">
@@ -88,7 +88,7 @@
 			<div class="panel-footer">
 			 
 			  <h:commandButton value = "Submit" action = "#{manageAccount.changeAddress()}" 
-			  styleClass = "btn next-btn" style = "width:406.9px; margin-left:165px;"/>
+			  styleClass = "btn next-btn" /> <!-- REMOVED: style = "width:406.9px; margin-left:165px;"-->
 			  
 			</div>
 		  </div>
@@ -99,16 +99,16 @@
 		<section>
 			<h2>Customer Service</h2>
 			<ul>
-				<li><a href = "createAccount.xhtml" style = "color: white" >Frequently Asked Questions</a></li>
-				<li><a href = "contact.xhtml" style = "color: white" >Contact Us</a></li>
-				<li><a href = "about.xhtml" style = "color: white" >About Us</a></li>
+				<li><a href = "createAccount.xhtml" >Frequently Asked Questions</a></li> <!-- REMOVED: style = "color: white"-->
+				<li><a href = "contact.xhtml">Contact Us</a></li> <!-- REMOVED: style = "color: white"-->
+				<li><a href = "about.xhtml">About Us</a></li> <!-- REMOVED: style = "color: white"-->
 			</ul>
 		</section>
 		<section>
 			<h2>My Account</h2>
 			<ul>
-				<li><a href = "createAccount.xhtml" style = "color: white" >Create Account</a></li>
-				<li><a href = "success.xhtml" style = "color: white">Manage Account</a></li>
+				<li><a href = "createAccount.xhtml">Create Account</a></li> <!-- REMOVED: style = "color: white"-->
+				<li><a href = "success.xhtml">Manage Account</a></li> <!-- REMOVED: style = "color: white"-->
 				
 			</ul>
 		</section>

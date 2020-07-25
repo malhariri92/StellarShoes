@@ -37,19 +37,21 @@
 	
 	<main id="main">
 		<div class="checkout-panel">
-			
-			  <p> #{myCart.emptyCart()} </p>
-             <img src = "./resources/images/correct.png" style = "width:10%; margin: 0 auto" alt = "correct clipart image" ></img>
-			 <p style = "margin-left: 320px">Thank You for your order<br/>
-              We received your order and will begin processing it soon.</p>
-              
-              <h:panelGroup rendered = "#{checkout.orderID > 0}">
-             <p style = "margin-left: 320px"><strong>ORDER ID: </strong> ##{checkout.orderID}<br/>
-             <strong>Transaction ID: </strong> ##{checkout.payment.paymentID}</p>
-             </h:panelGroup>
-             <h:panelGroup rendered = "#{checkout.orderID == 0}">
-             <p  style = "margin-left: 320px">Your order details will be sent to your email!</p>
-             </h:panelGroup>
+			<div class="panel-body">
+				<p> #{myCart.emptyCart()} </p>
+				<img src = "./resources/images/correct.png" id="shopping-cart-icon" alt = "correct clipart image" ></img>
+				<p >Thank You for your order!<br/> <br/>
+				 We received your order and we'll begin processing it soon.</p>
+				 
+				 <h:panelGroup rendered = "#{checkout.orderID > 0}">
+				<p ><strong>ORDER ID: </strong> ##{checkout.orderID}<br/> 
+				<strong>Transaction ID: </strong> ##{checkout.payment.paymentID}</p>
+				</h:panelGroup>
+				<h:panelGroup rendered = "#{checkout.orderID == 0}">
+				<p  >Your order details will be sent to your email.</p> 
+				</h:panelGroup>
+			</div>
+
 		   </div>
 	</main>
 	
@@ -57,16 +59,16 @@
 		<section>
 			<h2>Customer Service</h2>
 			<ul>
-				<li><a href = "createAccount.xhtml" style = "color: white" >Frequently Asked Questions</a></li>
-				<li><a href = "contact.xhtml" style = "color: white" >Contact Us</a></li>
-				<li><a href = "about.xhtml" style = "color: white" >About Us</a></li>
+				<li><a href = "createAccount.xhtml"  >Frequently Asked Questions</a></li> 
+				<li><a href = "contact.xhtml" >Contact Us</a></li> 
+				<li><a href = "about.xhtml"  >About Us</a></li> 
 			</ul>
 		</section>
 		<section>
 			<h2>My Account</h2>
 			<ul>
-				<li><a href = "createAccount.xhtml" style = "color: white" >Create Account</a></li>
-				<li><a href = "success.xhtml" style = "color: white">Manage Account</a></li>
+				<li><a href = "createAccount.xhtml">Create Account</a></li> 
+				<li><a href = "success.xhtml" >Manage Account</a></li> 
 				
 			</ul>
 		</section>
