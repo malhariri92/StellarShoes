@@ -37,8 +37,8 @@
 		<span id="hamburger" onclick="openNav()">&nbsp;</span>
 	</header>
 
-	<main id="main">
-      <p:growl id = "message" style = "top: 200px; right: 600px;"></p:growl>
+	<main id="main"> 
+      <p:growl id = "message" ></p:growl> 
       
     <section class="two-column-container">
 		<img class="two-column-image" src="#{item.getShoeInfo().imgUrl}" alt="image of a dress shoe"/>
@@ -63,13 +63,13 @@
               <f:selectItem itemValue = "11" itemLabel = "11" /> 
               <f:ajax excute = "@this" />
            </h:selectOneMenu><br/><br/>
-           <div style= "min-width:600px">
+           <div > 
            <p:commandButton action = "category?faces-redirect=true" value = "Back"
-             update="message" styleClass = "btn next-btn" style = "width:170px; margin-right:20px; margin-bottom:20px;"/>
+             update="message" styleClass = "btn next-btn" style = "width:170px; margin-right:20px; margin-bottom:20px;"/> 
             <p:commandButton action = "#{myCart.addToCart(item.product)}" value = "ADD TO CART"
-             update="message" styleClass = "btn next-btn" style = "width:170px; margin-right:20px"/>
+             update="message" styleClass = "btn next-btn" style = "width:170px; margin-right:20px"/> 
            <p:commandButton action = "checkout1?faces-redirect=true" value = "Checkout Now" 
-           rendered= "#{myCart.cartList.size() > 0}" styleClass = "btn next-btn" style = "width:170px"/>
+           rendered= "#{myCart.cartList.size() > 0}" styleClass = "btn next-btn" style = "width:170px"/> 
            </div>
            </h:form>
 
@@ -80,16 +80,16 @@
 		<section>
 			<h2>Customer Service</h2>
 			<ul>
-				<li><a href = "createAccount.xhtml" style = "color: white" >Frequently Asked Questions</a></li>
-				<li><a href = "contact.xhtml" style = "color: white" >Contact Us</a></li>
-				<li><a href = "about.xhtml" style = "color: white" >About Us</a></li>
+				<li><a href = "createAccount.xhtml"  >Frequently Asked Questions</a></li> 
+				<li><a href = "contact.xhtml" >Contact Us</a></li> 
+				<li><a href = "about.xhtml" >About Us</a></li> 
 			</ul>
 		</section>
 		<section>
 			<h2>My Account</h2>
 			<ul>
-				<li><a href = "createAccount.xhtml" style = "color: white" >Create Account</a></li>
-				<li><a href = "success.xhtml" style = "color: white">Manage Account</a></li>
+				<li><a href = "createAccount.xhtml">Create Account</a></li> 
+				<li><a href = "success.xhtml" >Manage Account</a></li> 
 				
 			</ul>
 		</section>

@@ -20,26 +20,9 @@
   color: #b0b0b0;
 } */
 
-h1 {
-  color: black;
-  font-size: 3em;
-  font-weight: 400;
-  margin-left: auto;
-  margin-right: auto;
-  width: 80%;
-}
 
-h2 {
-  font-size: 2em;
-  font-weight: 400;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 2em;
-  /* width: 80%; */
-}
 
 h3 {
-  /* border: 3px solid black; */
   color: #7f2226;
   font-size: 1.25em;
   font-weight: 600;
@@ -221,6 +204,11 @@ article h3 {
   }
 }
 
+.paypal {
+  /* border: 5px solid orange; */
+  display: inline;
+}
+
 @media (min-width: 800px) {
   .btn {
      font-size: 1em;
@@ -276,8 +264,8 @@ article h3 {
   
   }
   #logoutform {
-  max-width: 450px;
-    margin: 0 auto;
+  /* max-width: 450px; */
+    /* margin: 0 auto; */
   }
    #forms-heading{
  
