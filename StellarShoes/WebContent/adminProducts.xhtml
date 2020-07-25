@@ -49,8 +49,8 @@
 		<f:ajax event="keyup"/></p:inputText>
 		
 		<p:outputLabel value = "Category:" style="margin-right:30px"/>
-		<p:selectOneMenu value = "#{manageProduct.product.categoryId}" style = "width:205px"
-		 requiredMessage = "Please select product category">
+		<p:selectOneMenu value = "#{manageProduct.product.categoryId}" 
+		 requiredMessage = "Please select product category"> <!--REMOVED: style = "width:205px"-->
 		<f:selectItem itemValue = "0" itemLabel = "Select"/> 
               <f:selectItem itemValue = "1" itemLabel = "Boots" /> 
               <f:selectItem itemValue = "2" itemLabel = "Oxfords" /> 
@@ -58,23 +58,22 @@
 		<f:ajax/>
 		</p:selectOneMenu>
 		
-		<p:outputLabel value = "Price:" style="margin-right:30px"/> 
+		<p:outputLabel value = "Price:" />  <!--REMOVED: style="margin-right:30px"-->
 		<p:inputText value = "#{manageProduct.product.price}"
 		 validatorMessage = "Please enter a valid price. Prices must be between $20 and $200">
 	
 		<f:validateDoubleRange  minimum = "20.00" maximum = "200.00" />
 		<f:ajax event="keyup"/>
 		</p:inputText>
-		<p:outputLabel value = "Color:" style="margin-right:30px"/> 
+		<p:outputLabel value = "Color:" /> <!--REMOVED: style="margin-right:30px"-->
 		<p:inputText value = "#{manageProduct.product.color}" required = "true" 
 		requiredMessage = "Please enter product color."><f:ajax event="keyup"/></p:inputText>
-		<p:outputLabel value = "Image URL:" style="margin-right:30px"/>
+		<p:outputLabel value = "Image URL:" /> <!--REMOVED: style="margin-right:30px"-->
 		<p:inputText value = "#{manageProduct.product.imgUrl}" required = "true" 
 		requiredMessage = "Please enter an image url."><f:ajax event="keyup"/></p:inputText>
 		
 		</p:panelGrid><br/>
-          <p:commandButton action = "#{manageProduct.addItem()}" style = "width:170px; margin-right:5px" 
-		value = "Save" icon="fa fa-save" update="message" >
+          <p:commandButton action = "#{manageProduct.addItem()}" value = "Save" icon="fa fa-save" update="message" > <!--REMOVED: style = "width:170px; margin-right:5px"-->
 		</p:commandButton>
 		</p:panel>
 		</h:form>	
@@ -93,8 +92,7 @@
 		
 		<h:form>
 		
-        <p:commandButton action="#{manageProduct.deleteItem(shoe.productID)}" update="message" style = "width:185px"
-                 icon="ui-icon ui-icon-trash" value="Delete Product" >
+        <p:commandButton action="#{manageProduct.deleteItem(shoe.productID)}" update="message" icon="ui-icon ui-icon-trash" value="Delete Product" > <!--REMOVED: style = "width:185px"-->
           <p:confirm header="Confirm Delete" 
                icon="ui-icon-alert"/>
         </p:commandButton>
@@ -106,7 +104,7 @@
          </h:form>
          <h:form>
 		<p:panel id="toggleable" header="Edit Product" toggleable="true" closable="false" toggleSpeed="500" closeSpeed="500"
-		 style="margin-top:20px" toggleableHeader="true" collapsed="true" ajax = "true">	 	
+		 toggleableHeader="true" collapsed="true" ajax = "true" style="margin-top:20px"> <!--REMOVED: style="margin-top:20px" -->	 	
 		 
 		  <p:panelGrid id = "container"  columns="2" cellpadding="5">
 		
@@ -116,24 +114,24 @@
 		
 		<p:outputLabel value = "Category: "/><p:outputLabel value = "#{shoe.description}" />
 		
-		<p:outputLabel value = "New Price:" style="margin-right:30px"/> 
+		<p:outputLabel value = "New Price:"/> <!--REMOVED: style="margin-right:30px"-->
 		<p:inputText value = "#{manageProduct.newPrice}"
 		 validatorMessage = "Please enter a valid price. Prices must be between $20 and $200">
 		<f:validateDoubleRange  minimum = "20.00" maximum = "200.00" ></f:validateDoubleRange>
 		 <f:ajax event="keyup"/></p:inputText>
 		 
-		<p:outputLabel value = "New Color:" style="margin-right:30px"/> 
+		<p:outputLabel value = "New Color:" />  <!--REMOVED: style="margin-right:30px"-->
 		<p:inputText value = "#{manageProduct.newColor}"><f:ajax event="keyup"/></p:inputText>
 		
 		
-		<p:outputLabel value = "New Image URL:" style="margin-right:30px"/>
+		<p:outputLabel value = "New Image URL:" /> <!--REMOVED: style="margin-right:30px"-->
 		<p:inputText value = "#{manageProduct.newImageUrl}"><f:ajax event="keyup"/></p:inputText>
 		
 		</p:panelGrid><br/>
 		
-		<p:commandButton action = "#{manageProduct.editItem(shoe)}" style = "width:170px; margin-right:5px" 
+		<p:commandButton action = "#{manageProduct.editItem(shoe)}"  
 		value = "Save" icon="fa fa-save" update="message">
-		</p:commandButton>
+		</p:commandButton > <!--REMOVED: style = "width:170px; margin-right:5px"-->
 		
 		</p:panel>
 		</h:form>

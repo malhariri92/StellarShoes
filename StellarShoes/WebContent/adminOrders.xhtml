@@ -37,9 +37,15 @@
 
 	<main id="main">
 	
-	<h1>Orders</h1> <p:button styleClass = "btn next-btn" target="_blank" href="https://www.sandbox.paypal.com/us/signin"
-  value="Manage PayPal Orders" style="width:250px; display:inline; margin-left: 450px" icon ="fa fa-external-link"/>
+	<h1>Orders</h1> 
 
+	<div id="order-two-column-container">
+		<h2>Credit Card</h2>
+		<h2>PayPal<!-- <p:button styleClass = "btn next-btn paypal" target="_blank" href="https://www.sandbox.paypal.com/us/signin"
+			value="Manage PayPal Orders" icon ="fa fa-external-link"/> --></h2>
+	</div>
+	
+	
 		  
 <section>
 	<!-- <div class="break"></div> -->
@@ -86,7 +92,7 @@
 	  		<h:form>
 	  		<td class="order-table-column">
 	  		
-	  		<p:selectOneMenu value = "#{order.status}" style = "width:205px" >
+	  		<p:selectOneMenu value = "#{order.status}" > 
 		      <f:selectItem itemValue = "A" itemLabel = "Active"/> 
               <f:selectItem itemValue = "S" itemLabel = "Shipped"/> 
               <f:selectItem itemValue = "C" itemLabel = "Canceled"/> 
@@ -98,7 +104,7 @@
 				
             
             <p:commandButton styleClass = "btn next-btn" value="Change Status" icon="pi pi-print"
-				 style="display:block;margin-bottom: 20px" action = "#{manageOrders.changeStatus(order.orderID)}"/>
+				 action = "#{manageOrders.changeStatus(order.orderID)}"/> 
 
 			</td>
 			</h:form>
