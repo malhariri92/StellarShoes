@@ -39,12 +39,14 @@
 		<div class="checkout-panel">
 			<div class="panel-body">
 				<h1>My Shopping Cart</h1>				
-				<h:panelGroup layout="block"
-				rendered = "#{myCart.cartList.size() == 0   ? 'true' : 'false'}" > 
-					<img src="./resources/images/emptyCart.png" id="shopping-cart-icon" alt="Empty shopping cart" /> 
-					<h:form>
-						<p:commandButton value = "Continue Shopping" action = "category?faces-redirect=true" styleClass = "btn next-btn"/> 
-			 		</h:form>
+				<h:panelGroup style = "margin: 0 auto; width : 700px;" layout="block"
+				rendered = "#{myCart.cartList.size() == 0   ? 'true' : 'false'}" >
+				
+				<img src="./resources/images/emptyCart.png" alt="Empty shopping cart" style = "margin-left: 205px"/>
+				<h:form>
+				<p:commandButton value = "Continue Shopping" action = "category?faces-redirect=true" styleClass = "btn back-btn"
+			 style = "width:250px; margin-left: 240px"/>
+			 </h:form>
 				</h:panelGroup>
                 <h:outputText>Your shopping cart is emty</h:outputText>
 				<!-- This is the HTML for a progress bar (4 steps). -->
@@ -56,67 +58,76 @@
 			   -->
            </div>
           
-          	<h:form > 
-           		<ui:repeat var="shoe"  value="#{myCart.cartList}">
-					<div class = "order-item cartItems">
-						<div class = "order-item-image">
-							<img src="#{shoe.imgUrl}" alt="image of a dress shoe"/> 
-						</div>
-						<div class = "order-item-text" >
-							<h3> #{shoe.name}</h3>
-							<p>Product ID ##{shoe.productID}</p>
-							<p> Description: #{shoe.description} </p>
-							<p>Color: #{shoe.color} </p>
-							<p>Size: #{shoe.size}</p>
-							<p>Price: $#{shoe.price}</p><!--<br/>-->
-							<p:commandLink  style = "color: #7f2226" value = "Remove Item" action = "#{myCart.removeFromCart(shoe)}"/>
-						</div>
-         				<!-- <div class = "cartItems"> -->
-					</div>
-				</ui:repeat>
-			</h:form>
-
-			<div class = "totals-group">
-				<p:outputLabel><strong>SUBTOTAL: </strong>   $#{myCart.subTotal}</p:outputLabel><br/>
-				<p:outputLabel><strong>TAX: </strong> $#{myCart.tax}</p:outputLabel> <br/>
-				<p:outputLabel><strong>TOTAL: </strong>$#{myCart.total}</p:outputLabel>
-			</div>
-			<p:growl id = "message"></p:growl>
+          <h:form > 
+           <ui:repeat var="shoe"  value="#{myCart.cartList}">
+         <div class = "cartItems">
+         
+                <h3> #{shoe.name}</h3>
+		
+		<img style = "width:30%" src="#{shoe.imgUrl}" alt="image of a dress shoe"/>
+		<p>Product ID ##{shoe.productID}</p>
+		<p> Description: #{shoe.description} </p>
+		<p>Color: #{shoe.color} </p>
+		<p>Size: #{shoe.size}</p>
+		<p>Price: $#{shoe.price}</p><br/>
+		
+		<p:commandLink  style = "color:red" value = "Remove Item" action = "#{myCart.removeFromCart(shoe)}"/>
+		</div>
+		</ui:repeat>
+		</h:form>
+		<div style = "margin-left:600px;">
+		<p:outputLabel><strong>SUBTOTAL: </strong>   $#{myCart.subTotal}</p:outputLabel><br/>
+		<p:outputLabel><strong>TAX: </strong> $#{myCart.tax}</p:outputLabel> <br/>
+		<p:outputLabel><strong>TOTAL: </strong>$#{myCart.total}</p:outputLabel>
+		</div>
+		<p:growl id = "message"></p:growl>
            
 			<div class="panel-footer">
-				<h:form id= "form">
-					<p:commandButton value = "Continue Shopping" action = "category?faces-redirect=true" styleClass = "btn next-btn" style = "width:250px"
-			 			rendered = "#{myCart.cartList.size() > 0   ? 'true' : 'false'}"/> 
-			  		<p:commandButton value = "#{accountManager.customer == null ? 'Checkout as Guest' : 'Check Out'}" 
-			  			action = "checkout3?faces-redirect=true" styleClass = "btn next-btn" style = "width:250px"
-			   			rendered = "#{myCart.cartList.size() > 0   ? 'true' : 'false'}"/> 
-              		<p:commandButton
-              			onclick="PF('loginDialog').show();" styleClass = "btn next-btn" style = "width:250px" type = "button" role = "button"
-              			value = "Login and Checkout" aria-disabled = "false" 
-              			rendered = "#{(myCart.cartList.size() > 0 and accountManager.customer == null)  ? 'true' : 'false'}">          
-              		</p:commandButton>
-              	</h:form>
+			
+			<h:form id= "form">
+			
+			<p:commandButton value = "Continue Shopping" action = "category?faces-redirect=true" styleClass = "btn next-btn"
+			 style = "width:250px" rendered = "#{myCart.cartList.size() > 0   ? 'true' : 'false'}"/>
+			 
+			  <p:commandButton value = "#{accountManager.customer == null ? 'Checkout as Guest' : 'Check Out'}" 
+			  action = "checkout3?faces-redirect=true" styleClass = "btn next-btn" style = "width:250px" 
+			   rendered = "#{myCart.cartList.size() > 0   ? 'true' : 'false'}"/>
+			   
+			  
+			  
+              <p:commandButton
+              onclick="PF('loginDialog').show();" styleClass = "btn next-btn" type = "button" role = "button"
+              style = "width:250px" value = "Login and Checkout" aria-disabled = "false" 
+              rendered = "#{(myCart.cartList.size() > 0 and accountManager.customer == null)  ? 'true' : 'false'}"> 
+                        
+              </p:commandButton>
               
-              	<p:dialog header = "Log in" widgetVar = "loginDialog" id = "login" appendTo="@(body)"
-               		showEffect="explode" hideEffect="fade" height="250" width= "700">
-              	<h:form>   
-               		<h:outputLabel>Email: </h:outputLabel>
-					<p:inputText id= "useremail" placeholder = "example@email.com" required = "true" requiredMessage = "Email is required" 
-					  	validatorMessage = "Please enter a valid email" value="#{accountManager.email}" > <!--REMOVED: style = "width:400px;margin-left:80px"-->
-					  	<f:validateRegex pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"/> 
-					</p:inputText> <!--<br/><br/>-->
-					<h:outputLabel>Password:</h:outputLabel>
-					<p:password id="pass" required = "true" requiredMessage = "Password is required"
-					       value = "#{accountManager.password}" > <!--REMOVED: style = "width:400px;margin-left:50px"-->
-					</p:password><br/><br/>
+              </h:form>
+              
+              <p:dialog header = "Log in" widgetVar = "loginDialog" id = "login" appendTo="@(body)"
+               showEffect="explode" hideEffect="fade" height="250" width= "700">
+              <h:form>   
+               <h:outputLabel>Email: </h:outputLabel>
+
+					  <p:inputText id= "useremail" placeholder = "example@email.com" required = "true" requiredMessage = "Email is required" 
+					  validatorMessage = "Please enter a valid email" value="#{accountManager.email}" style = "width:400px;margin-left:80px">
+					  <f:validateRegex pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"/> 
+					  </p:inputText> <br/><br/>
+					  
+					  
+					  <h:outputLabel>Password:</h:outputLabel>
+					  
+					  <p:password id="pass" required = "true" requiredMessage = "Password is required"
+					       value = "#{accountManager.password}" style = "width:400px;margin-left:50px"> 
+					  </p:password><br/><br/>
 					     
 					<p:commandButton id="login" value="Log in" action= "#{accountManager.login}" onclick="PF('loginDialog').hide();" 
-						styleClass = "btn next-btn" style = "width:170px" > 
-						<f:param name = "pageId" value = "1" /></p:commandButton>
-						<!-- <br/><br/> -->
+					styleClass = "btn next-btn" style = "width:170px">
+					<f:param name = "pageId" value = "1" /></p:commandButton>
+					<br/><br/>
 					<p:messages layout = "list" styleClass = "error"></p:messages>
-				</h:form> 
-			  	</p:dialog>
+					</h:form> 
+			  </p:dialog>
 			  
 			  
 			</div>
@@ -127,16 +138,16 @@
 		<section>
 			<h2>Customer Service</h2>
 			<ul>
-				<li><a href = "createAccount.xhtml" >Frequently Asked Questions</a></li> 
-				<li><a href = "contact.xhtml" >Contact Us</a></li> 
-				<li><a href = "about.xhtml" >About Us</a></li> 
+				<li><a href = "createAccount.xhtml" style = "color: white" >Frequently Asked Questions</a></li>
+				<li><a href = "contact.xhtml" style = "color: white" >Contact Us</a></li>
+				<li><a href = "about.xhtml" style = "color: white" >About Us</a></li>
 			</ul>
 		</section>
 		<section>
 			<h2>My Account</h2>
 			<ul>
-				<li><a href = "createAccount.xhtml" >Create Account</a></li> 
-				<li><a href = "success.xhtml" >Manage Account</a></li> 
+				<li><a href = "createAccount.xhtml" style = "color: white" >Create Account</a></li>
+				<li><a href = "success.xhtml" style = "color: white">Manage Account</a></li>
 				
 			</ul>
 		</section>

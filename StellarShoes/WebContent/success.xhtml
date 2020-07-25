@@ -12,6 +12,7 @@
 <link rel="stylesheet" type="text/css" href="./resources/css/store-shell.css"/>
 <link rel="stylesheet" type="text/css" href="./resources/css/main-components.css"/>
 <link rel="stylesheet" type="text/css" href="./resources/css/checkout.css"/>
+<link rel="stylesheet" type="text/css" href="./resources/css/table.css"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
 <link href="https://fonts.googleapis.com/css?family=Barlow:400,600,900" rel="stylesheet"/>
 </h:head>
@@ -36,8 +37,7 @@
 </header>
 <main>
 	<div class="checkout-panel">
-		<div class = "panel-body">
-			<h:form id = "logoutform">
+		<h:form id = "logoutform">
 		<h1>Customer Account</h1>
 		<p>Welcome #{accountManager.customer.getfName()}. Thank you for being a customer at Stellar Shoes. It is your business that allows us to provide exemplary service.</p>
 		
@@ -48,7 +48,7 @@
                    <ui:repeat var="product" value="#{order.products}">
                    
                    <div class = "order-item">
-					<div class = "order-item-text" > 
+					<div class = "order-item-text" style="float: right">
 					<div class = "order-item-image">
 						<img src="#{product.imgUrl}" alt="image of a dress shoe"/>
 					</div>
@@ -63,7 +63,7 @@
 					</div>
 					</ui:repeat>
 					Total Paid: $#{order.total}
-            <h:commandLink  style = "color: #7f2226" value = "Cancel order" action = "#{manageAccount.cancelOrder(order.orderID)}"/>
+            <h:commandLink  style = "color:red" value = "Cancel order" action = "#{manageAccount.cancelOrder(order.orderID)}"/>
 					
 					</ui:repeat>
 		<h2>My Address</h2>
@@ -82,20 +82,18 @@
 			<h:commandButton action="#{accountManager.logout}" styleClass = "btn next-btn" value="Logout"></h:commandButton>
 		<!-- </div> -->
 		</h:form>
-		</div>
-		
 		
 		<p:dialog header = "Change Password" widgetVar = "loginDialog" id = "login" appendTo="@(body)"
                showEffect="explode" hideEffect="fade" height="400" width= "700">
             <h:form>   
              <h:outputLabel>Current password: </h:outputLabel>
                <p:password id="pass" required = "true" requiredMessage = "Password is required."
-			       value = "#{manageAccount.oldPassword}" > 
+			       value = "#{manageAccount.oldPassword}" style = "width:400px;margin-left:50px"> 
 			  </p:password><br/><br/>
 			  
 			  <h:outputLabel>New Password: </h:outputLabel>
 			  <p:password id= "useremail" required = "true" requiredMessage = "Enter a new password" 
-			   value="#{manageAccount.password1}" > 
+			   value="#{manageAccount.password1}" style = "width:400px;margin-left:70px">
 			   
 			  </p:password> <br/><br/>
 			  
@@ -103,7 +101,7 @@
 			  <h:outputLabel>Confirm Password:</h:outputLabel>
 			  
 			  <p:password id="pass2" required = "true" requiredMessage = "Password is required."
-			       value = "#{manageAccount.password2}" > 
+			       value = "#{manageAccount.password2}" style = "width:400px;margin-left:50px"> 
 			  </p:password><br/><br/>
 			     
 			<p:commandButton id="login" value="Save" action= "#{manageAccount.changePassword()}" onclick="PF('loginDialog').hide();" 
@@ -123,16 +121,16 @@
 		<section>
 			<h2>Customer Service</h2>
 			<ul>
-				<li><a href = "createAccount.xhtml"  >Frequently Asked Questions</a></li>
-				<li><a href = "contact.xhtml">Contact Us</a></li>
-				<li><a href = "about.xhtml">About Us</a></li>
+				<li><a href = "createAccount.xhtml" style = "color: white" >Frequently Asked Questions</a></li>
+				<li><a href = "contact.xhtml" style = "color: white" >Contact Us</a></li>
+				<li><a href = "about.xhtml" style = "color: white" >About Us</a></li>
 			</ul>
 		</section>
 		<section>
 			<h2>My Account</h2>
 			<ul>
-				<li><a href = "createAccount.xhtml"  >Create Account</a></li>
-				<li><a href = "success.xhtml" >Manage Account</a></li>
+				<li><a href = "createAccount.xhtml" style = "color: white" >Create Account</a></li>
+				<li><a href = "success.xhtml" style = "color: white">Manage Account</a></li>
 				
 			</ul>
 		</section>
