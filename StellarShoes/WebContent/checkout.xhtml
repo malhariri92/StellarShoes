@@ -5,7 +5,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core" 
       xmlns:h="http://xmlns.jcp.org/jsf/html">
 <h:head>
-<title>Manage Account</title>
+<title>Check Out</title>
 <meta content="width=device-width, initial-scale=1" name="viewport" />
 <link rel="stylesheet" type="text/css" href="./resources/css/reset.css"/>
 <link rel="stylesheet" type="text/css" href="./resources/css/store-shell.css"/>
@@ -16,7 +16,6 @@
 <h:body id="body">
 <header>
 <div id="mySlideNav" class="slideNav">
-			
 			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 			<a href="index.xhtml" class="nav-item" onclick="closeNav()">Home</a>
 			<a href="category.xhtml" class="nav-item" onclick="closeNav()">Shop</a>
@@ -28,12 +27,17 @@
 		<div id="top-icons">
 			<a href=""><i class="fa fa-search fa-2x"></i></a> 
 			<a href="login.xhtml"><i class="fa fa-user fa-2x"></i></a> 
-			<a href="checkout1.xhtml"><i class="fa fa-shopping-cart fa-2x"></i></a> 
+			<a href=""><i class="fa fa-shopping-cart fa-2x"></i></a> 
 		</div>
 		<span id="hamburger" onclick="openNav()">&nbsp;</span>
 </header>
 <main>
-   
+    <h:form id = "logoutform">
+<p>Welcome #{accountManager.customer.getfName()}</p>
+
+<h:commandButton action="#{accountManager.logout}" value="Logout"></h:commandButton>
+
+	</h:form>
 </main>
 <footer>
 		<section>

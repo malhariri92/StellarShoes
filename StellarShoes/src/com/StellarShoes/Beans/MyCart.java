@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+
 import com.StellarShoes.Product;
 import com.StellarShoes.utils.Messages;
 
@@ -84,7 +85,6 @@ public class MyCart implements Serializable{
 	     public void emptyCart() {
 	    	 cartList.clear();
 	    	 total = subTotal = tax = 0 ;
-	    	 
 	     }
 	    
 	    private void formatCost() {

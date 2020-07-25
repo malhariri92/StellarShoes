@@ -33,13 +33,13 @@
 		<div id="top-icons">
 			
 			<a href="login.xhtml"><i class="fa fa-user fa-2x"></i></a> 
-			<a href="checkout1.xhtml"><i class="fa fa-shopping-cart fa-2x"></i></a> 
+			<a href="checkout1"><i class="fa fa-shopping-cart fa-2x"></i></a> 
 		</div>
 		<span id="hamburger" onclick="openNav()">&nbsp;</span>
 	</header>
 	
 		<main id="main">
-		<h:form id = "paymentForm" prependId = "false">
+		<h:form id = "paymentForm">
 		<div class="checkout-panel">
 			<div class="panel-body">
 			  <h1>Check Out</h1>
@@ -216,12 +216,10 @@
 			  		</div>
 			  		<h1>Billing Address</h1>
 			  		<p:selectBooleanCheckbox value="#{checkout.sameAddresses}" itemLabel="Same as Shipping address">
-                      <f:ajax excute="@this"  render = "billingPanel"/>
+                      <f:ajax execute="@this" render = "@form"/>
                    </p:selectBooleanCheckbox>
                    
-                   
-                   <p:outputPanel id="billingPanel">
-                   <p:outputPanel 
+                   <h:panelGroup id="billingPanel"
 			  				rendered="#{checkout.sameAddresses == false}">
 			  				
                   <div class="small-inputs">
@@ -257,12 +255,11 @@
 					</div>
 
 				  </div>
-				  </p:outputPanel>
-				  </p:outputPanel>
+				  </h:panelGroup>
 				  <div class="panel-footer">
 			 
 			  
-			  <h:commandButton value = "Back" action = "checkout1?faces-redirect=true" 
+			  <h:commandButton value = "Back" action = "checkout2?faces-redirect=true" 
 			  styleClass = "btn back-btn" style = "width:250px"/>
 			 
 			  <h:commandButton value = "Place Order" action = "#{checkout.placeOrder(myCart.total, myCart.cartList)}" 

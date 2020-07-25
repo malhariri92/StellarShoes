@@ -69,7 +69,6 @@ public class AccountManager implements Serializable {
 			}
 			
 		}else if(LoginValidator.validateCustomer(email, password)) {
-			
 				HttpSession session = SessionManager.getSession();
 				session.setAttribute("customer", email);
 				
@@ -83,7 +82,7 @@ public class AccountManager implements Serializable {
 			 
 			
 			if(pageId != null) {
-		         return "checkout3";
+		         return "checkout3?faces-redirect=true";
 		      }else {
 		    	  
 			return "success?faces-redirect=true";}

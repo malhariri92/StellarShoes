@@ -19,9 +19,9 @@ public class LoginFilter implements Filter{
 	
 	private HttpServletRequest httpRequest;
 	private static final String[] customerLoginRequiredURLs = {
-            "/success.xhtml"};
+            "/success.xhtml","/checkout.xhtml"};
 	
-	private static final String[] adminLoginRequiredURLs = {"adminOrders.xhtml", "adminProducts.xhtml",
+	private static final String[] adminLoginRequiredURLs = {
             "/adminHome.xhtml"};
 	public LoginFilter() {};
 	

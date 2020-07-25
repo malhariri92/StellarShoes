@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+
 import com.StellarShoes.*;
 import com.StellarShoes.utils.DatabaseConnector;
 import com.StellarShoes.utils.Messages;
@@ -52,6 +53,8 @@ public class Checkout implements Serializable{
 	
 	private Payment payment  = new Payment();
 	
+	private int cvv2;
+	
 	private int selectedMethod;
 	
 	private Product product;
@@ -74,15 +77,15 @@ public class Checkout implements Serializable{
 	public String placeOrder(double total, List<Product> products) {
 		
 		if(customer.getCustomerID() == 0) {
-			if(placeNewCustomerOrder(total) && insertOrderDetails(products)) {
-				OrderBN.assignOrder(orderID, payment);
+			if(placeNewCustomerOrder(total) && inserOrderDetails(products)) {
+				
 				return "checkout4?faces-redirect=true";
 			}
 			
 			
 		} else {
-                 if(placeExistingCustomerOrder(total) && insertOrderDetails(products)) {
-     				OrderBN.assignOrder(orderID, payment);
+                 if(placeExistingCustomerOrder(total) && inserOrderDetails(products)) {
+				
 				return "checkout4?faces-redirect=true";
 			}
 		}
@@ -150,8 +153,13 @@ private void getPaymentID() {
 			DatabaseConnector.close(conn);
 		}
 	}
+       public String printAddress() {
+    	   
+    	System.out.println("line1 "+address.getAddress1()+" line 2: "+address.getAddress2()+" city: "+address.getCity()
+    	+"\n "+customer.getfName() +"   "+payment.getCardNumber());   
+    	   return "checkout3?faces-redirect=true";
+       }
        
-     
     public boolean placeExistingCustomerOrder(double total) {
     	
     	
@@ -376,7 +384,7 @@ private void getPaymentID() {
 	
 	
 	
-     public boolean insertOrderDetails(List<Product> products) {
+     public boolean inserOrderDetails(List<Product> products) {
 	 boolean result = false;
 	  getNewOrderID();
 	  
@@ -440,6 +448,8 @@ private void getPaymentID() {
 			DatabaseConnector.close(conn);
 		}	
 }
+
+
 	private String getDate() {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
 		   LocalDateTime date = LocalDateTime.now(); 
@@ -462,7 +472,15 @@ private void getPaymentID() {
 	public void setAddress(Address address) {
 		this.address = address;
 	}
-	
+
+	public int getCvv2() {
+		return cvv2;
+	}
+
+	public void setCvv2(int cvv2) {
+		this.cvv2 = cvv2;
+	}
+
 	public Payment getPayment() {
 		return payment;
 	}
@@ -515,6 +533,12 @@ private void getPaymentID() {
 		this.orderID = orderID;
 	}
 
+	
+
+	
+     
+
+	
 	
 	}
 

@@ -224,9 +224,7 @@ private void setCustomerID() {
 	} finally {
 		DatabaseConnector.close(conn);
 	}	
-}   
-
-
+}
 private void deleteCustomer() {
 	Connection conn = null;
 	PreparedStatement pstmt = null;
@@ -240,11 +238,6 @@ private void deleteCustomer() {
 		
 		int rs = pstmt.executeUpdate();
 		
-		if(rs < 0) {
-			
-			Messages.show("An error has occured while creating your account. Please try again later.");
-					
-		}
        pstmt.close();
 	} catch (SQLException ex) {
 		

@@ -4,14 +4,13 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core" 
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 <h:head>
 <title>Log In</title>
 <meta content="width=device-width, initial-scale=1" name="viewport" />
 <link rel="stylesheet" type="text/css" href="./resources/css/reset.css"/>
 <link rel="stylesheet" type="text/css" href="./resources/css/store-shell.css"/>
 <link rel="stylesheet" type="text/css" href="./resources/css/main-components.css"/>
-<link rel="stylesheet" type="text/css" href="./resources/css/checkout.css"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
 <link href="https://fonts.googleapis.com/css?family=Barlow:400,600,900" rel="stylesheet"/>
 </h:head>
@@ -41,20 +40,20 @@
 
   <h:outputLabel>Email: </h:outputLabel>
 
-  <p:inputText id= "email" placeholder = "example@email.com" required = "true" requiredMessage = "Email is required" 
+  <h:inputText id= "email" pt:placeholder = "example@email.com" required = "true" requiredMessage = "Email is required" 
   validatorMessage = "Please enter a valid email" value="#{accountManager.email}">
   <f:validateRegex pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"/> 
-  </p:inputText> <br/><br/>
+  </h:inputText> <br/><br/>
   
   
   <h:outputLabel>Password:</h:outputLabel>
   
-  <p:password id="password" required = "true" requiredMessage = "Password is required"
+  <h:inputSecret id="password" required = "true" requiredMessage = "Password is required"
        value = "#{accountManager.password}"> 
-  </p:password><br/><br/>
+  </h:inputSecret><br/><br/>
      
-<p:commandButton styleClass = "btn next-btn" style = "width:170px" id="submit" value="Log in" action= "#{accountManager.login}" /><br/><br/>
-<p:messages layout = "list" styleClass = "error"></p:messages>
+<h:commandButton id="submit" value="Log in" action= "#{accountManager.login}" /><br/><br/>
+<h:messages layout = "list" styleClass = "error"></h:messages>
 <a href = "forgotPassword.xhtml" style = "margin-right: 50px;">Forgot Password?</a>
 <a href = "createAccount.xhtml">Create a New Account?</a> 
 </h:form>
