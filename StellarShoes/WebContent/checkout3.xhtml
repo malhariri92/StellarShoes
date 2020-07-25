@@ -42,8 +42,7 @@
 		<h:form id = "paymentForm">
 		<div class="checkout-panel">
 			<div class="panel-body">
-			  <h1>Check Out</h1>
-
+				<h1>Check Out</h1>
 
 				<!-- This is the HTML for a progress bar (4 steps). -->
 			  <!-- <div class="progress-bar">
@@ -52,227 +51,197 @@
 				<div class="step"></div>
 				<div class="step"></div>
 			  </div> -->
-
-			  <fieldset class="payment-method">
-				
-				
-				<label for="card" class="method card">
-				<h4 style="color:blue">Please select Payment Type</h4>
-				  <div class="card-logos">
-					<i class="fa fa-credit-card fa-2x"></i> 
-					<i class="fa fa-paypal fa-2x"></i>
-				  </div>
-				  
-               <p:selectOneRadio id="console" value="#{checkout.selectedMethod}" unselectable="true"
-               requiredMessage = "Please select payment method.">
-   
-                   <f:selectItem itemLabel="Pay with credit card" itemValue="1" />
-           
-				   <f:selectItem itemLabel="Pay with PayPal" itemValue="2" />
-	             <f:ajax event="click" execute="@this" render="@form"/>
-				</p:selectOneRadio>
-				
-				 </label>
-				 <p:commandButton action = "checkout1?faces-redirect=true" value = "Go Back" rendered="#{checkout.selectedMethod == 0}"
-               styleClass = "btn next-btn" style = "width:170px; margin-right:20px; margin-bottom:20px;"/>
-             
-             
-				 <p:growl id = "message" style = "top: 200px; right: 600px;" autoUpdate = "true"/>
-			  </fieldset>
+			  
+			  	<fieldset class="payment-method">
+					<label for="card" class="method">
+						<h2>Please select Payment Type</h2>
+				  			<div class="card-logos">
+								<i class="fa fa-credit-card fa-2x"></i> 
+								<i class="fa fa-paypal fa-2x"></i>
+				  			</div>
+						<p:selectOneRadio id="console" value="#{checkout.selectedMethod}" unselectable="true"
+               				requiredMessage = "Please select payment method.">
+   							<f:selectItem itemLabel="Pay with credit card" itemValue="1" />
+           					<f:selectItem itemLabel="Pay with PayPal" itemValue="2" />
+	             			<f:ajax event="click" execute="@this" render="@form"/>
+						</p:selectOneRadio>
+				 	</label>
+					<p:commandButton action = "checkout1?faces-redirect=true" value = "Go Back" rendered="#{checkout.selectedMethod == 0}"
+               		styleClass = "btn next-btn" style = "width:170px; margin-right:20px; margin-bottom:20px;"/> 
+             		<p:growl id = "message" autoUpdate = "true"/> 
+			  	</fieldset>
 
 
-			  <h:panelGroup id="creditPanel"
+			  	<h:panelGroup id="creditPanel"
 			  				rendered="#{checkout.selectedMethod == 1}">
 			  				
-			 <h1>Shipping Address</h1>
-
-
-			  <div class="input-fields">
-				<div class="column-1">
+			 	<h1>Shipping Address</h1>
+				<fieldset>
+					<div class="input-fields">
+						<div class="column-1">
 				
-				<div class="small-inputs">	
-				<div>
-				  <label for="">First Name *</label>
-                  <p:inputText value = "#{checkout.customer.fName}" type="text" 
-                   validatorMessage = "Please enter your first name">
-                   <f:validateRegex pattern="^[a-zA-Z]+$"></f:validateRegex>
-                   </p:inputText>
-                   </div>                 
-                   <div>
-                   <label for="">Last Name *</label>
-                  <p:inputText value = "#{checkout.customer.lastName}" type="text" 
-                   required = "true" validatorMessage = "Please enter your last name">
-                   <f:validateRegex pattern="^[a-zA-Z]+$"></f:validateRegex>
-                   </p:inputText>
-                  </div>
-                  </div>
+							<div class="small-inputs">	
+								<div>
+				  					<label for="">First Name *</label>
+                  					<p:inputText value = "#{checkout.customer.fName}" type="text" 
+                   						validatorMessage = "Please enter your first name">
+                   						<f:validateRegex pattern="^[a-zA-Z]+$"></f:validateRegex>
+                   					</p:inputText>
+                   				</div>                 
+                   				<div>
+                   					<label for="">Last Name *</label>
+                  					<p:inputText value = "#{checkout.customer.lastName}" type="text" 
+                   						required = "true" validatorMessage = "Please enter your last name">
+                   						<f:validateRegex pattern="^[a-zA-Z]+$"></f:validateRegex>
+                   					</p:inputText>
+                  				</div>
+                  			</div>
                   
-                  
-                  <div class="small-inputs">
-                  <div>
-                  <label for="">Address Line1 *</label>
-				  <p:inputText value = "#{checkout.address.address1}" type="text" 
-				   required = "true" />
-				   </div>
-				   <div>
-				   <label for="">Address Line2</label>
-				  <p:inputText value = "#{checkout.address.address2}" type="text"/>
-                   </div>
-				 </div>
+                         	<div class="small-inputs">
+                  				<div>
+                  					<label for="">Address Line1 *</label>
+				  					<p:inputText value = "#{checkout.address.address1}" type="text" 
+				   					required = "true" />
+				   				</div>
+				   				<div>
+				   					<label for="">Address Line2</label>
+				  					<p:inputText value = "#{checkout.address.address2}" type="text"/>
+                   				</div>
+				 			</div>
 				 
-				   <div class="small-inputs">
-					<div>
-					  <label for="">City *</label>
-					  <p:inputText value = "#{checkout.address.city}" type="text" required = "true"/>
-					</div>
+				   			<div class="small-inputs">
+								<div>
+					  				<label for="">City *</label>
+					  					<p:inputText value = "#{checkout.address.city}" type="text" required = "true"/>
+								</div>
 
-					<div>
-					  <label for="">State *</label>
-                      <p:inputText value = "#{checkout.address.state}" type="text"  required = "true" />
+								<div>
+					  				<label for="">State *</label>
+                      				<p:inputText value = "#{checkout.address.state}" type="text"  required = "true" />
                       
-                      <!-- Intention is to add a drop-down of state names, but this hasn't been added yet. -->
-					</div>
-                      </div>   
-                       <div class="small-inputs">     
-					<div>
-					  <label for="">Zip Code *</label>
-					  <p:inputText value = "#{checkout.address.zip}" required = "true"
-					   requiredMessage = "Please enter a valid Zip code"></p:inputText>
-					</div>
-                   <div>
-					  <label for="">Phone *</label>
-					  <p:inputMask mask = "999-999-9999" value = "#{checkout.customer.phone}" required = "true"
-					   requiredMessage = "Please enter a valid phone number"></p:inputMask>
-					</div>
-				  </div>
+                      				<!-- Intention is to add a drop-down of state names, but this hasn't been added yet. -->
+								</div>
+                      		</div>   
+					   
+							<div class="small-inputs">     
+								<div>
+					  				<label for="">Zip Code *</label>
+					  				<p:inputText value = "#{checkout.address.zip}" required = "true"
+					   				requiredMessage = "Please enter a valid Zip code"></p:inputText>
+								</div>
+                   				<div>
+					  				<label for="">Phone *</label>
+					  				<p:inputMask mask = "999-999-9999" value = "#{checkout.customer.phone}" required = "true"
+					   				requiredMessage = "Please enter a valid phone number"></p:inputMask>
+								</div>
+								  </div>
+								  <span class="info">* Required information.</span>
+						</div>
+			  		</div>
+				</fieldset>
 
+				<h1>Payment Information</h1>
+				<div class="input-fields">
+					<div class="input-fields"> 
+					  <label for="cardholder">Cardholder's Name *</label>
+						<div class="small-inputs">
+							<p:inputText value="#{checkout.payment.cardHolder}" id="cardholder" type ="text"
+								  validatorMessage = "Please enter your name as it appears on your card.">
+								<f:validateRegex pattern="^([a-zA-Z-']{2,}[\s][a-zA-Z'-]+)$"/>
+							</p:inputText>
+						</div>
+					</div>
+
+					<div class="small-inputs">
+						<div>
+							<label for="date">Valid thru *</label>
+								<p:inputMask mask="99/99" placeholder = "MM/YY" value="#{checkout.payment.expiration}" 
+									id="date" required="true"
+									requiredMessage = "Please enter card expiration date."	 />
+						</div>
+
+						<div>
+							<label for="verification">CVV / CVC *</label>
+							<p:password id="verification" placeholder = "123" required="true" 
+								value="#{checkout.payment.cvv}" validatorMessage = "Please enter a valid CVV."
+								requiredMessage = "Please enter a valid CVV.">
+								<f:validateLength minimum = "3" maximum = "4"></f:validateLength>
+							</p:password>
+						</div>
+					</div>
+					<div class="column-2">
+					  <div>
+							<label for="cardnumber">Card Number *</label>
+						<div class="small-inputs">
+							<p:inputMask mask="9999-9999-9999-9999" value="#{checkout.payment.cardNumber}" id="cardnumber"
+								validatorMessage = "Please enter your card number." required="true"
+								requiredMessage = "Please enter a valid card number." >
+								<f:validateLength minimum = "19"></f:validateLength>
+							</p:inputMask>
+						</div>
+					</div>
+					<span class="info">* CVV or CVC is the card security code,
+						unique three digits number on the back of your card separate from its number.
+					</span>
 				</div>
-             
-			  </div>
-			  	<div class="column-1">
-
-			  		<div class="input-fields">
-			  			<h1>Payment Information</h1>
-			  				<div> 
-
-			  					<label for="cardholder">
-			  						Cardholder's Name *
-			  					</label>
-			  					<div class="small-inputs">
-			  						<p:inputText value="#{checkout.payment.cardHolder}" id="cardholder" type ="text"
-			  					      validatorMessage = "Please enter your name as it appears on your card.">
-			  						<f:validateRegex pattern="^([a-zA-Z-']{2,}[\s][a-zA-Z'-]+)$"/>
-			  							</p:inputText>
-			  					</div>
-			  				</div>
-
-			  				<div class="small-inputs">
-			  					<div>
-			  						<label for="date">
-			  							Valid thru *
-			  						</label>
-			  						<p:inputMask mask="99/99" placeholder = "MM/YY" value="#{checkout.payment.expiration}" 
-			  						id="date" required="true"
-			  						requiredMessage = "Please enter card expiration date."	 />
-
-			  					</div>
-
-			  					<div>
-			  						<label for="verification">
-			  							CVV / CVC *
-			  						</label>
-			  						<p:password id="verification" placeholder = "123" required="true" 
-			  							value="#{checkout.payment.cvv}" validatorMessage = "Please enter a valid CVV."
-			  							requiredMessage = "Please enter a valid CVV.">
-			  							
-			  							<f:validateLength minimum = "3" maximum = "4"></f:validateLength>
-			  							</p:password>
-
-			  					</div>
-			  				</div>
-
-			  		</div>
-			  		<div class="column-2">
-			  			<div>
-			  				<label for="cardnumber">
-			  					Card Number *
-			  				</label>
-			  				<div class="small-inputs">
-			  					<p:inputMask mask="9999-9999-9999-9999" value="#{checkout.payment.cardNumber}" id="cardnumber"
-			  						validatorMessage = "Please enter your card number." required="true"
-			  						requiredMessage = "Please enter a valid card number." >
-			  						<f:validateLength minimum = "19"></f:validateLength>
-			  						</p:inputMask>
-                                  
-			  				</div>
-			  			</div>
-
-			  			<span class="info">
-			  				* CVV or CVC is the card security code,
-			  				unique three digits number on the back of
-			  				your card separate from its number.
-			  			</span>
-			  			
-			  		</div>
-			  		<h1>Billing Address</h1>
-			  		<p:selectBooleanCheckbox value="#{checkout.sameAddresses}" itemLabel="Same as Shipping address">
-                      <f:ajax execute="@this" render = "@form"/>
-                   </p:selectBooleanCheckbox>
+	 
+				<h1>Billing Address</h1>
+			  	<p:selectBooleanCheckbox value="#{checkout.sameAddresses}" itemLabel="Same as Shipping address">
+                    <f:ajax execute="@this" render = "@form"/>
+                </p:selectBooleanCheckbox>
                    
-                   <h:panelGroup id="billingPanel"
-			  				rendered="#{checkout.sameAddresses == false}">
+                <h:panelGroup id="billingPanel"
+			  		rendered="#{checkout.sameAddresses == false}">
 			  				
-                  <div class="small-inputs">
-                  <div>
-                  <label for="">Address Line1 *</label>
-				  <p:inputText value = "#{checkout.billingAddress.address1}" type="text" 
-				   required = "true" />
-				   </div>
-				   <div>
-				   <label for="">Address Line2</label>
-				  <p:inputText value = "#{checkout.billingAddress.address2}" type="text"/>
-                   </div>
-				 </div>
+                <div class="small-inputs">
+                  	<div>
+                  		<label for="">Address Line1 *</label>
+				  		<p:inputText value = "#{checkout.billingAddress.address1}" type="text" 
+				   			required = "true" />
+				   	</div>
+				   	<div>
+				   		<label for="">Address Line2</label>
+				  		<p:inputText value = "#{checkout.billingAddress.address2}" type="text"/>
+                   	</div>
+				</div>
 				 
-				   <div class="small-inputs">
+				<div class="small-inputs">
 					<div>
-					  <label for="">City *</label>
-					  <p:inputText value = "#{checkout.billingAddress.city}" type="text" required = "true"/>
+					  	<label for="">City *</label>
+					  	<p:inputText value = "#{checkout.billingAddress.city}" type="text" required = "true"/>
 					</div>
 
 					<div>
-					  <label for="">State *</label>
-                      <p:inputText value = "#{checkout.billingAddress.state}" type="text"  required = "true" />
+					  	<label for="">State *</label>
+                      	<p:inputText value = "#{checkout.billingAddress.state}" type="text"  required = "true" />
                       
-                      <!-- Intention is to add a drop-down of state names, but this hasn't been added yet. -->
+                    <!-- Intention is to add a drop-down of state names, but this hasn't been added yet. -->
 					</div>
-                      </div>   
-                       <div class="small-inputs">     
+                </div>   
+					   
+				<div class="small-inputs">     
 					<div>
-					  <label for="">Zip Code *</label>
-					  <p:inputText value = "#{checkout.billingAddress.zip}" required = "true"
-					   requiredMessage = "Please enter a valid Zip code"></p:inputText>
+					  	<label for="">Zip Code *</label>
+					  	<p:inputText value = "#{checkout.billingAddress.zip}" required = "true"
+					   	requiredMessage = "Please enter a valid Zip code"></p:inputText>
 					</div>
-
-				  </div>
-				  </h:panelGroup>
-				  <div class="panel-footer">
+				</div>
+				
+				</h:panelGroup>
+				<div class="panel-footer">
+					<h:commandButton value = "Back" action = "checkout2?faces-redirect=true" 
+			  			styleClass = "btn back-btn" style = "width:250px"/> 
 			 
-			  
-			  <h:commandButton value = "Back" action = "checkout2?faces-redirect=true" 
-			  styleClass = "btn back-btn" style = "width:250px"/>
-			 
-			  <h:commandButton value = "Place Order" action = "#{checkout.placeOrder(myCart.total, myCart.cartList)}" 
-			  styleClass = "btn next-btn" style = "width:406.9px; margin-left:165px;"/>
-			 
-			</div>
-			  	</div>
+			  		<h:commandButton value = "Place Order" action = "#{checkout.placeOrder(myCart.total, myCart.cartList)}" 
+			  			styleClass = "btn next-btn" style = "width:406.9px; margin-left:165px;"/> 
+				</div>
+				</div>
 			  	
 			  </h:panelGroup>
 			</div>
                     <h:panelGroup id="payPalPanel" rendered="#{checkout.selectedMethod == 2}">
                     
-                    <div id="paypal-button-container" style="width: 50%; margin:0 auto;"></div>
+                    <div id="paypal-button-container" ></div> 
                     <input type = "hidden" id = "item1" value = "10"></input>
 			  			<script>
 			  			 paypal.Buttons({
@@ -313,16 +282,16 @@
 		<section>
 			<h2>Customer Service</h2>
 			<ul>
-				<li><a href = "createAccount.xhtml" style = "color: white" >Frequently Asked Questions</a></li>
-				<li><a href = "contact.xhtml" style = "color: white" >Contact Us</a></li>
-				<li><a href = "about.xhtml" style = "color: white" >About Us</a></li>
+				<li><a href = "createAccount.xhtml">Frequently Asked Questions</a></li> 
+				<li><a href = "contact.xhtml">Contact Us</a></li> 
+				<li><a href = "about.xhtml">About Us</a></li> 
 			</ul>
 		</section>
 		<section>
 			<h2>My Account</h2>
 			<ul>
-				<li><a href = "createAccount.xhtml" style = "color: white" >Create Account</a></li>
-				<li><a href = "success.xhtml" style = "color: white">Manage Account</a></li>
+				<li><a href = "createAccount.xhtml">Create Account</a></li> 
+				<li><a href = "success.xhtml" >Manage Account</a></li> 
 				
 			</ul>
 		</section>
