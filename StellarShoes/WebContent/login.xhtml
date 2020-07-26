@@ -11,7 +11,7 @@
 <link rel="stylesheet" type="text/css" href="./resources/css/reset.css"/>
 <link rel="stylesheet" type="text/css" href="./resources/css/store-shell.css"/>
 <link rel="stylesheet" type="text/css" href="./resources/css/main-components.css"/>
-	<link rel="stylesheet" type="text/css" href="./resources/css/checkout.css"/>
+<link rel="stylesheet" type="text/css" href="./resources/css/checkout.css"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
 <link href="https://fonts.googleapis.com/css?family=Barlow:400,600,900" rel="stylesheet"/>
 <h:outputScript library="primefaces" name="jquery/jquery.js" />
@@ -35,11 +35,11 @@
 		<span id="hamburger" onclick="openNav()">&nbsp;</span>
 </header>
 <main>
-<div id = "forms-heading">
-<h2>Log in</h2>
-</div>
-<h:form id="loginform" prependId = "false">
-
+<div class="checkout-panel">
+		<div class="panel-body ">
+			<h1>Log in</h1>
+			<div class = "input-fields">
+				<h:form prependId = "false">
   <p:outputLabel for="email" value ="Email:"/> 
 
   <p:inputText id= "email" placeholder = "example@email.com" required = "true" requiredMessage = "Email is required" 
@@ -55,10 +55,14 @@
   </p:password><br/><br/>
      
 <p:commandButton id="submit" value="Log in" action= "#{accountManager.login()}" styleClass = "btn next-btn" update="message"/><br/><br/>
-<p:messages id="message" styleClass = "error"/>
-<a href = "forgotPassword.xhtml">Forgot Password?</a> <!--REMOVED:  style = "margin-right: 50px;"-->
+<h:messages id="message" styleClass = "error"/>
+<a href = "forgotPassword.xhtml">Forgot Password?</a> 
 <a href = "createAccount.xhtml">Create a New Account?</a> 
 </h:form>
+			</div>
+		</div>
+	</div>
+
 
 </main>
 <footer>
