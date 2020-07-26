@@ -1,158 +1,199 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
           "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core" 
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
-<title>Create Account</title>
-<meta content="width=device-width, initial-scale=1" name="viewport" />
-<link rel="stylesheet" type="text/css" href="./resources/css/reset.css"/>
-<link rel="stylesheet" type="text/css" href="./resources/css/store-shell.css"/>
-<link rel="stylesheet" type="text/css" href="./resources/css/main-components.css"/>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
-<link href="https://fonts.googleapis.com/css?family=Barlow:400,600,900" rel="stylesheet"/>
+
+	<title>Create Account</title>
+	<meta content="width=device-width, initial-scale=1" name="viewport" />
+	<link rel="stylesheet" type="text/css" href="./resources/css/reset.css" />
+	<link rel="stylesheet" type="text/css"
+		href="./resources/css/store-shell.css" />
+	<link rel="stylesheet" type="text/css"
+		href="./resources/css/main-components.css" />
+	<link rel="stylesheet" type="text/css"
+		href="./resources/css/checkout.css" />
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+	<link href="https://fonts.googleapis.com/css?family=Barlow:400,600,900"
+		rel="stylesheet" />
 </h:head>
 <h:body id="body">
-<header>
-<div id="mySlideNav" class="slideNav">
-			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-			<a href="index.xhtml" class="nav-item" onclick="closeNav()">Home</a>
-			<a href="category.xhtml" class="nav-item" onclick="closeNav()">Shop</a>
-            <a href="FAQs.xhtml" class="nav-item" onclick="closeNav()">FAQs</a>
-			<a href="about.xhtml" class="nav-item" onclick="closeNav()">About</a>
-			
-			
-        </div>
-		<a href="index.xhtml"> <img id="logo" src="./resources/images/stellar-shoes-logo.svg" ></img> </a>
-		<div id="top-icons">
-			<a href=""><i class="fa fa-search fa-2x"></i></a> 
-			<a href="login.xhtml"><i class="fa fa-user fa-2x"></i></a> 
-			<a href=""><i class="fa fa-shopping-cart fa-2x"></i></a> 
+	<header>
+	<div id="mySlideNav" class="slideNav">
+		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+		<a href="index.xhtml" class="nav-item" onclick="closeNav()">Home</a> <a
+			href="category.xhtml" class="nav-item" onclick="closeNav()">Shop</a>
+		<a href="FAQs.xhtml" class="nav-item" onclick="closeNav()">FAQs</a> <a
+			href="about.xhtml" class="nav-item" onclick="closeNav()">About</a>
+
+
+	</div>
+	<a href="index.xhtml"> <img id="logo"
+		src="./resources/images/stellar-shoes-logo.svg"></img>
+	</a>
+	<div id="top-icons">
+		<a href=""><i class="fa fa-search fa-2x"></i></a> <a
+			href="login.xhtml"><i class="fa fa-user fa-2x"></i></a> <a href=""><i
+			class="fa fa-shopping-cart fa-2x"></i></a>
+	</div>
+	<span id="hamburger" onclick="openNav()">&nbsp;</span> </header>
+	<main>
+	<div class="checkout-panel">
+		<div class="panel-body ">
+            <h1>New Customer Account</h1>
+            <fieldset>
+                <div class = "input-fields">
+                    <h:form id="registerForm" prependId = "false">
+                        <div class="column-1">
+    
+                        <div class="small-inputs">
+                            <div>
+								<p:outputLabel for = "fname" value="First Name: " />
+								<p:inputText id="fname" value="#{createBN.customer.fName}"
+									validatorMessage="First name may contain letters only."
+									required="true" requiredMessage="Please enter your first name">
+									<f:validateRegex pattern="[a-zA-Z]+?"></f:validateRegex>
+								</p:inputText>
+							</div>
+							<div>
+								<p:outputLabel for = "lname" value="Last Name: " />
+								<p:inputText id="lname" value="#{createBN.customer.lastName}"
+									validatorMessage="Last name may contain letters only."
+									required="true" requiredMessage="Please enter your last name">
+									<f:validateRegex pattern="[a-zA-Z]+?"></f:validateRegex>
+								</p:inputText>
+							</div>
+
+						</div>
+						<div class="small-inputs">
+							<div>
+								<p:outputLabel for = "email1" value="Email :" />
+								<p:inputText id="email1" value="#{createBN.customer.email}"
+									required="true" requiredMessage="Please enter your email" />
+							</div>
+							<div>
+								<p:outputLabel for = "email2" value="Confirm Email :" />
+								<p:inputText id="email2" value="#{createBN.email2}"
+									required="true" requiredMessage="Please confirm your email" />
+							</div>
+							</div>
+							<div class="small-inputs">
+								<div>
+									<p:outputLabel for = "password1" value="Password: " />
+									<p:password id="password1"
+										value="#{createBN.customer.password}" required="true"
+										requiredMessage="Please enter password" />
+								</div>
+								<div>
+									<p:outputLabel for = "password2" value="Confirm Password: " />
+									<p:inputText id="password2" required="true"
+										value="#{createBN.password2}"
+										requiredMessage="Please confirm your password">
+									</p:inputText>
+								</div>
+							</div>
+							<div class="small-inputs">
+								<div>
+									<p:outputLabel for = "phone" value="Phone :" />
+									<p:inputText id="phone" value="#{createBN.customer.phone}"
+										required="true"
+										requiredMessage="Please enter your phone number" />
+								</div>
+								<div>
+									<p:outputLabel for = "address1" value="Address Line1:" />
+									<p:inputText id="address1" value="#{createBN.address.address1}"
+										required="true" requiredMessage="Please enter your address" />
+								</div>
+							</div>
+							<div class="small-inputs">
+								<div>
+									<p:outputLabel for = "address2" value="Address Line 2: " />
+									<p:inputText id="address2" value="#{createBN.address.address2}" />
+								</div>
+								<div>
+									<p:outputLabel for = "city" value="City: " />
+									<p:inputText id="city" value="#{createBN.address.city}"
+										required="true" requiredMessage="Please enter city" />
+								</div>
+							</div>
+							<div class="small-inputs">
+								<div>
+									<p:outputLabel for = "state" value="State: " />
+									<p:inputText id="state" value="#{createBN.address.state}"
+										required="true" requiredMessage="Please enter state" />
+								</div>
+								<div>
+									<p:outputLabel for = "zip" value="Zip: " />
+									<p:inputText id="zip" value="#{createBN.address.zip}"
+										required="true" requiredMessage="Please enter your zip" />
+								</div> 
+                        </div>
+                        </div>
+						
+						<p:commandButton id="regButton" value="Create Account"
+							action="#{createBN.registerCustomer()}" update = "message" 
+							styleClass="btn next-btn"/>
+
+						<a href = "createAdminAccount.xhtml" class="info-center">I am an employee?</a> 
+                        <h:messages id = "message" styleClass="error"></h:messages>
+                                                           
+    
+                    </h:form>
+                </div>                
+            </fieldset>
+
 		</div>
-		<span id="hamburger" onclick="openNav()">&nbsp;</span>
-</header>
-<main>
-<div id = "forms-heading">
-<h2>Create Account</h2>
-</div>
-<h:form id="registerForm" prependId = "false">
-         <table class="register-form-group">
-             <tr>
-                 <td><h:outputText value="First Name: " /></td>
-                 <td><h:inputText id="fname" value="#{createBN.customer.fName}" validatorMessage = "First name may contain letters only."
-                                  required="true" requiredMessage="Please enter your first name" >
-                                  <f:validateRegex pattern="[a-zA-Z]+?"></f:validateRegex>
-                                  </h:inputText></td>
-                 
-             
-                 <td><h:outputText value="Last Name: " /></td>
-                 <td><h:inputText id="lname" value="#{createBN.customer.lastName}"  validatorMessage = "Last name may contain letters only."
-                                  required="true" requiredMessage="Please enter your last name">
-                                  <f:validateRegex pattern="[a-zA-Z]+?"></f:validateRegex>
-                                  </h:inputText></td>
-                 
-             </tr>
-             <tr>
-                 <td><h:outputText value="Email :" /></td>
-                 <td><h:inputText id="email1" value="#{createBN.customer.email}"
-                                  required="true" requiredMessage="Please enter your email" /></td>
-                 
-             
-                 <td><h:outputText value="Confirm Email :" /></td>
-                 <td><h:inputText id="email2" value="#{createBN.email2}"
-                                    required="true" requiredMessage="Please confirm your email" /></td> 
-                 
-             </tr>
-             <tr>
-                 <td><h:outputText value="Password: " /></td>
-                 <td><h:inputSecret id="password1" value="#{createBN.customer.password}"
-                                  required="true" requiredMessage="Please enter password" /></td>
-                 
-            
-                 <td><h:outputText value="Confirm Password: " /></td>
-                 <td><h:inputSecret id="password2" required="true" value="#{createBN.password2}" 
-                 requiredMessage="Please confirm your password">
-                                  </h:inputSecret>
-                                  </td>                 
-             </tr>
-             <tr>
-                 <td><h:outputText value="Phone :" /></td>
-                 <td><h:inputText id="phone" value="#{createBN.customer.phone}"
-                                  required="true" requiredMessage="Please enter your phone number" /></td>
-                 
-             </tr>
-             <tr>
-                 <td><h:outputText value="Address Line1:" /></td>
-                 <td><h:inputText id="address1" value="#{createBN.address.address1}"
-                                  required="true" requiredMessage="Please enter your address" /></td>
-                 
-             
-                 <td><h:outputText value="Address Line 2: " /></td>
-                 <td><h:inputText id="address2" value="#{createBN.address.address2}" /></td>
-                
-             </tr>
-            <tr>
-                 <td><h:outputText value="City: " /></td>
-                 <td><h:inputText id="city" value="#{createBN.address.city}"
-                                  required="true" requiredMessage="Please enter city" /></td>
-                 
-             
-                 <td><h:outputText value="State: " /></td>
-                 <td><h:inputText id="state" value="#{createBN.address.state}" 
-                 required="true" requiredMessage="Please enter state"/></td>
-                
-             </tr>
-             <tr>
-                 <td><h:outputText value="Zip: " /></td>
-                 <td><h:inputText id="zip" value="#{createBN.address.zip}"
-                                  required="true" requiredMessage="Please enter your zip" /></td>
-             </tr>
-             <tr>
-                 <td />
-                 <td><h:commandButton id="regButton"  value = "Create Account" action="#{createBN.registerCustomer()}" > </h:commandButton></td>
-             </tr>
-             
-         </table><br/>
-         <a href = "createAdminAccount.xhtml">I am an employee?</a> 
-         <h:messages styleClass = "error"></h:messages>
-     </h:form>
+	</div>
+
 </main>
-<footer>
-		<section>
-			<h2>Customer Service</h2>
-			<ul>
-				<li><a href = "createAccount.xhtml"  >Frequently Asked Questions</a></li> <!--REMOVED: style = "color: white"-->
-				<li><a href = "contact.xhtml">Contact Us</a></li> <!--REMOVED: style = "color: white"-->
-				<li><a href = "about.xhtml" >About Us</a></li> <!--REMOVED: style = "color: white"-->
-			</ul>
-		</section>
-		<section>
-			<h2>My Account</h2>
-			<ul>
-				<li><a href = "createAccount.xhtml"  >Create Account</a></li> <!--REMOVED: style = "color: white"-->
-				<li><a href = "success.xhtml" >Manage Account</a></li> <!--REMOVED: style = "color: white"-->
-				
-			</ul>
-		</section>
-		<section>
-			<h2>Location and Hours</h2>
-			<ul>
-				<li>Mailing Address:<br/>123 Smith Lane<br/>Columbus, OH 43212</li>
-				<li>Hours:<br/>Monday thru Friday: 9 to 8<br/>Saturday: 9 to 6<br/>Sunday: 9 to 5</li>
-			</ul>
-		</section>
-		<section>
-			<h2>Connect With Us</h2>
-			<ul>
-				<li><a href="https://twitter.com/stellarshoes1"><i class="fa fa-twitter"></i></a> 
-				<a href="https://nam10.safelinks.protection.outlook.com/?url=https%3A%2F%2Fwww.facebook.com%2Fstellar.shoe.33&amp;data=02%7C01%7Chmckinleyaluma1%40student.cscc.edu%7C29228caabe0944d49dfc08d8246babad%7Cffa1db08d129474b92feae219e4319a3%7C0%7C0%7C637299392146408489&amp;sdata=8dW4ggAPl6xpQMcfDP3jeGFIy5IoPC8RajLaqXKBNkY%3D&amp;reserved;=0"><i class="fa fa-facebook"></i></a> 
-				<a href="https://www.instagram.com/_stellarshoes/"><i class="fa fa-instagram"></i></a> </li>
-			</ul>
-		</section>
-	</footer>
-    <script src="./resources/js/jquery-3.3.1.js"></script>
+	<footer> <section>
+	<h2>Customer Service</h2>
+	<ul>
+		<li><a href="createAccount.xhtml">Frequently Asked
+				Questions</a></li>
+		<!--REMOVED: style = "color: white"-->
+		<li><a href="contact.xhtml">Contact Us</a></li>
+		<!--REMOVED: style = "color: white"-->
+		<li><a href="about.xhtml">About Us</a></li>
+		<!--REMOVED: style = "color: white"-->
+	</ul>
+	</section> <section>
+	<h2>My Account</h2>
+	<ul>
+		<li><a href="createAccount.xhtml">Create Account</a></li>
+		<!--REMOVED: style = "color: white"-->
+		<li><a href="success.xhtml">Manage Account</a></li>
+		<!--REMOVED: style = "color: white"-->
+
+	</ul>
+	</section> <section>
+	<h2>Location and Hours</h2>
+	<ul>
+		<li>Mailing Address:<br />123 Smith Lane<br />Columbus, OH 43212
+		</li>
+		<li>Hours:<br />Monday thru Friday: 9 to 8<br />Saturday: 9 to 6<br />Sunday:
+			9 to 5
+		</li>
+	</ul>
+	</section> <section>
+	<h2>Connect With Us</h2>
+	<ul>
+		<li><a href="https://twitter.com/stellarshoes1"><i
+				class="fa fa-twitter"></i></a> <a
+			href="https://nam10.safelinks.protection.outlook.com/?url=https%3A%2F%2Fwww.facebook.com%2Fstellar.shoe.33&amp;data=02%7C01%7Chmckinleyaluma1%40student.cscc.edu%7C29228caabe0944d49dfc08d8246babad%7Cffa1db08d129474b92feae219e4319a3%7C0%7C0%7C637299392146408489&amp;sdata=8dW4ggAPl6xpQMcfDP3jeGFIy5IoPC8RajLaqXKBNkY%3D&amp;reserved;=0"><i
+				class="fa fa-facebook"></i></a> <a
+			href="https://www.instagram.com/_stellarshoes/"><i
+				class="fa fa-instagram"></i></a></li>
+	</ul>
+	</section> </footer>
+	<script src="./resources/js/jquery-3.3.1.js"></script>
+
 	<script src="./resources/js/hamburger-js.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 </h:body>
 </html>

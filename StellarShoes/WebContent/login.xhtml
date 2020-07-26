@@ -4,15 +4,17 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core" 
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+     xmlns:p="http://primefaces.org/ui">
 <h:head>
 <title>Log In</title>
 <meta content="width=device-width, initial-scale=1" name="viewport" />
 <link rel="stylesheet" type="text/css" href="./resources/css/reset.css"/>
 <link rel="stylesheet" type="text/css" href="./resources/css/store-shell.css"/>
 <link rel="stylesheet" type="text/css" href="./resources/css/main-components.css"/>
+<link rel="stylesheet" type="text/css" href="./resources/css/checkout.css"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
 <link href="https://fonts.googleapis.com/css?family=Barlow:400,600,900" rel="stylesheet"/>
+<h:outputScript library="primefaces" name="jquery/jquery.js" />
 </h:head>
 <h:body id="body">
 <header>
@@ -33,30 +35,34 @@
 		<span id="hamburger" onclick="openNav()">&nbsp;</span>
 </header>
 <main>
-<div id = "forms-heading">
-<h2>Log in</h2>
-</div>
-<h:form id="loginform" prependId = "false">
+<div class="checkout-panel">
+		<div class="panel-body ">
+			<h1>Log in</h1>
+			<div class = "input-fields">
+				<h:form prependId = "false">
+  <p:outputLabel for="email" value ="Email:"/> 
 
-  <h:outputLabel>Email: </h:outputLabel>
-
-  <h:inputText id= "email" pt:placeholder = "example@email.com" required = "true" requiredMessage = "Email is required" 
+  <p:inputText id= "email" placeholder = "example@email.com" required = "true" requiredMessage = "Email is required" 
   validatorMessage = "Please enter a valid email" value="#{accountManager.email}">
   <f:validateRegex pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"/> 
-  </h:inputText> <br/><br/>
+  </p:inputText> <br/><br/>
   
   
-  <h:outputLabel>Password:</h:outputLabel>
+  <p:outputLabel for="password" value = "Password:"/>
   
-  <h:inputSecret id="password" required = "true" requiredMessage = "Password is required"
+  <p:password id="password" required = "true" requiredMessage = "Password is required"
        value = "#{accountManager.password}"> 
-  </h:inputSecret><br/><br/>
+  </p:password><br/><br/>
      
-<h:commandButton id="submit" value="Log in" action= "#{accountManager.login}" /><br/><br/>
-<h:messages layout = "list" styleClass = "error"></h:messages>
-<a href = "forgotPassword.xhtml">Forgot Password?</a> <!--REMOVED:  style = "margin-right: 50px;"-->
+<p:commandButton id="submit" value="Log in" action= "#{accountManager.login()}" styleClass = "btn next-btn" update="message"/><br/><br/>
+<h:messages id="message" styleClass = "error"/>
+<a href = "forgotPassword.xhtml">Forgot Password?</a> 
 <a href = "createAccount.xhtml">Create a New Account?</a> 
 </h:form>
+			</div>
+		</div>
+	</div>
+
 
 </main>
 <footer>

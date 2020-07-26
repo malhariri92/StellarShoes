@@ -78,14 +78,14 @@ public class Checkout implements Serializable{
 		
 		if(customer.getCustomerID() == 0) {
 			if(placeNewCustomerOrder(total) && inserOrderDetails(products)) {
-				
+				OrderBN.assignOrder(orderID, payment);
 				return "checkout4?faces-redirect=true";
 			}
 			
 			
 		} else {
                  if(placeExistingCustomerOrder(total) && inserOrderDetails(products)) {
-				
+                	 OrderBN.assignOrder(orderID, payment);
 				return "checkout4?faces-redirect=true";
 			}
 		}
