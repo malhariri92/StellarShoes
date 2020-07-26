@@ -11,8 +11,10 @@
 <link rel="stylesheet" type="text/css" href="./resources/css/reset.css"/>
 <link rel="stylesheet" type="text/css" href="./resources/css/store-shell.css"/>
 <link rel="stylesheet" type="text/css" href="./resources/css/main-components.css"/>
+
 <link rel="stylesheet" type="text/css"
 		href="./resources/css/checkout.css" />
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
 <link href="https://fonts.googleapis.com/css?family=Barlow:400,600,900" rel="stylesheet"/>
 </h:head>
@@ -35,18 +37,18 @@
 		<span id="hamburger" onclick="openNav()">&nbsp;</span>
 </header>
 <main>
-<div id = "forms-heading">
-<h2>Create Admin Account</h2>
-</div>
+
 
          <div class="checkout-panel">
-			<div class="panel-body">
-
-				<div class="input-fields">
-					<div class="column-1">
-					<h:form id="registerForm" prependId="false">
-						<div class="small-inputs">
-						<div>	
+		<div class="panel-body ">
+            <h1>Create Admin Account</h1>
+            <fieldset>
+                <div class = "input-fields">
+                    <h:form id="registerForm" prependId = "false">
+                        <div class="column-1">
+    
+                        <div class="small-inputs">
+                            <div>
                  <p:outputLabel for = "fname" value="First Name" />
                  <p:inputText id="fname" value="#{createBN.employee.fName}" validatorMessage = "First name may contain letters only."
                                   required="true" requiredMessage="Please enter your first name" >
@@ -89,21 +91,24 @@
                      <div>           
                  <p:outputLabel for = "employeeid" value="Employee ID" />
                  <p:inputText id="employeeid" value="#{createBN.employee.employeeID}"
-                                  required="true" requiredMessage="Please enter your phone number" />
+                                  required="true" requiredMessage="Please enter your employee ID" />
                  </div>
-             
-              </div>
+                            <div>
+                                
+                            </div> 
+                        </div>
             
                  <p:commandButton id="regButton"  value = "Create Account" action="#{createBN.registerAdmin()}"
                  styleClass="btn next-btn" update = "message"/> 
-            
-          
-         <h:messages id = "message" styleClass = "error"></h:messages>
-     </h:form>
-					</div>
-				</div>
-			</div>
+
+                  <h:messages id = "message" styleClass = "error"/>
+                  </div>
+                 </h:form>
+                </div>                
+            </fieldset>
 		</div>
+	</div>
+
 </main>
 <footer>
 		<section>

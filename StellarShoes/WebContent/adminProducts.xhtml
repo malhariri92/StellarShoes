@@ -26,11 +26,11 @@
 			</h:form>
 		</div>
 		<div class="nav-bar">
-			<a href="index.xhtml" class="nav-item"><img id="logo" src="./resources/images/stellar-shoes-logo.svg" ></img><br/>Main Site</a>
-			<a href="adminHome.xhtml" class="nav-item"><i class="fa fa-home fa-5x"></i><br/>Home</a>
-			<a href="adminProducts.xhtml" class="nav-item page-ni"><i class="fa fa-archive fa-5x"></i><br/>Products</a>
-            <a href="adminOrders.xhtml" class="nav-item"><i class="fa fa-truck fa-5x"></i><br/>Orders</a>
-			<a href="adminPayments.xhtml" class="nav-item"><i class="fa fa-money fa-5x"></i><br/>Payments</a>
+			<a href="index.xhtml" class="nav-item"><img id="logo" src="./resources/images/stellar-shoes-logo-reverse.svg" ></img><br/>Main Site</a>
+			<a href="adminHome.xhtml" class="nav-item"><i class="fa fa-home"></i><br/>Home</a>
+			<a href="adminProducts.xhtml" class="nav-item page-ni"><i class="fa fa-archive"></i><br/>Products</a>
+            <a href="adminOrders.xhtml" class="nav-item "><i class="fa fa-truck"></i><br/>Orders</a>
+			<!-- <a href="adminPayments.xhtml" class="nav-item"><i class="fa fa-money"></i><br/>Payments</a> -->
         </div>
 	</header>
 
@@ -82,11 +82,11 @@
 	
 	<ui:repeat var="shoe"  value="#{productBN.loadProducts()}">
 	<section>
-		<h2>
+		<h3 style="color: black">
 			Product ID ##{shoe.productID}
-		</h2>
+		</h3>
 		<img src="#{shoe.imgUrl}" alt="image of a dress shoe"/>
-		<p>#{shoe.name}</p>
+		<h4>#{shoe.name}</h4>
 		<p> Description: #{shoe.description} </p>
 		<p>Price: $#{shoe.price}</p>
 		

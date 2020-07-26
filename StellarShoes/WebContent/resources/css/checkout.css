@@ -95,6 +95,13 @@
     color: silver;
   }
 
+  .info-center {
+    display: block;
+    line-height: 1em;
+    margin-bottom: 1em;
+    text-align: center;
+  }
+
   div[class*='column'] {
     /* width: 382px; */
   }
@@ -125,11 +132,12 @@
     margin-bottom: 20px;
     margin-top: 20px;
     justify-content: space-between;
+    width: 100%;
   }
 
   .small-inputs div {
-    width: 40%;
-    margin-right:60px;
+    width: 45%;
+    /* margin-right:60px; */
   }
 
   .panel-footer {
