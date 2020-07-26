@@ -10,6 +10,7 @@
 <link rel="stylesheet" type="text/css" href="./resources/css/reset.css"/>
 <link rel="stylesheet" type="text/css" href="./resources/css/store-shell.css"/>
 <link rel="stylesheet" type="text/css" href="./resources/css/main-components.css"/>
+<link rel="stylesheet" type="text/css" href="./resources/css/checkout.css"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
 <link href="https://fonts.googleapis.com/css?family=Barlow:400,600,900" rel="stylesheet"/>
 </h:head>
@@ -32,65 +33,79 @@
 		<span id="hamburger" onclick="openNav()">&nbsp;</span>
 </header>
 <main>
-<div id = "forms-heading">
-<h2>Create Admin Account</h2>
-</div>
-<h:form id="registerForm" prependId = "false">
-         <table class="register-form-group">
-             <tr>
-                 <td><h:outputText value="First Name: " /></td>
-                 <td><h:inputText id="fname" value="#{createBN.employee.fName}" validatorMessage = "First name may contain letters only."
-                                  required="true" requiredMessage="Please enter your first name" >
-                                  <f:validateRegex pattern="[a-zA-Z]+?"></f:validateRegex>
-                                  </h:inputText></td>
-                 
-             
-                 <td><h:outputText value="Last Name: " /></td>
-                 <td><h:inputText id="lname" value="#{createBN.employee.lastName}"  validatorMessage = "Last name may contain letters only."
-                                  required="true" requiredMessage="Please enter your last name">
-                                  <f:validateRegex pattern="[a-zA-Z]+?"></f:validateRegex>
-                                  </h:inputText></td>
-                 
-             </tr>
-             <tr>
-                 <td><h:outputText value="Company Email :" /></td>
-                 <td><h:inputText id="email1" value="#{createBN.employee.email}"
-                                  required="true" requiredMessage="Please enter your email" /></td>
-                 
-             
-                 <td><h:outputText value="Confirm Email :" /></td>
-                 <td><h:inputText id="email2" value="#{createBN.email2}"
-                                    required="true" requiredMessage="Please confirm your email" /></td>
-                 
-             </tr>
-             <tr>
-                 <td><h:outputText value="Password: " /></td>
-                 <td><h:inputSecret id="password1" value="#{createBN.employee.password}"
-                                  required="true" requiredMessage="Please enter password" /></td>
-                 
-            
-                 <td><h:outputText value="Confirm Password: " /></td>
-                 <td><h:inputSecret id="password2" required="true" value="#{createBN.password2}" 
-                 requiredMessage="Please confirm your password">
-                                  </h:inputSecret>
-                                  </td>                 
-             </tr>
-             <tr>
-                 <td><h:outputText value="Employee ID :" /></td>
-                 <td><h:inputText id="employeeid" value="#{createBN.employee.employeeID}"
-                                  required="true" requiredMessage="Please enter your phone number" /></td>
-                 
-             </tr>
-             
-             <tr>
-                 <td />
-                 <td><h:commandButton id="regButton"  value = "Create Account" action="#{createBN.registerAdmin()}" > </h:commandButton></td>
-             </tr>
-             
-         </table><br/>
-          
-         <h:messages styleClass = "error"></h:messages>
-     </h:form>
+
+    <div class="checkout-panel">
+		<div class="panel-body ">
+            <h1>Create Admin Account</h1>
+            <fieldset>
+                <div class = "input-fields">
+                    <h:form id="registerForm" prependId = "false">
+                        <div class="column-1">
+    
+                        <div class="small-inputs">
+                            <div>
+                                <h:outputText value="First Name: " />
+                                <h:inputText id="fname" value="#{createBN.employee.fName}" validatorMessage = "First name may contain letters only."
+                                    required="true" requiredMessage="Please enter your first name" >
+                                    <f:validateRegex pattern="[a-zA-Z]+?"></f:validateRegex>
+                                </h:inputText>
+                            </div>
+                            <div>
+                                <h:outputText value="Last Name: " />
+                                <h:inputText id="lname" value="#{createBN.employee.lastName}"  validatorMessage = "Last name may contain letters only."
+                                    required="true" requiredMessage="Please enter your last name">
+                                    <f:validateRegex pattern="[a-zA-Z]+?"></f:validateRegex>
+                                </h:inputText>
+                            </div> 
+                        </div>
+    
+                        <div class="small-inputs">
+                            <div>
+                                <h:outputText value="Company Email :" />
+                                <h:inputText id="email1" value="#{createBN.employee.email}"
+                                    required="true" requiredMessage="Please enter your email" />
+                            </div>
+                            <div>
+                                <h:outputText value="Confirm Email :" />
+                                <h:inputText id="email2" value="#{createBN.email2}"
+                                    required="true" requiredMessage="Please confirm your email" />
+                            </div> 
+                        </div>
+    
+                        <div class="small-inputs">
+                            <div>
+                                <h:outputText value="Password: " />
+                                <h:inputSecret id="password1" value="#{createBN.employee.password}"
+                                    required="true" requiredMessage="Please enter password" />
+                            </div>
+                            <div>
+                                <h:outputText value="Confirm Password: " />
+                                <h:inputSecret id="password2" required="true" value="#{createBN.password2}" 
+                                    requiredMessage="Please confirm your password">
+                                </h:inputSecret>
+                            </div> 
+                        </div>
+    
+                        <div class="small-inputs">
+                            <div>
+                                <h:outputText value="Employee ID :" />
+                                <h:inputText id="employeeid" value="#{createBN.employee.employeeID}"
+                                    required="true" requiredMessage="Please enter your phone number" />
+                            </div>
+                            <div>
+                                
+                            </div> 
+                        </div>
+    
+
+                        <h:commandButton id="regButton"  styleClass = "btn next-btn"  value = "Create Account" action="#{createBN.registerAdmin()}" > </h:commandButton><br/><br/>
+                    </h:form>
+                </div>                
+            </fieldset>
+		</div>
+	</div>
+
+
 </main>
 <footer>
 		<section>

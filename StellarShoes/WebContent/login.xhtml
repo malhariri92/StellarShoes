@@ -11,6 +11,7 @@
 <link rel="stylesheet" type="text/css" href="./resources/css/reset.css"/>
 <link rel="stylesheet" type="text/css" href="./resources/css/store-shell.css"/>
 <link rel="stylesheet" type="text/css" href="./resources/css/main-components.css"/>
+<link rel="stylesheet" type="text/css" href="./resources/css/checkout.css"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
 <link href="https://fonts.googleapis.com/css?family=Barlow:400,600,900" rel="stylesheet"/>
 </h:head>
@@ -33,30 +34,37 @@
 		<span id="hamburger" onclick="openNav()">&nbsp;</span>
 </header>
 <main>
-<div id = "forms-heading">
-<h2>Log in</h2>
-</div>
-<h:form id="loginform" prependId = "false">
+	<div class="checkout-panel">
+		<div class="panel-body ">
+			<h1>Log in</h1>
+			<div class = "input-fields">
+				<h:form id="loginform" prependId = "false"><!--May be able to take out id="loginform"-->
+					<h:outputLabel>Email: </h:outputLabel>
+					<!--May be able to take out id="email"-->
+					<h:inputText id= "email" pt:placeholder = "example@email.com" required = "true" requiredMessage = "Email is required" 
+		  				validatorMessage = "Please enter a valid email" value="#{accountManager.email}">
+		  				<f:validateRegex pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"/> 
+					</h:inputText> <br/><br/>
+					<h:outputLabel>Password:</h:outputLabel>
+					<!--May be able to take out id="password"-->
+					<h:inputSecret id="password" required = "true" requiredMessage = "Password is required"
+						value = "#{accountManager.password}"> 
+					</h:inputSecret><br/><br/>
+					<h:commandButton id="submit" styleClass = "btn next-btn" value="Log in" action= "#{accountManager.login}" /><br/><br/>
+					<h:messages layout = "list" styleClass = "error"></h:messages>
+						<a href = "forgotPassword.xhtml" class="info-center">Forgot Password?</a> 
+						<a href = "createAccount.xhtml" class="info-center">Create a New Account?</a> 
+				</h:form>
+			</div>
+		</div>
+	</div>
+		
+	<!-- <div id = "forms-heading">
+		<h2>Log in</h2>
+	</div> -->
+	
+		
 
-  <h:outputLabel>Email: </h:outputLabel>
-
-  <h:inputText id= "email" pt:placeholder = "example@email.com" required = "true" requiredMessage = "Email is required" 
-  validatorMessage = "Please enter a valid email" value="#{accountManager.email}">
-  <f:validateRegex pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"/> 
-  </h:inputText> <br/><br/>
-  
-  
-  <h:outputLabel>Password:</h:outputLabel>
-  
-  <h:inputSecret id="password" required = "true" requiredMessage = "Password is required"
-       value = "#{accountManager.password}"> 
-  </h:inputSecret><br/><br/>
-     
-<h:commandButton id="submit" value="Log in" action= "#{accountManager.login}" /><br/><br/>
-<h:messages layout = "list" styleClass = "error"></h:messages>
-<a href = "forgotPassword.xhtml">Forgot Password?</a> <!--REMOVED:  style = "margin-right: 50px;"-->
-<a href = "createAccount.xhtml">Create a New Account?</a> 
-</h:form>
 
 </main>
 <footer>
