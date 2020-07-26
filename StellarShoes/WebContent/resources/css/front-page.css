@@ -25,7 +25,7 @@ main {
 }
 
 #hero-space {
-     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(https://raw.githubusercontent.com/hmcka/StellarShoes/master/present.jpg);
+     background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.5)), url(https://raw.githubusercontent.com/malhariri92/StellarShoes/master/StellarShoes/WebContent/resources/images/present.jpg);
      background-position: center;
      background-repeat: no-repeat;
      background-size: cover;
@@ -35,30 +35,139 @@ main {
 
  #hero-space h1 {
    color: white;
+   font-family: "Georgia","Times New Roman",serif;
+   font-size: 3.5em;
+   font-weight: 200;
    line-height: normal;
-   padding-top: 4em;
+   padding-top: 1.5em;
    text-align: center;
    width: 75%;
  }
 
  @media (min-width: 850px) {
   #hero-space h1 {
-    width: 30%;
+    padding-top: 3.75em;
+    width: 40%;
   }
  }
 
- #testimonials h1 {
-  background-color: silver;    
-  font-size: 3em;
-   font-weight: 400;
-   min-height: 200px;
-   padding-top: 4em;
-   text-align: center; 
-   margin-top: 2em;
+ #testimonials {
+  min-height: 200px;
+  /* padding-top: 4em; */
+  text-align: center; 
+  margin-top: 2em;
+  width: 100%;
+  
 }
 
+#testimonials article{
+  border-bottom: 0px solid #C1746E;
+}
+
+#testimonials button {
+  background-color: white;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  color: silver;
+  font-size: 1rem;
+  text-decoration: none;
+  padding: 0.25rem 0.5rem;
+  cursor: pointer;
+}
+
+#pause {
+  visibility: hidden;
+}
+
+#testimonials .fa {
+  color: silver;
+  padding-left: .5em;
+  padding-right: .5em;
+}
+
+#testimonials h2 {
+  color: #7f2226;
+  font-size: 2.5em;
+  margin-top: 2em;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  /* text-align: center; */
+}
+
+#testimonials p {
+  font-size: 1.05em;
+  line-height: 1.25em;
+}
+
+.person {
+  font-size: .5em;
+  text-transform: uppercase;
+  padding-bottom: 1em;
+  border-bottom: thin solid #C1746E;
+  width: 55%;
+}
+
+@media (min-width: 550px) {
+  .person {
+    font-size: .8em;
+    width: 35%;
+  }
+}
+
+.slide-container {
+  position: relative;
+  /* height: 300px; */
+  /* padding: 0px; */
+  /* margin: 0px; */
+  list-style-type: none;
+  margin-bottom: 22em;
+  margin-left: auto;
+  margin-right: auto; 
+  width: 50%;
+}
+
+.slide {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: 1;
+
+  -webkit-transition: opacity 1s;
+  -moz-transition: opacity 1s;
+  -o-transition: opacity 1s;
+  transition: opacity 1s;
+}
+
+.slide-showing {
+  opacity: 1;
+  z-index: 2;
+}
+
+.controls {
+  position: relative;
+}
+
+@media (min-width: 550px) {
+  .slide-container {
+    margin-bottom: 18em;
+  }
+}
+
+@media (min-width: 850px) {
+  .slide-container {
+    margin-bottom: 13em;
+  }
+ }
+
 #boots{
-  background-image: url(https://raw.githubusercontent.com/hmcka/StellarShoes/master/chukka.jpg);
+  background-image: url(https://raw.githubusercontent.com/malhariri92/StellarShoes/master/StellarShoes/WebContent/resources/images/chukka.jpg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -67,11 +176,11 @@ main {
 }
 
 #boots a:hover,#boots:active {
-    /* background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(https://raw.githubusercontent.com/hmcka/StellarShoes/master/present.jpg); */
+    /* background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(); */
   }
 
 #oxfords{
-  background-image: url(https://raw.githubusercontent.com/hmcka/StellarShoes/master/oxford.jpg);
+  background-image: url(https://raw.githubusercontent.com/malhariri92/StellarShoes/master/StellarShoes/WebContent/resources/images/oxford.jpg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -80,7 +189,7 @@ main {
 }
 
 #loafers{
-  background-image: url(https://raw.githubusercontent.com/hmcka/StellarShoes/master/z-loafer-2.jpg);
+  background-image: url(https://raw.githubusercontent.com/malhariri92/StellarShoes/master/StellarShoes/WebContent/resources/images/z-loafer-2.jpg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -88,11 +197,7 @@ main {
   position: relative;
 }
 
-
 #category-container {
-	/* padding:20px; */
-	/* position:absolute; */
-  /* background:#fff; */
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -100,7 +205,6 @@ main {
   align-items: center;
   margin-top: 5em;
   margin-bottom: 5em;
-	/* overflow:hidden; */
 }
 
 @media (min-width: 850px) {
@@ -110,7 +214,7 @@ main {
   }
  }
 
-article {
+#category-container article {
   flex-grow: 1;
   width: 90%;
   height: 400px;
@@ -121,12 +225,12 @@ article {
 }
 
 @media (min-width: 850px) {
-  article {
+  #category-container article {
     width: 30%;
   }
  }
 
-article h3 {
+#category-container h3 {
 	text-transform:uppercase;
 	font-size: 3em;
   color:white;
@@ -134,7 +238,7 @@ article h3 {
 	text-align:center;
 	text-shadow: 0px 1px 1px #2a2a2a;
 }
-article h4{
+#category-container h4{
   color: white;
 	font-family: "Georgia","Times New Roman",serif;
 	font-style:italic;
@@ -168,15 +272,16 @@ article h4{
 
 #why h2 {
   color: white;
-  margin-top: 1em;
+  font-size: 2.5em;
+  margin-top: .5em;
   text-align: center;
 }
 
 #why p {
   color: white;
-  font-size: 1.5em;
-  font-weight: 400;em;
-  line-height: 1.15;
+  font-size: 1.65em;
+  font-weight: 400;
+  line-height: 1.35em;
   text-align: center;
   width: 50%;
 }
@@ -187,48 +292,114 @@ article h4{
   }
  }
 
- footer {
-   margin-top: 0;
- }
+  #quote-block {
+    margin-top: 5em;
+    margin-bottom: 5em;
+    width: 100%;
+  }
+  .quote-item-1 {
+    background-image: url(https://raw.githubusercontent.com/malhariri92/StellarShoes/master/StellarShoes/WebContent/resources/images/two-guys.jpg);
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 400px;
+    position: relative;
+  }
 
-#subscribe {
-  margin-top: 5em;
-  margin-bottom: 5em;
+  .quote-item-2 {
+    background-color: #269690;
+    flex-grow: 1;
+    flex-basis: 25%;
+    height: 100%;
+    align-self: flex-start;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .quote-item-2 p {
+    line-height: 1.5em;
+    font-size: 1.75em;
+  }
+
+  .quote-item-3 {
+    flex-grow: 2;
+    flex-basis: 50%;
+    align-self: flex-start;
+    background-image: url(https://raw.githubusercontent.com/malhariri92/StellarShoes/master/StellarShoes/WebContent/resources/images/clean-shoe-2.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 400px;
+    position: relative;
+  }
+
+  .quote-item-2 p {
+    color: white;
+  }
+   
+   .mark {
+    text-align: left;
+    width: 100%;
+  } 
   
-  /* grid-template-columns: 60px 60px;
-  grid-template-rows: 90px 90px; */
-  width: 100%;
-}
+  .us {
+    text-align: right;
+    margin-right: 0;
+    margin-bottom: 15px;
+  }
+  
+  .peep {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-style: italic;
+    font-weight: 600;
+    padding-right: 10px;
+  }
 
-@media (min-width: 850px) {
-  #subscribe {
+
+@media (min-width: 725px) {
+  #quote-block {
     /* width: 40%; */
-    display: grid;
-    grid-template-columns: 1fr 2fr 4fr;
-    grid-template-rows: 1fr;
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+  }
+
+  .quote-item-1 {
+    flex-grow: 1;
+    flex-basis: 25%;
+    align-self: flex-start;
+    background-position: center;
+    min-height: 400px;
+  }
+
+  .quote-item-2 {
+    flex-grow: 1;
+    flex-basis: 25%;
+    height: 100%;
+    min-height: 400px;
+    min-width: 182px;
+    align-self: flex-start;
+    padding-left: 25px;
+    padding-right: 25px;
+    margin-bottom: 25px;
+  }
+
+  .quote-item-2 p {
+    line-height: 1.5em;
+    font-size: 1.75em;
+  }
+
+  .quote-item-3 {
+    flex-grow: 2;
+    flex-basis: 50%;
+    align-self: flex-start;
+    min-height: 400px;
   }
  }
-    
-#subscribe h2 {
-  line-height: 1em;
+
+ 
+
+ footer {
   margin-top: 0;
-  padding-left: 3em;
-  padding-right: 3em;
-  /* padding-top: 1em; */
-  text-align: center;
-}  
-
-#subscribe p {
-  text-align: center;
 }
-
- @media (min-width: 850px) {
-
- }
-
-
-
-
- }
