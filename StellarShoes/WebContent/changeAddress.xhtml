@@ -43,53 +43,58 @@
 			 <h1>New Address</h1>
 
 				
-			  <div class="input-fields">
-				<div class="column-1">
-				
-                  <div class="small-inputs">
-                  <div>
-                  <label for="">Address Line1 *</label>
-				  <p:inputText value = "#{manageAccount.newAddress.address1}" type="text" 
-				   required = "true" />
-				   </div>
-				   <div>
-				   <label for="">Address Line2</label>
-				  <p:inputText value = "#{manageAccount.newAddress.address2}" type="text"/>
-                   </div>
-				 </div>
-				 
-				   <div class="small-inputs">
-					<div>
-					  <label for="">City *</label>
-					  <p:inputText value = "#{manageAccount.newAddress.city}" type="text" required = "true"/>
-					</div>
+			                  <div class="small-inputs">
+									<div>
+										<p:outputLabel for="address1">Address Line1</p:outputLabel>
+										<p:inputText id="address1"
+											value="#{manageAccount.newAddress.address1}" type="text"
+											required="true" requiredMessage="Please enter your address." />
+									</div>
+									<div>
+										<p:outputLabel for="">Address Line2</p:outputLabel>
+										<p:inputText value="#{manageAccount.newAddress.address2}" type="text" />
+									</div>
+								</div>
 
-					<div>
-					  <label for="">State *</label>
-                      <p:inputText value = "#{manageAccount.newAddress.state}" type="text"  required = "true" />
-                      
-                      <!-- Intention is to add a drop-down of state names, but this hasn't been added yet. -->
-					</div>
-                      </div>   
-                       <div class="small-inputs">     
-					<div>
-					  <label for="">Zip Code *</label>
-					  <p:inputText value = "#{manageAccount.newAddress.zip}" required = "true"
-					   requiredMessage = "Please enter a valid Zip code"></p:inputText>
-					</div>
+								<div class="small-inputs">
+									<div>
+										<p:outputLabel for="city">City</p:outputLabel>
+										<p:inputText id="city" value="#{manageAccount.newAddress.city}"
+											type="text" required="true"
+											requiredMessage="Please enter city name." />
+									</div>
 
-				  </div>
+									<div>
+										<p:outputLabel for="state">State</p:outputLabel>
+										<p:inputText id="state" value="#{manageAccount.newAddress.state}"
+											type="text" required="true"
+											requiredMessage="Please enter state name." />
+
+										<!-- Intention is to add a drop-down of state names, but this hasn't been added yet. -->
+									</div>
+								</div>
+
+								<div class="small-inputs">
+									<div>
+										<p:outputLabel for="zip">Zip Code</p:outputLabel>
+										<p:inputText id="zip" value="#{manageAccount.newAddress.zip}"
+											required="true"
+											requiredMessage="Please enter a valid Zip code"></p:inputText>
+									</div>
+									</div>
 				  <span class="info">* Required information.</span>
-
+                   <h:messages id = "message" layout = "list" styleClass = "error"></h:messages>
 				</div>
 
-			  </div>
-			</div>
+			  
+			
 
 			<div class="panel-footer">
-			 
-			  <h:commandButton value = "Submit" action = "#{manageAccount.changeAddress()}" 
-			  styleClass = "btn next-btn" /> <!-- REMOVED: style = "width:406.9px; margin-left:165px;"-->
+			 <p:commandButton value="Back" type = "button" onclick="history.back();"
+								action="success?faces-redirect=true" styleClass="btn next-btn"
+								style="width:50%px" />
+			  <p:commandButton value = "Save" action = "#{manageAccount.changeAddress()}" 
+			  styleClass = "btn next-btn" update = "message" /> 
 			  
 			</div>
 		  </div>
@@ -100,7 +105,7 @@
 		<section>
 			<h2>Customer Service</h2>
 			<ul>
-				<li><a href = "createAccount.xhtml" >Frequently Asked Questions</a></li> <!-- REMOVED: style = "color: white"-->
+				<li><a href = "FAQs.xhtml" >Frequently Asked Questions</a></li> <!-- REMOVED: style = "color: white"-->
 				<li><a href = "contact.xhtml">Contact Us</a></li> <!-- REMOVED: style = "color: white"-->
 				<li><a href = "about.xhtml">About Us</a></li> <!-- REMOVED: style = "color: white"-->
 			</ul>

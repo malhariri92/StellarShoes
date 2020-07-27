@@ -36,7 +36,7 @@ public class ManageAccount implements Serializable{
 	
 	private static final String pswRequirments = "Password must be between 8 and 13 " + 
 			" characters and must contain at least one of each of the following: uppercase, lowercase," + 
-			" digit, and one of these special characters (/<>@#!%+&^).\"\r\n" + 
+			" digit, and one of these special characters (/<>@#!%+&^)." + 
 			" Password cannot contain white spaces.";
 	
 	private Customer customer = new Customer();
@@ -51,6 +51,8 @@ public class ManageAccount implements Serializable{
 	
 	private String password1;
 	private String password2;
+	
+	private boolean passwordChanged = false;
 	
 	
 	public ManageAccount() {
@@ -208,7 +210,7 @@ public class ManageAccount implements Serializable{
     public String changePassword() {
     	
     	if(!oldPassword.equals(customer.getPassword())){
-    		Messages.show("Please enter your current password!");
+    		Messages.show("Your current password is not correct.");
     		return null;
     	}
     	if(!PasswordValidator.validate(password1)) {
@@ -216,7 +218,7 @@ public class ManageAccount implements Serializable{
     		return null;
     	}
     	if(!password1.equals(password2)) {
-    		Messages.show("Please enter your current password!");
+    		Messages.show("Password does not match.");
     		return null;
     	}
     	
@@ -233,7 +235,8 @@ public class ManageAccount implements Serializable{
 			int rs = pstmt.executeUpdate();
 					
 			if(rs > 0) {
-			Messages.show("Your password has been successfully changed.");	
+			passwordChanged = true;
+			return null;
 				
 			} else {
 				Messages.show("An error has occurred please try again later.");
@@ -248,9 +251,8 @@ public class ManageAccount implements Serializable{
 			DatabaseConnector.close(conn);
 		}
 		
-		FacesContext context = FacesContext.getCurrentInstance();
-		   context.getExternalContext().getFlash().setKeepMessages(true);
-		return "success?faces-redirect=true";
+		
+		return "success";
     }
     
 	public Customer getCustomer() {
@@ -335,6 +337,12 @@ public class ManageAccount implements Serializable{
 		this.password2 = password2;
 	}
 	
-	
+	public boolean isPasswordChanged() {
+		return passwordChanged;
+	}
+
+	public void setPasswordChanged(boolean passwordChanged) {
+		this.passwordChanged = passwordChanged;
+	}
 	
 }

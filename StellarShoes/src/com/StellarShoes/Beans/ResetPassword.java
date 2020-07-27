@@ -10,6 +10,7 @@ public class ResetPassword {
 	private final String notRegistered = "The email you entered does not match any record! "
 			+ "You can create a new account by clicking the creat account link below. ";
 			
+	
 	private String email;
 	
 	public ResetPassword() {}
@@ -27,7 +28,10 @@ public class ResetPassword {
 		}
 	}
 	
-	
+	public String gotMessage() {
+		
+		return "contact";
+	}
 
 	public String getEmail() {
 		return email;

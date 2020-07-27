@@ -3,13 +3,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core" 
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
 <h:head>
-<title>Manage Account</title>
+<title>Frequently Asked Questions</title>
 <meta content="width=device-width, initial-scale=1" name="viewport" />
 <link rel="stylesheet" type="text/css" href="./resources/css/reset.css"/>
 <link rel="stylesheet" type="text/css" href="./resources/css/store-shell.css"/>
 <link rel="stylesheet" type="text/css" href="./resources/css/main-components.css"/>
+<link rel="stylesheet" type="text/css" href="./resources/css/checkout.css"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
 <link href="https://fonts.googleapis.com/css?family=Barlow:400,600,900" rel="stylesheet"/>
 </h:head>
@@ -32,13 +34,71 @@
 		<span id="hamburger" onclick="openNav()">&nbsp;</span>
 </header>
 <main>
-   
+<div class="checkout-panel">
+<h1>Frequently Asked Questions</h1>
+   <p:accordionPanel activeIndex="null">
+        <p:tab title="1. Which Payment Methods Can I Use For my Purchases?">
+            
+                <h:outputText
+                    value="Online payment options that you can use are Debit or Credit card and PayPal." />
+                    
+        </p:tab>
+        <p:tab title="2. How do I add items to my shopping cart?">
+            
+         <h:outputText value="Once you find items that you want to order, it's time to add them to
+          your online Shopping cart." />
+            <p>1- click on the item you want to add to your card.</p>
+             <p>2- A new page will be displayed with more details about the item.</p>
+             <p>3- In the new page, select the size and click the add to cart button.</p>
+             <p>4- Click the Checkout Now button or the cart icon on the upper right corner,
+              which will show a summary of the item(s) you're 
+             ordering and the total amount.</p>
+             <p>5- To continue adding items to your Shopping cart, click the Continue Shopping button</p>
+        </p:tab>
+        <p:tab title="3. What is the return policy?">
+            
+                <h:outputText value="We want you to love your purchase, but if you
+                 are not completely satisfied, we gladly accept most returns by mail and
+                  in stores within 90 days of purchase for free. Exceptions are as long as
+                   your item is unworn and in saleable condition. Returned items must be in original,
+                 saleable condition with original tags. Shipping and delivery fees are non-refundable." />
+            
+        </p:tab>
+        <p:tab title="4. What is the Exchange policy?">
+            
+                <h:outputText
+                    value="Exchanges by mail: Only items purchased online can be returned by mail. 
+                    Once you complete your return, place a new order for the item at current selling price. " />
+            
+        </p:tab>
+        <p:tab title="5. What is the Password Requirement?">
+            
+                <h:outputText value="For your protection, remember to change your password frequently.
+
+Use complex characters, including uppercase and lowercase letters, numbers, and special characters Your
+ password must be 8-13 characters and can include specials
+  characters, except for the following: ( . , - | \  = _ ) or spaces. " />
+            
+        </p:tab>
+        <p:tab title="6. How can I change my password?">
+                <h:outputText value="You can change your password in two different ways:" />
+                <p>1- you can click on the <a href = "forgotPassword.xhtml">Forgot Password?</a> link.
+                Enter your email and we will send you a link to reset your password.</p>
+                <p>2- After you log in to your account, click the change password button. Then, you will be asked
+                 to enter your current and new password. After you select a valid password, click the save button to 
+                 save your new password.</p>
+          
+        </p:tab>
+    </p:accordionPanel>
+    </div>
 </main>
+
+
 <footer>
 		<section>
 			<h2>Customer Service</h2>
 			<ul>
-				<li><a href = "createAccount.xhtml" >Frequently Asked Questions</a></li> 
+				<li><a href = "FAQs.xhtml" >Frequently Asked Questions</a></li> 
 				<li><a href = "contact.xhtml" >Contact Us</a></li> 
 				<li><a href = "about.xhtml"  >About Us</a></li> 
 			</ul>

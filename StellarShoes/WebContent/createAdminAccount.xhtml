@@ -97,11 +97,15 @@
                                 
                             </div> 
                         </div>
-            
+                        <h:messages id = "message" styleClass = "error"/>
+                        <div class="panel-footer">
+                  <p:commandButton value="Back" type = "button" onclick="history.back();"
+								action="success?faces-redirect=true" styleClass="btn next-btn"
+								style="width:50%px" />
                  <p:commandButton id="regButton"  value = "Create Account" action="#{createBN.registerAdmin()}"
                  styleClass="btn next-btn" update = "message"/> 
-
-                  <h:messages id = "message" styleClass = "error"/>
+                   </div>
+                  
                   </div>
                  </h:form>
                 </div>                
@@ -114,7 +118,7 @@
 		<section>
 			<h2>Customer Service</h2>
 			<ul>
-				<li><a href = "createAccount.xhtml" >Frequently Asked Questions</a></li> <!--REMOVED: style = "color: white"-->
+				<li><a href = "FAQs.xhtml" >Frequently Asked Questions</a></li> <!--REMOVED: style = "color: white"-->
 				<li><a href = "contact.xhtml" >Contact Us</a></li> <!--REMOVED: style = "color: white"-->
 				<li><a href = "about.xhtml" >About Us</a></li> <!--REMOVED: style = "color: white"-->
 			</ul>

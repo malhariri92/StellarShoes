@@ -20,8 +20,7 @@
 		<div id="user-name">
 			<p>#{accountManager.email}</p>
 		</div>
-		<div id="top-icons">
-			<a href=""><i class="fa fa-cog fa-2x"></i></a> 
+		<div id="top-icons">			
 			<h:form>
 			<h:commandLink action = "#{accountManager.logout()}"><i class="fa fa-sign-out fa-2x"></i></h:commandLink> 
 			</h:form>
@@ -41,7 +40,7 @@
 
 	<div id="order-two-column-container">
 		<h2>Credit Card</h2>
-		<h2>PayPal<!-- <p:button styleClass = "btn next-btn paypal" target="_blank" href="https://www.sandbox.paypal.com/us/signin"
+		<h2><a href="https://www.sandbox.paypal.com/us/signin" target="_blank">PayPal</a><!-- <p:button styleClass = "btn next-btn paypal" target="_blank" href="https://www.sandbox.paypal.com/us/signin"
 			value="Manage PayPal Orders" icon ="fa fa-external-link"/> --></h2>
 	</div>
 	
@@ -84,13 +83,10 @@
 				</ui:repeat>	
 			</td> 
 			<h:form>
-	  		<td class="order-table-column"><p:outputPanel id = "address-#{order.orderID}"><p>Full Name:  #{order.fName} #{order.lastName}<br/><br/>
+	  		<td class="order-table-column"><p>Full Name:  #{order.fName} #{order.lastName}<br/><br/>
 	  		#{order.address.address1} #{order.address.address2}, 
 	  		#{order.address.city}, #{order.address.state}<br/> #{order.address.zip}<br/><br/>
-	  		</p><br/><br/>
-	  		<img src = "./resources/images/barcode.png" style="width:100%"></img>
-	  		</p:outputPanel><br/><br/>
-	  		
+	  		</p>
 	  		</td>
 	  		
 	  		
@@ -108,10 +104,7 @@
 				
             
             <p:commandButton styleClass = "btn next-btn" value="Change Status"
-				 action = "#{manageOrders.changeStatus(order.orderID)}"/> <br/><br/>
-           <p:commandButton value="Print" type="button" icon="fa fa-print" styleClass = "btn next-btn">
-              <p:printer target="address-#{order.orderID}" />
-           </p:commandButton>
+				 action = "#{manageOrders.changeStatus(order.orderID)}"/> 
 			</td>
 			</h:form>
 		</tr>

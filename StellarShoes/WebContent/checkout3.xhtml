@@ -68,9 +68,9 @@ src="https://www.paypal.com/sdk/js?client-id=AfSNSeK3ONkZKOF8-uCXuZvVz_Orz6cMXfq
 						</p:selectOneRadio>
 					</label>
 					<p:commandButton action="checkout1?faces-redirect=true"
-						value="Go Back" rendered="#{checkout.selectedMethod == 0}"
+						value="Back" rendered="#{checkout.selectedMethod == 0}"
 						styleClass="btn next-btn"
-						style="width:170px; margin-right:20px; margin-bottom:20px;" />
+						style="width:50%;" />
 					<p:growl id="message" autoUpdate="true" />
 				</fieldset>
 
@@ -257,24 +257,25 @@ src="https://www.paypal.com/sdk/js?client-id=AfSNSeK3ONkZKOF8-uCXuZvVz_Orz6cMXfq
 							</h:panelGroup>
 						</h:panelGroup>
 						<div class="panel-footer">
-							<h:commandButton value="Back"
-								action="checkout1?faces-redirect=true" styleClass="btn back-btn"
-								style="width:250px" />
+							<p:commandButton value="Back" type = "button" onclick="history.back();"
+								action="success?faces-redirect=true" styleClass="btn next-btn"
+								style="width:50%px" />
 
-							<h:commandButton value="Place Order"
+							<p:commandButton value="Place Order" update = "@form"
 								action="#{checkout.placeOrder(myCart.total, myCart.cartList)}"
 								styleClass="btn next-btn"
-								style="width:406.9px; margin-left:165px;" />
+								 />
 						</div>
 					</div>
 
 				</h:panelGroup>
 			</div>
+			
 			<h:panelGroup id="payPalPanel"
 				rendered="#{checkout.selectedMethod == 2}">
-
+                     <div class="panel-footer">
 				<div id="paypal-button-container"></div>
-				<input type="hidden" id="item1" value="10"></input>
+				
 				<script type="">
 			  			 paypal.Buttons({
 			  			      style: {
@@ -302,6 +303,7 @@ src="https://www.paypal.com/sdk/js?client-id=AfSNSeK3ONkZKOF8-uCXuZvVz_Orz6cMXfq
 			  			  }).render('#paypal-button-container');
 			  			
 			  			</script>
+			  			</div>
 			</h:panelGroup>
 
 
@@ -312,7 +314,7 @@ src="https://www.paypal.com/sdk/js?client-id=AfSNSeK3ONkZKOF8-uCXuZvVz_Orz6cMXfq
 	<footer> <section>
 	<h2>Customer Service</h2>
 	<ul>
-		<li><a href="createAccount.xhtml">Frequently Asked Questions</a></li>
+		<li><a href="FAQs.xhtml">Frequently Asked Questions</a></li>
 		<li><a href="contact.xhtml">Contact Us</a></li>
 		<li><a href="about.xhtml">About Us</a></li>
 	</ul>
