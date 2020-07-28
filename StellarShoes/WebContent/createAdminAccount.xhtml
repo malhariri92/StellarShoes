@@ -8,6 +8,7 @@
 <h:head>
 <title>Create Account</title>
 <meta content="width=device-width, initial-scale=1" name="viewport" />
+<link rel="icon" type="image/ico" href="./resources/images/StellarShoes.ico"/>
 <link rel="stylesheet" type="text/css" href="./resources/css/reset.css"/>
 <link rel="stylesheet" type="text/css" href="./resources/css/store-shell.css"/>
 <link rel="stylesheet" type="text/css" href="./resources/css/main-components.css"/>
@@ -32,7 +33,7 @@
 		<div id="top-icons">
 			 
 			<a href="login.xhtml"><i class="fa fa-user fa-2x"></i></a> 
-			<a href=""><i class="fa fa-shopping-cart fa-2x"></i></a> 
+			<a href="myCart.xhtml"><i class="fa fa-shopping-cart fa-2x"></i></a> 
 		</div>
 		<span id="hamburger" onclick="openNav()">&nbsp;</span>
 </header>
@@ -103,7 +104,7 @@
 								action="success?faces-redirect=true" styleClass="btn next-btn"
 								style="width:50%px" />
                  <p:commandButton id="regButton"  value = "Create Account" action="#{createBN.registerAdmin()}"
-                 styleClass="btn next-btn" update = "message"/> 
+                 styleClass="btn next-btn" update = "@form"/> 
                    </div>
                   
                   </div>

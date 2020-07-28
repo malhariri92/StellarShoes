@@ -8,6 +8,7 @@
 <h:head>
 <title>Log In</title>
 <meta content="width=device-width, initial-scale=1" name="viewport" />
+<link rel="icon" type="image/ico" href="./resources/images/StellarShoes.ico"/>
 <link rel="stylesheet" type="text/css" href="./resources/css/reset.css"/>
 <link rel="stylesheet" type="text/css" href="./resources/css/store-shell.css"/>
 <link rel="stylesheet" type="text/css" href="./resources/css/main-components.css"/>
@@ -30,7 +31,7 @@
 		<div id="top-icons">
 			 
 			<a href="login.xhtml"><i class="fa fa-user fa-2x"></i></a> 
-			<a href="checkout1.xhtml"><i class="fa fa-shopping-cart fa-2x"></i></a> 
+			<a href="myCart.xhtml"><i class="fa fa-shopping-cart fa-2x"></i></a> 
 		</div>
 		<span id="hamburger" onclick="openNav()">&nbsp;</span>
 </header>
@@ -53,11 +54,12 @@
   <p:password id="password" required = "true" requiredMessage = "Password is required"
        value = "#{accountManager.password}"> 
   </p:password><br/><br/>
-     
+    <h:messages id="message" styleClass = "error"/> 
+    <div class="panel-footer-one">
 <p:commandButton id="submit" value="Log in" action= "#{accountManager.login()}" styleClass = "btn next-btn" update="message"/><br/><br/>
-<h:messages id="message" styleClass = "error"/>
-<a href = "forgotPassword.xhtml">Forgot Password?</a> 
-<a href = "createAccount.xhtml">Create a New Account?</a> 
+</div>
+<a href = "forgotPassword.xhtml" class = "info-center">Forgot Password?</a> 
+<a href = "createAccount.xhtml" class = "info-center">Create a New Account?</a> 
 </h:form>
 			</div>
 		</div>

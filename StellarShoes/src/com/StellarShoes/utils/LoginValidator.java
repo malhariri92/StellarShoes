@@ -64,7 +64,7 @@ public class LoginValidator {
 			pstmt.close();
 		} catch (SQLException ex) {
 			
-			System.out.println("Login error -->" + ex.getMessage());
+			System.out.println("error from -->" + ex.getMessage());
 			
 			return false;
 		} finally {

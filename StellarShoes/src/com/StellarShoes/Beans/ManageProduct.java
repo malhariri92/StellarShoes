@@ -129,16 +129,24 @@ public class ManageProduct {
 	public String editItem(Product item) {
 		product = item;
 		
-		if(newPrice != 0 && newPrice >= 20) {
+		if(newPrice != 0) {
+			
+			if(newPrice >= 20) {
+				
 			product.setPrice(newPrice);
+			
 			}else {
 				Messages.show("Please enter a valid price. Prices must be between $20 and $200");
 				return "adminProducts";
 			}
+		}
 		
 		if(newColor != null && newColor != "") { product.setColor(newColor); }
 		if(newImageUrl != null && newImageUrl != "") {product.setImgUrl(newImageUrl);}
-
+        
+		if(newPrice == 0 && newColor == null && newImageUrl == null) {
+			return null;
+		}
 		newPrice = 0.0;
 		newColor = null;
 		newImageUrl = null;

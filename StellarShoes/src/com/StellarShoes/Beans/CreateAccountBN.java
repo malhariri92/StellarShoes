@@ -123,7 +123,7 @@ public String registerAdmin() {
 	}
 	if(!LoginValidator.isEmployee(employee.getEmail(),employee.getEmployeeID())) {
 		
-		Messages.show("There is no employee with this email! Cannot Create Admin Account.");
+		Messages.show("There is no employee with this email or employee ID! Cannot Create Admin Account.");
 		return "createAdminAccount";
 	}
 	if(!LoginValidator.exist(employee.getEmail())) {

@@ -9,17 +9,13 @@
 
 	<title>Create Account</title>
 	<meta content="width=device-width, initial-scale=1" name="viewport" />
+    <link rel="icon" type="image/ico" href="./resources/images/StellarShoes.ico"/>
 	<link rel="stylesheet" type="text/css" href="./resources/css/reset.css" />
-	<link rel="stylesheet" type="text/css"
-		href="./resources/css/store-shell.css" />
-	<link rel="stylesheet" type="text/css"
-		href="./resources/css/main-components.css" />
-	<link rel="stylesheet" type="text/css"
-		href="./resources/css/checkout.css" />
-	<link rel="stylesheet"
-		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-	<link href="https://fonts.googleapis.com/css?family=Barlow:400,600,900"
-		rel="stylesheet" />
+	<link rel="stylesheet" type="text/css" href="./resources/css/store-shell.css" />
+	<link rel="stylesheet" type="text/css" href="./resources/css/main-components.css" />
+	<link rel="stylesheet" type="text/css" href="./resources/css/checkout.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+	<link href="https://fonts.googleapis.com/css?family=Barlow:400,600,900" rel="stylesheet" />
 </h:head>
 <h:body id="body">
 	<header>
@@ -36,8 +32,8 @@
 		src="./resources/images/stellar-shoes-logo.svg"></img>
 	</a>
 	<div id="top-icons">
-		 <a href="login.xhtml"><i class="fa fa-user fa-2x"></i></a> <a href=""><i
-			class="fa fa-shopping-cart fa-2x"></i></a>
+		 <a href="login.xhtml"><i class="fa fa-user fa-2x"></i></a>
+		  <a href="myCart.xhtml"><i class="fa fa-shopping-cart fa-2x"></i></a>
 	</div>
 	<span id="hamburger" onclick="openNav()">&nbsp;</span> </header>
 	<main>
@@ -138,7 +134,7 @@
 								action="success?faces-redirect=true" styleClass="btn next-btn"
 								style="width:50%px" />
 						<p:commandButton id="regButton" value="Create Account"
-							action="#{createBN.registerCustomer()}" update = "message" 
+							action="#{createBN.registerCustomer()}" update = "@form" 
 							styleClass="btn next-btn"/>
 
 						

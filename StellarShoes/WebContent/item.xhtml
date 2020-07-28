@@ -10,6 +10,7 @@
 	<meta charset="utf-8"/>
     <title> Welcome to Stellar Shoes</title>
 	<meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="icon" type="image/ico" href="./resources/images/StellarShoes.ico"/>
 	<link rel="stylesheet" type="text/css" href="./resources/css/reset.css"/>
 	<link rel="stylesheet" type="text/css" href="./resources/css/store-shell.css"/>
 	<link rel="stylesheet" type="text/css" href="./resources/css/main-components.css"/>
@@ -32,7 +33,7 @@
 		<div id="top-icons">
 			
 			<a href="login.xhtml"><i class="fa fa-user fa-2x"></i></a> 
-			<a href="checkout1.xhtml"><i class="fa fa-shopping-cart fa-2x"></i></a> 
+			<a href="myCart.xhtml"><i class="fa fa-shopping-cart fa-2x"></i></a> 
 		</div>
 		<span id="hamburger" onclick="openNav()">&nbsp;</span>
 	</header>
@@ -67,10 +68,10 @@
            <p:commandButton action = "#{myCart.addToCart(item.product)}" value = "ADD TO CART"
              update="message" styleClass = "btn next-btn" style = "width:50%"/> 
              
-             <p:commandButton action = "checkout1?faces-redirect=true" value = "Checkout Now" 
+             <p:commandButton action = "myCart?faces-redirect=true" value = "Checkout Now" 
            rendered= "#{myCart.cartList.size() > 0}" styleClass = "btn next-btn" style = "width:50%"/> 
              
-           <p:commandButton action = "category?faces-redirect=true" value = "Continu Shopping"
+           <p:commandButton action = "category?faces-redirect=true" value = "Continue Shopping"
              update="message" styleClass = "btn next-btn" style = "width:50%"/> 
             
            

@@ -18,7 +18,7 @@ import javax.servlet.http.HttpSession;
 public class LoginFilter implements Filter{
 	
 	private HttpServletRequest httpRequest;
-	private static final String[] customerLoginRequiredURLs = {
+	private static final String[] customerLoginRequiredURLs = {"/changeAddress.xhtml",
             "/success.xhtml"};
 	
 	private static final String[] adminLoginRequiredURLs = {"/adminHome.xhtml", "/adminProducts.xhtml", "/adminOrders.xhtml"};

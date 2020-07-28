@@ -313,10 +313,9 @@ section p {
 /* Stretch goal = This button needs to be brought into the other buttons. */
 
 
-button .fa {
+#save .fa {
     color: #fff;
 }
-
 
 /* ui-growl doesn't appear to be used at all on adminHome */
 .ui-growl {

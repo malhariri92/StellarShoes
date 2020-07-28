@@ -10,17 +10,13 @@
 	<meta charset="utf-8" />
 	<title>Welcome to Stellar Shoes</title>
 	<meta content="width=device-width, initial-scale=1" name="viewport" />
+    <link rel="icon" type="image/ico" href="./resources/images/StellarShoes.ico"/>
 	<link rel="stylesheet" type="text/css" href="./resources/css/reset.css" />
-	<link rel="stylesheet" type="text/css"
-		href="./resources/css/store-shell.css" />
-	<link rel="stylesheet" type="text/css"
-		href="./resources/css/main-components.css" />
-	<link rel="stylesheet" type="text/css"
-		href="./resources/css/checkout.css" />
-	<link rel="stylesheet"
-		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-	<link href="https://fonts.googleapis.com/css?family=Barlow:400,600,900"
-		rel="stylesheet" />
+	<link rel="stylesheet" type="text/css" href="./resources/css/store-shell.css" />
+	<link rel="stylesheet" type="text/css" href="./resources/css/main-components.css" />
+	<link rel="stylesheet" type="text/css" href="./resources/css/checkout.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+	<link href="https://fonts.googleapis.com/css?family=Barlow:400,600,900" rel="stylesheet" />
 </h:head>
 <body>
 	<header>
@@ -36,7 +32,7 @@
 	<div id="top-icons">
 
 		<a href="login.xhtml"><i class="fa fa-user fa-2x"></i></a> <a
-			href="checkout1.xhtml"><i class="fa fa-shopping-cart fa-2x"></i></a>
+			href="myCart.xhtml"><i class="fa fa-shopping-cart fa-2x"></i></a>
 	</div>
 	<span id="hamburger" onclick="openNav()">&nbsp;</span> </header>
 
@@ -49,9 +45,10 @@
 				<img src="./resources/images/emptyCart.png" id="shopping-cart-icon"
 					alt="Empty shopping cart" />
 				<h:form>
-					<p:commandButton value="Continue Shopping"
-						style="width:50%; margin-left: 25%;"
-						action="category?faces-redirect=true" styleClass="btn next-btn" />
+				<div class="panel-footer-one">
+					<p:commandButton value="Continue Shopping" action="category?faces-redirect=true"
+					 styleClass="btn next-btn" />
+					 </div>
 				</h:form>
 			</h:panelGroup>
 			<h:outputText>Your shopping cart is emty</h:outputText>
@@ -103,10 +100,12 @@
 				<p:commandButton value="Continue Shopping" style = "width:30%"
 					action="category?faces-redirect=true" styleClass="btn next-btn"
 					rendered="#{myCart.cartList.size() > 0   ? 'true' : 'false'}" />
+					
 				<p:commandButton style = "width:30%"
 					value="#{accountManager.customer == null ? 'Checkout as Guest' : 'Check Out'}"
-					action="checkout3?faces-redirect=true" styleClass="btn next-btn"
+					action="checkout?faces-redirect=true" styleClass="btn next-btn"
 					rendered="#{myCart.cartList.size() > 0   ? 'true' : 'false'}" />
+					
 				<p:commandButton onclick="PF('loginDialog').show();" style = "width:30%"
 					styleClass="btn next-btn" type="button" role="button"
 					value="Login and Checkout" aria-disabled="false"
@@ -116,36 +115,38 @@
 
 			<p:dialog header="Log in" widgetVar="loginDialog" id="login"
 				appendTo="@(body)" showEffect="explode" hideEffect="fade"
-				height="250" width="700">
-				<h:form>
-					<h:outputLabel>Email: </h:outputLabel>
+				 width="40%" styleClass="customDialog">
+				<div class="panel-body ">
+			
+			<div class = "input-fields">
+				<h:form prependId = "false">
+					<p:outputLabel for = "useremail" value = "Email:"/>
 					<p:inputText id="useremail" placeholder="example@email.com"
 						required="true" requiredMessage="Email is required"
 						validatorMessage="Please enter a valid email"
 						value="#{accountManager.email}">
-						<!--REMOVED: style = "width:400px;margin-left:80px"-->
+						
 						<f:validateRegex
 							pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" />
 					</p:inputText>
-					<!--<br/><br/>-->
-					<h:outputLabel>Password:</h:outputLabel>
+					
+					<p:outputLabel for = "pass" value = "Password:"/>
 					<p:password id="pass" required="true"
 						requiredMessage="Password is required"
-						value="#{accountManager.password}">
-						<!--REMOVED: style = "width:400px;margin-left:50px"-->
+						value="#{accountManager.password}">				
 					</p:password>
 					<br />
 					<br />
-
-					<p:commandButton id="login" value="Log in"
-						action="#{accountManager.login}"
-						onclick="PF('loginDialog').hide();" styleClass="btn next-btn"
-						style="width:170px">
-						<f:param name="pageId" value="1" />
+                    <h:messages id = "msg" layout="list" styleClass="error"/>
+                    <div class="panel-footer-one">
+					<p:commandButton id="save" value="Log in" update = "@form"
+						action="#{accountManager.login}" styleClass="btn next-btn">
+						<f:param name="pageId" value="1" />	
 					</p:commandButton>
-					<!-- <br/><br/> -->
-					<p:messages layout="list" styleClass="error"></p:messages>
+					</div>
 				</h:form>
+				</div>
+	</div>
 			</p:dialog>
 
 
