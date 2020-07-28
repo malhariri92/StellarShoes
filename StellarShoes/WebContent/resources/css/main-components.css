@@ -242,9 +242,14 @@ article h3 {
   background: #fff;
 }
 
-.next-btn {
+.next-btn  {
   color: #fff;
   background: #7f2226;
+}
+#save {
+	color: #fff;
+  background: #7f2226;
+	
 }
 
 .btn:focus {
@@ -257,8 +262,8 @@ article h3 {
  
   
 .ui-growl {
-    top: 200px !important;
-    right: 600px !important;
+    top: 50% !important;
+    right: 50% !important;
   }
   .createInput{
    margin-left: 200px;
@@ -287,4 +292,12 @@ article h3 {
 
 }
 
+
+
+
+.customDialog .ui-dialog-titlebar.ui-widget-header {
+    background: #7f2226 !important;
+    color: #fff;
+    box-shadow: none;
+}
 

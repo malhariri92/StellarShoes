@@ -30,7 +30,7 @@
 		<div id="top-icons">
 			 
 			<a href="login.xhtml"><i class="fa fa-user fa-2x"></i></a> 
-			<a href="checkout1.xhtml"><i class="fa fa-shopping-cart fa-2x"></i></a> 
+			<a href="myCart.xhtml"><i class="fa fa-shopping-cart fa-2x"></i></a> 
 		</div>
 		<span id="hamburger" onclick="openNav()">&nbsp;</span>
 </header>
@@ -70,50 +70,51 @@
 		<p>#{accountManager.customer.address.address1} #{accountManager.customer.address.address2},
 	  		#{accountManager.customer.address.city}, #{accountManager.customer.address.state}<br/> #{accountManager.customer.address.zip}<br/>
 	  		</p>
-			<h:commandButton action="changeAddress?faces-redirect=true" styleClass = "btn next-btn" value="Change Address"/>
-		<h:commandButton onclick="PF('loginDialog').show();" styleClass = "btn next-btn" type = "button" role = "button"
+			<p:commandButton action="changeAddress?faces-redirect=true" styleClass = "btn next-btn" value="Change Address"/>
+		<p:commandButton onclick="PF('passDialog').show();" styleClass = "btn next-btn" type = "button" role = "button"
               value = "Change Password"/> 
                         
              
 
 		<br/><br/><br/><br/>
 		<!-- <div class="checkout-panel"> -->
-            <h:commandButton styleClass = "btn next-btn"   value = "Shop" action = "category"/>
-			<h:commandButton action="#{accountManager.logout}" styleClass = "btn next-btn" value="Logout"></h:commandButton>
+            <p:commandButton styleClass = "btn next-btn"   value = "Shop" action = "category"/>
+			<p:commandButton action="#{accountManager.logout}" styleClass = "btn next-btn" value="Logout"/>
 		<!-- </div> -->
 		</h:form>
 		</div>
 		
 		
-		<p:dialog header = "Change Password" widgetVar = "loginDialog" id = "login" appendTo="@(body)"
-               showEffect="explode" hideEffect="fade" height="500" width= "700">
-            <h:form>   
-             <h:outputLabel>Current password: </h:outputLabel>
+		<p:dialog header = "Change Password" widgetVar = "passDialog" id = "changePass" appendTo="@(body)"
+               showEffect="explode" hideEffect="fade" width= "40%" styleClass="customDialog" modal = "true">
+            <h:form prependId = "false">   
+            <div class="panel-body ">
+			<div class = "input-fields">
+             <p:outputLabel for = "pass" value = "Current password:"/> 
                <p:password id="pass" required = "true" requiredMessage = "Current password is required."
 			       value = "#{manageAccount.oldPassword}" > 
 			  </p:password><br/><br/>
 			  
-			  <h:outputLabel>New Password: </h:outputLabel>
-			  <p:password id= "useremail" required = "true" requiredMessage = "Enter a new password." 
+			  <p:outputLabel for = "newPass" value = "New Password:"/>
+			  <p:password id= "newPass" required = "true" requiredMessage = "Enter a new password." 
 			   value="#{manageAccount.password1}" > 
 			   
 			  </p:password> <br/><br/>
-			  
-			  
-			  <h:outputLabel>Confirm Password:</h:outputLabel>
-			  
-			  <p:password id="pass2" required = "true" requiredMessage = "Confirm your new password."
+			  		
+			  <p:outputLabel for = "newPass2" value = "Confirm Password:"/>
+			  <p:password id="newPass2" required = "true" requiredMessage = "Confirm your new password."
 			       value = "#{manageAccount.password2}" > 
 			  </p:password><br/><br/>
 			  <p:outputLabel style="color:green" value = "Your password has been successfully changed!" 
 			  rendered = "#{manageAccount.passwordChanged}"/>
 			     <h:messages id = "message" layout = "list" styleClass = "error"></h:messages>
 			     
-			<p:commandButton id="login" value="Save" action= "#{manageAccount.changePassword()}"   
-			styleClass = "btn next-btn" style = "width:170px" update = "@form">
+			<p:commandButton id="save" value="Save" action= "#{manageAccount.changePassword()}"   
+			styleClass = "btn next-btn" update = "@form">
 			</p:commandButton>
 			<br/><br/>
-			
+			</div>
+			</div>
 			</h:form> 
 	  </p:dialog>
 	</div>

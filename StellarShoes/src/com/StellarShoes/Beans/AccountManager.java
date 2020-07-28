@@ -82,7 +82,7 @@ public class AccountManager implements Serializable {
 			 
 			
 			if(pageId != null) {
-		         return "checkout3?faces-redirect=true";
+		         return "checkout?faces-redirect=true";
 		      }else {
 		    	  
 			return "success?faces-redirect=true";}

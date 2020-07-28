@@ -79,14 +79,14 @@ public class Checkout implements Serializable{
 		if(customer.getCustomerID() == 0) {
 			if(placeNewCustomerOrder(total) && inserOrderDetails(products)) {
 				OrderBN.assignOrder(orderID, payment);
-				return "checkout4?faces-redirect=true";
+				return "confirmation?faces-redirect=true";
 			}
 			
 			
 		} else {
                  if(placeExistingCustomerOrder(total) && inserOrderDetails(products)) {
                 	 OrderBN.assignOrder(orderID, payment);
-				return "checkout4?faces-redirect=true";
+				return "confirmation?faces-redirect=true";
 			}
 		}
 		Messages.show("Something went wrong please try again later!");
@@ -153,12 +153,7 @@ private void getPaymentID() {
 			DatabaseConnector.close(conn);
 		}
 	}
-       public String printAddress() {
-    	   
-    	System.out.println("line1 "+address.getAddress1()+" line 2: "+address.getAddress2()+" city: "+address.getCity()
-    	+"\n "+customer.getfName() +"   "+payment.getCardNumber());   
-    	   return "checkout3?faces-redirect=true";
-       }
+      
        
     public boolean placeExistingCustomerOrder(double total) {
     	
@@ -533,12 +528,6 @@ private void getPaymentID() {
 		this.orderID = orderID;
 	}
 
-	
 
-	
-     
-
-	
-	
-	}
+}
 

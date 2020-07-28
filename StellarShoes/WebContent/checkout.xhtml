@@ -6,6 +6,7 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
+	
 <h:head>
 	<meta charset="utf-8" content="" />
 	<title>Welcome to Stellar Shoes</title>
@@ -20,8 +21,8 @@ src="https://www.paypal.com/sdk/js?client-id=AfSNSeK3ONkZKOF8-uCXuZvVz_Orz6cMXfq
 		data-sdk-integration-source="button-factory" type=""></script>
 	<link href="https://fonts.googleapis.com/css?family=Barlow:400,600,900"
 		rel="stylesheet" />
-	<h:outputScript></h:outputScript>
 </h:head>
+
 <body>
 	<header>
 	<div id="mySlideNav" class="slideNav">
@@ -36,7 +37,7 @@ src="https://www.paypal.com/sdk/js?client-id=AfSNSeK3ONkZKOF8-uCXuZvVz_Orz6cMXfq
 	<div id="top-icons">
 
 		<a href="login.xhtml"><i class="fa fa-user fa-2x"></i></a> <a
-			href="checkout1"><i class="fa fa-shopping-cart fa-2x"></i></a>
+			href="myCart.xhtml"><i class="fa fa-shopping-cart fa-2x"></i></a>
 	</div>
 	<span id="hamburger" onclick="openNav()">&nbsp;</span> </header>
 
@@ -67,11 +68,11 @@ src="https://www.paypal.com/sdk/js?client-id=AfSNSeK3ONkZKOF8-uCXuZvVz_Orz6cMXfq
 							<f:ajax event="click" execute="@this" render="@form" />
 						</p:selectOneRadio>
 					</label>
-					<p:commandButton action="checkout1?faces-redirect=true"
+					<p:commandButton action="myCart?faces-redirect=true"
 						value="Back" rendered="#{checkout.selectedMethod == 0}"
 						styleClass="btn next-btn"
 						style="width:50%;" />
-					<p:growl id="message" autoUpdate="true" />
+					
 				</fieldset>
 
 
@@ -202,6 +203,7 @@ src="https://www.paypal.com/sdk/js?client-id=AfSNSeK3ONkZKOF8-uCXuZvVz_Orz6cMXfq
 							<span class="info">* CVV or CVC is the card security code,
 								unique three digits number on the back of your card separate
 								from its number. </span>
+								<h:messages id="message" autoUpdate="true" styleClass = "error" />
 						</div>
 
 						<h1>Billing Address</h1>
@@ -233,14 +235,14 @@ src="https://www.paypal.com/sdk/js?client-id=AfSNSeK3ONkZKOF8-uCXuZvVz_Orz6cMXfq
 										<p:outputLabel for="billingCity">City</p:outputLabel>
 										<p:inputText id="billingCity"
 											value="#{checkout.billingAddress.city}" type="text"
-											required="true" />
+											required="true" requiredMessage="Please enter your city"/>
 									</div>
 
 									<div>
 										<p:outputLabel for="billingState">State</p:outputLabel>
 										<p:inputText id="billingState"
 											value="#{checkout.billingAddress.state}" type="text"
-											required="true" />
+											required="true" requiredMessage="Please enter your state." />
 
 										<!-- Intention is to add a drop-down of state names, but this hasn't been added yet. -->
 									</div>
@@ -258,7 +260,7 @@ src="https://www.paypal.com/sdk/js?client-id=AfSNSeK3ONkZKOF8-uCXuZvVz_Orz6cMXfq
 						</h:panelGroup>
 						<div class="panel-footer">
 							<p:commandButton value="Back" type = "button" onclick="history.back();"
-								action="success?faces-redirect=true" styleClass="btn next-btn"
+								action="myCart?faces-redirect=true" styleClass="btn next-btn"
 								style="width:50%px" />
 
 							<p:commandButton value="Place Order" update = "@form"
@@ -297,7 +299,7 @@ src="https://www.paypal.com/sdk/js?client-id=AfSNSeK3ONkZKOF8-uCXuZvVz_Orz6cMXfq
 			  			      onApprove: function(data, actions) {
 			  			          return actions.order.capture().then(function(details) {
 			  			              
-			  			            window.location.replace("http://localhost:8080/StellarShoes/faces/checkout4.xhtml");
+			  			            window.location.replace("http://localhost:8080/StellarShoes/faces/confirmation.xhtml");
 			  			          });
 			  			      }
 			  			  }).render('#paypal-button-container');

@@ -59,7 +59,7 @@ public class MyCart implements Serializable{
 		   cartList.remove(index);
 		   subtractCost(item);
 		   
-		   return "checkout1?faces-redirect=true";  
+		   return "myCart?faces-redirect=true";  
 		  
 	}
 	    private void addCost(Product item) {

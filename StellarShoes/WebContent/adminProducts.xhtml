@@ -73,7 +73,7 @@
 		requiredMessage = "Please enter an image url."><f:ajax event="keyup"/></p:inputText>
 		
 		</p:panelGrid><br/>
-          <p:commandButton action = "#{manageProduct.addItem()}" value = "Save" icon="fa fa-save" 
+          <p:commandButton id= "save" action = "#{manageProduct.addItem()}" value = "Save" icon="fa fa-save" 
           styleClass="btn next-btn" update="message" /> 
 		
 		</p:panel>
@@ -81,7 +81,8 @@
 	</section>
 	<p:growl id="message" life = "4000"/>
 	
-	<ui:repeat var="shoe"  value="#{productBN.loadProducts()}">
+	<ui:repeat var="shoe"  value="#{productBN.loadProducts()}"
+	prependId = "false">
 	<section>
 		<h3 style="color: black">
 			Product ID ##{shoe.productID}
@@ -104,11 +105,11 @@
              <p:commandButton onclick = "false" value="No" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>
           </p:confirmDialog>
          </h:form>
-         <h:form>
+         <h:form prependId = "false">
 		<p:panel id="toggleable" header="Edit Product" toggleable="true" closable="false" toggleSpeed="500" closeSpeed="500"
 		 toggleableHeader="true" collapsed="true" ajax = "true"> 	 	
 		 
-		  <p:panelGrid id = "container"  columns="2" cellpadding="5">
+		  <p:panelGrid id = "container"  columns="2" cellpadding="5" prependId = "false">
 		
        <p:outputLabel value = "Product ID:" /> <p:outputLabel value = "#{shoe.productID}" /> 
        
@@ -117,9 +118,7 @@
 		<p:outputLabel value = "Category: "/><p:outputLabel value = "#{shoe.description}" />
 		
 		<p:outputLabel value = "New Price:"/> 
-		<p:inputText value = "#{manageProduct.newPrice}"
-		 validatorMessage = "Please enter a valid price. Prices must be between $20 and $200">
-		<f:validateDoubleRange  minimum = "20.00" maximum = "200.00" ></f:validateDoubleRange>
+		<p:inputText value = "#{manageProduct.newPrice}">
 		 <f:ajax event="keyup"/></p:inputText>
 		 
 		<p:outputLabel value = "New Color:" />  
@@ -131,8 +130,9 @@
 		
 		</p:panelGrid><br/>
 		
-		<p:commandButton action = "#{manageProduct.editItem(shoe)}"  
-		value = "Save" icon="fa fa-save" update="message" styleClass="btn next-btn"/>
+		<p:commandButton id = "save" action = "#{manageProduct.editItem(shoe)}"  
+		value = "Save" icon="fa fa-save" update="message" styleClass="btn next-btn"
+		style = "color: #fff; background: #7f2226;"/>
 		 
 		
 		</p:panel>

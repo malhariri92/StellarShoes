@@ -36,8 +36,8 @@
 		src="./resources/images/stellar-shoes-logo.svg"></img>
 	</a>
 	<div id="top-icons">
-		 <a href="login.xhtml"><i class="fa fa-user fa-2x"></i></a> <a href=""><i
-			class="fa fa-shopping-cart fa-2x"></i></a>
+		 <a href="login.xhtml"><i class="fa fa-user fa-2x"></i></a>
+		  <a href="myCart.xhtml"><i class="fa fa-shopping-cart fa-2x"></i></a>
 	</div>
 	<span id="hamburger" onclick="openNav()">&nbsp;</span> </header>
 	<main>
@@ -138,7 +138,7 @@
 								action="success?faces-redirect=true" styleClass="btn next-btn"
 								style="width:50%px" />
 						<p:commandButton id="regButton" value="Create Account"
-							action="#{createBN.registerCustomer()}" update = "message" 
+							action="#{createBN.registerCustomer()}" update = "@form" 
 							styleClass="btn next-btn"/>
 
 						

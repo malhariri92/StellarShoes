@@ -32,7 +32,7 @@
 		<div id="top-icons">
 			 
 			<a href="login.xhtml"><i class="fa fa-user fa-2x"></i></a> 
-			<a href=""><i class="fa fa-shopping-cart fa-2x"></i></a> 
+			<a href="myCart.xhtml"><i class="fa fa-shopping-cart fa-2x"></i></a> 
 		</div>
 		<span id="hamburger" onclick="openNav()">&nbsp;</span>
 </header>
@@ -103,7 +103,7 @@
 								action="success?faces-redirect=true" styleClass="btn next-btn"
 								style="width:50%px" />
                  <p:commandButton id="regButton"  value = "Create Account" action="#{createBN.registerAdmin()}"
-                 styleClass="btn next-btn" update = "message"/> 
+                 styleClass="btn next-btn" update = "@form"/> 
                    </div>
                   
                   </div>
