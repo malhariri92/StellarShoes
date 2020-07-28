@@ -11,6 +11,7 @@
 	<meta charset="utf-8" content="" />
 	<title>Welcome to Stellar Shoes</title>
 	<meta content="width=device-width, initial-scale=1" name="viewport" />
+    <link rel="icon" type="image/ico" href="./resources/images/StellarShoes.ico"/>
 	<link rel="stylesheet" type="text/css" href="./resources/css/reset.css" />
 	<link rel="stylesheet" type="text/css" href="./resources/css/store-shell.css" />
 	<link rel="stylesheet" type="text/css" href="./resources/css/main-components.css" />
@@ -68,10 +69,7 @@ src="https://www.paypal.com/sdk/js?client-id=AfSNSeK3ONkZKOF8-uCXuZvVz_Orz6cMXfq
 							<f:ajax event="click" execute="@this" render="@form" />
 						</p:selectOneRadio>
 					</label>
-					<p:commandButton action="myCart?faces-redirect=true"
-						value="Back" rendered="#{checkout.selectedMethod == 0}"
-						styleClass="btn next-btn"
-						style="width:50%;" />
+					
 					
 				</fieldset>
 
@@ -265,8 +263,7 @@ src="https://www.paypal.com/sdk/js?client-id=AfSNSeK3ONkZKOF8-uCXuZvVz_Orz6cMXfq
 
 							<p:commandButton value="Place Order" update = "@form"
 								action="#{checkout.placeOrder(myCart.total, myCart.cartList)}"
-								styleClass="btn next-btn"
-								 />
+								styleClass="btn next-btn"/>
 						</div>
 					</div>
 

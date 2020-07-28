@@ -9,8 +9,9 @@
 <title>Admin Services</title>
 <meta content="width=device-width, initial-scale=1" name="viewport" />
 <link rel="stylesheet" type="text/css" href="./resources/css/reset.css"/>
-<link rel="stylesheet" type="text/css" href="./resources/css/innerweb-shell.css"/>
+<link rel="icon" type="image/ico" href="./resources/images/StellarShoes.ico"/>
 <link rel="stylesheet" type="text/css" href="./resources/css/main-components.css"/>
+<link rel="stylesheet" type="text/css" href="./resources/css/innerweb-shell.css"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
 <link href="https://fonts.googleapis.com/css?family=Barlow:400,600,900" rel="stylesheet"/>
 </h:head>
@@ -73,9 +74,10 @@
 		requiredMessage = "Please enter an image url."><f:ajax event="keyup"/></p:inputText>
 		
 		</p:panelGrid><br/>
+		<div class="panel-footer-one">
           <p:commandButton id= "save" action = "#{manageProduct.addItem()}" value = "Save" icon="fa fa-save" 
-          styleClass="btn next-btn" update="message" /> 
-		
+          style = "color: #fff; background: #7f2226;" update="message" /> 
+		</div>
 		</p:panel>
 		</h:form>	
 	</section>
@@ -94,17 +96,22 @@
 		
 		<h:form prependId = "false">
 		
+		<div class="panel-footer-one">
+		
         <p:commandButton action="#{manageProduct.deleteItem(shoe.productID)}" update="message"
-         icon="fa fa-trash " value="Delete Product" styleClass="btn next-btn" style = "margin-bottom:10px"> 
+         icon="fa fa-trash " value="Delete Product" style = "color: #fff; background: #7f2226; margin-bottom:10px"> 
+         
           <p:confirm header="Confirm Delete" 
                icon="ui-icon-alert"/>
         </p:commandButton>
+        </div>
           <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" 
                message = "Are you sure about deleting this product?" > 
              <p:commandButton  onclick = "true" value="Yes" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
              <p:commandButton onclick = "false" value="No" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>
           </p:confirmDialog>
          </h:form>
+         
          <h:form prependId = "false">
 		<p:panel id="toggleable" header="Edit Product" toggleable="true" closable="false" toggleSpeed="500" closeSpeed="500"
 		 toggleableHeader="true" collapsed="true" ajax = "true"> 	 	
@@ -129,12 +136,12 @@
 		<p:inputText value = "#{manageProduct.newImageUrl}"><f:ajax event="keyup"/></p:inputText>
 		
 		</p:panelGrid><br/>
-		
+		<div class="panel-footer-one">
 		<p:commandButton id = "save" action = "#{manageProduct.editItem(shoe)}"  
-		value = "Save" icon="fa fa-save" update="message" styleClass="btn next-btn"
+		value = "Save" icon="fa fa-save" update="message"
 		style = "color: #fff; background: #7f2226;"/>
 		 
-		
+		</div>
 		</p:panel>
 		</h:form>
 		

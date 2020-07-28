@@ -10,17 +10,13 @@
 	<meta charset="utf-8" />
 	<title>Welcome to Stellar Shoes</title>
 	<meta content="width=device-width, initial-scale=1" name="viewport" />
+    <link rel="icon" type="image/ico" href="./resources/images/StellarShoes.ico"/>
 	<link rel="stylesheet" type="text/css" href="./resources/css/reset.css" />
-	<link rel="stylesheet" type="text/css"
-		href="./resources/css/store-shell.css" />
-	<link rel="stylesheet" type="text/css"
-		href="./resources/css/main-components.css" />
-	<link rel="stylesheet" type="text/css"
-		href="./resources/css/checkout.css" />
-	<link rel="stylesheet"
-		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-	<link href="https://fonts.googleapis.com/css?family=Barlow:400,600,900"
-		rel="stylesheet" />
+	<link rel="stylesheet" type="text/css" href="./resources/css/store-shell.css" />
+	<link rel="stylesheet" type="text/css" href="./resources/css/main-components.css" />
+	<link rel="stylesheet" type="text/css" href="./resources/css/checkout.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+	<link href="https://fonts.googleapis.com/css?family=Barlow:400,600,900" rel="stylesheet" />
 </h:head>
 <body>
 	<header>
@@ -49,9 +45,10 @@
 				<img src="./resources/images/emptyCart.png" id="shopping-cart-icon"
 					alt="Empty shopping cart" />
 				<h:form>
-					<p:commandButton value="Continue Shopping"
-						style="width:50%; margin-left: 25%;"
-						action="category?faces-redirect=true" styleClass="btn next-btn" />
+				<div class="panel-footer-one">
+					<p:commandButton value="Continue Shopping" action="category?faces-redirect=true"
+					 styleClass="btn next-btn" />
+					 </div>
 				</h:form>
 			</h:panelGroup>
 			<h:outputText>Your shopping cart is emty</h:outputText>
@@ -141,11 +138,12 @@
 					<br />
 					<br />
                     <h:messages id = "msg" layout="list" styleClass="error"/>
+                    <div class="panel-footer-one">
 					<p:commandButton id="save" value="Log in" update = "@form"
 						action="#{accountManager.login}" styleClass="btn next-btn">
-						<f:param name="pageId" value="1" />
+						<f:param name="pageId" value="1" />	
 					</p:commandButton>
-					
+					</div>
 				</h:form>
 				</div>
 	</div>

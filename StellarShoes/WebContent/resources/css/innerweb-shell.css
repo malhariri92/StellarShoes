@@ -317,11 +317,6 @@ section p {
     color: #fff;
 }
 
-#j_idt26\:0\:save {
-	color: #fff;
-  background: #7f2226;
-	
-}
 /* ui-growl doesn't appear to be used at all on adminHome */
 .ui-growl {
 top: 200px !important;
