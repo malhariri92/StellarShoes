@@ -112,6 +112,11 @@ h1 {
 
 }
 
+.ui-panel .ui-panel-titlebar {
+    background-color : #990303;
+    color: white;
+}
+
 /* The slide navigation menu */
 .nav-bar {
     align-items: center;
@@ -306,15 +311,12 @@ section p {
 }
 
 /* Stretch goal = This button needs to be brought into the other buttons. */
-button {
-    padding: .5em;
-    width: 150px;
-    margin-right: 10px;
-}
+
 
 button .fa {
-    color: black;
+    color: #fff;
 }
+
 
 /* ui-growl doesn't appear to be used at all on adminHome */
 .ui-growl {

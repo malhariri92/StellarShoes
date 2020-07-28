@@ -86,15 +86,15 @@
 		
 		
 		<p:dialog header = "Change Password" widgetVar = "loginDialog" id = "login" appendTo="@(body)"
-               showEffect="explode" hideEffect="fade" height="400" width= "700">
+               showEffect="explode" hideEffect="fade" height="500" width= "700">
             <h:form>   
              <h:outputLabel>Current password: </h:outputLabel>
-               <p:password id="pass" required = "true" requiredMessage = "Password is required."
+               <p:password id="pass" required = "true" requiredMessage = "Current password is required."
 			       value = "#{manageAccount.oldPassword}" > 
 			  </p:password><br/><br/>
 			  
 			  <h:outputLabel>New Password: </h:outputLabel>
-			  <p:password id= "useremail" required = "true" requiredMessage = "Enter a new password" 
+			  <p:password id= "useremail" required = "true" requiredMessage = "Enter a new password." 
 			   value="#{manageAccount.password1}" > 
 			   
 			  </p:password> <br/><br/>
@@ -102,15 +102,18 @@
 			  
 			  <h:outputLabel>Confirm Password:</h:outputLabel>
 			  
-			  <p:password id="pass2" required = "true" requiredMessage = "Password is required."
+			  <p:password id="pass2" required = "true" requiredMessage = "Confirm your new password."
 			       value = "#{manageAccount.password2}" > 
 			  </p:password><br/><br/>
+			  <p:outputLabel style="color:green" value = "Your password has been successfully changed!" 
+			  rendered = "#{manageAccount.passwordChanged}"/>
+			     <h:messages id = "message" layout = "list" styleClass = "error"></h:messages>
 			     
-			<p:commandButton id="login" value="Save" action= "#{manageAccount.changePassword()}" onclick="PF('loginDialog').hide();" 
-			styleClass = "btn next-btn" style = "width:170px">
+			<p:commandButton id="login" value="Save" action= "#{manageAccount.changePassword()}"   
+			styleClass = "btn next-btn" style = "width:170px" update = "@form">
 			</p:commandButton>
 			<br/><br/>
-			<p:messages layout = "list" styleClass = "error"></p:messages>
+			
 			</h:form> 
 	  </p:dialog>
 	</div>
@@ -123,7 +126,7 @@
 		<section>
 			<h2>Customer Service</h2>
 			<ul>
-				<li><a href = "createAccount.xhtml"  >Frequently Asked Questions</a></li>
+				<li><a href = "FAQs.xhtml"  >Frequently Asked Questions</a></li>
 				<li><a href = "contact.xhtml">Contact Us</a></li>
 				<li><a href = "about.xhtml">About Us</a></li>
 			</ul>

@@ -126,7 +126,7 @@
     border-color: black;
 
   }
-
+  
   .small-inputs {
     display: flex;
     margin-bottom: 20px;
@@ -296,4 +296,8 @@ section p {
 
   .two-column-text h1, .two-column-text p  {
   }
+}
+#paypal-button-container{
+	width: 50%;
+    margin:0 auto;
 }

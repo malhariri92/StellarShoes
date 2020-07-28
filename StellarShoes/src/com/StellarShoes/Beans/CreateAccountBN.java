@@ -28,7 +28,7 @@ private static final String addressSQL = "Insert INTO ADDRESS (CUSTOMER_ID, STRE
 
 private static final String pswRequirments = "Password must be between 8 and 13 " + 
 		" characters and must contain at least one of each of the following: uppercase, lowercase," + 
-		" digit, and one of these special characters (/<>@#!%+&^).\"\r\n" + 
+		" digit, and one of these special characters (/<>@#!%+&^)." + 
 		" Password cannot contain white spaces.";
 
 private static final String emailInUse = "This email is already in use. If you forgot you password," + 

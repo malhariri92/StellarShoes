@@ -3,13 +3,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core" 
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+       xmlns:p="http://primefaces.org/ui">
 <h:head>
-<title>Manage Account</title>
+<title>Contact Us</title>
 <meta content="width=device-width, initial-scale=1" name="viewport" />
 <link rel="stylesheet" type="text/css" href="./resources/css/reset.css"/>
 <link rel="stylesheet" type="text/css" href="./resources/css/store-shell.css"/>
 <link rel="stylesheet" type="text/css" href="./resources/css/main-components.css"/>
+<link rel="stylesheet" type="text/css" href="./resources/css/checkout.css"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
 <link href="https://fonts.googleapis.com/css?family=Barlow:400,600,900" rel="stylesheet"/>
 </h:head>
@@ -33,13 +35,51 @@
 		<span id="hamburger" onclick="openNav()">&nbsp;</span>
 </header>
 <main>
+  <div class="checkout-panel">
+		<div class="panel-body ">
+			<h1>Contact Us</h1>
+			<div class = "input-fields">
+				<h:form > 
+<p:outputLabel for="email" value = "Email:"/> 
+
+ <p:inputText value = "#{resetPass.email}" id= "email" placeholder = "example@email.com" 
+ required = "true" requiredMessage = "Email is required." 
+  validatorMessage = "Please enter a valid email"> 
+  <f:validateRegex pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"/> 
+  </p:inputText><br/><br/>
+  
+  <p:outputLabel  for="text" value = "Message:"/> 
+  
+  <p:inputTextarea id = "text" style="width:100%"  required = "true" requiredMessage = "Your message cannot be empty." 
+  validatorMessage ="Your message must be a minimum of 20 characters." placeholder = "Enter your message here.">
+   <f:validateLength minimum = "20"/>
+   </p:inputTextarea>
+   <h:messages id="messages" styleClass="error" />
+   <div class="panel-footer">
    
+			 <p:commandButton value="Back" type = "button" onclick="history.back();"
+								action="success?faces-redirect=true" styleClass="btn next-btn"
+								style="width:50%px" />
+  <p:commandButton id="sendLink" value="Send Message" action= "#{resetPass.gotMessage()}" 
+  styleClass = "btn next-btn" update="@form">
+  </p:commandButton><br/><br/>
+  </div>
+  <p:outputPanel id = "msg" rendered = "#{resetPass.email != null}">
+  <h3>Thank you for getting in touch! </h3>
+  <p>We received your message, and one of our colleagues will get back in touch with you soon.<br/><br/>
+  Have a great day!
+  </p>
+  </p:outputPanel>
+	</h:form>	
+			</div>
+		</div>
+	</div>
 </main>
 <footer>
 		<section>
 			<h2>Customer Service</h2>
 			<ul>
-				<li><a href = "createAccount.xhtml" >Frequently Asked Questions</a></li> 
+				<li><a href = "FAQs.xhtml" >Frequently Asked Questions</a></li> 
 				<li><a href = "contact.xhtml">Contact Us</a></li> 
 				<li><a href = "about.xhtml" >About Us</a></li> 
 			</ul>

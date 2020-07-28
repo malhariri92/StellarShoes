@@ -64,12 +64,16 @@
               <f:ajax excute = "@this" />
            </h:selectOneMenu><br/><br/>
            <div > 
-           <p:commandButton action = "category?faces-redirect=true" value = "Back"
-             update="message" styleClass = "btn next-btn" style = "width:170px; margin-right:20px; margin-bottom:20px;"/> 
-            <p:commandButton action = "#{myCart.addToCart(item.product)}" value = "ADD TO CART"
-             update="message" styleClass = "btn next-btn" style = "width:170px; margin-right:20px"/> 
-           <p:commandButton action = "checkout1?faces-redirect=true" value = "Checkout Now" 
-           rendered= "#{myCart.cartList.size() > 0}" styleClass = "btn next-btn" style = "width:170px"/> 
+           <p:commandButton action = "#{myCart.addToCart(item.product)}" value = "ADD TO CART"
+             update="message" styleClass = "btn next-btn" style = "width:50%"/> 
+             
+             <p:commandButton action = "checkout1?faces-redirect=true" value = "Checkout Now" 
+           rendered= "#{myCart.cartList.size() > 0}" styleClass = "btn next-btn" style = "width:50%"/> 
+             
+           <p:commandButton action = "category?faces-redirect=true" value = "Continu Shopping"
+             update="message" styleClass = "btn next-btn" style = "width:50%"/> 
+            
+           
            </div>
            </h:form>
 
@@ -80,7 +84,7 @@
 		<section>
 			<h2>Customer Service</h2>
 			<ul>
-				<li><a href = "createAccount.xhtml"  >Frequently Asked Questions</a></li> 
+				<li><a href = "FAQs.xhtml"  >Frequently Asked Questions</a></li> 
 				<li><a href = "contact.xhtml" >Contact Us</a></li> 
 				<li><a href = "about.xhtml" >About Us</a></li> 
 			</ul>

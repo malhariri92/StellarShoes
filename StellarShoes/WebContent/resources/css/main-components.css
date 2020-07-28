@@ -254,24 +254,7 @@ article h3 {
 .btn:hover {
 }
 
-  
-  #loginform {
-  /* max-width: 450px;
-    margin: 0 auto; */
-  }
- #password{
-  /* margin-left: 29px;
-  width: 300px; */
-  }
- #email {
-  /* margin-left: 53px; */
-  width: 300px;
-  }
-  
- #registerForm {
-  /* max-width: 700px;
-    margin: 0 auto; */
-  }
+ 
   
 .ui-growl {
     top: 200px !important;
@@ -285,10 +268,7 @@ article h3 {
   color:red; 
   
   }
-  #logoutform {
-  /* max-width: 450px; */
-    /* margin: 0 auto; */
-  }
+  
    #forms-heading{
  
   margin: 0 auto;
@@ -298,4 +278,13 @@ article h3 {
   #login-table tr, td { 
   width: auto !important;
   }
+  
+.ui-accordion .ui-state-default,
+.ui-widget-header .ui-state-default {
+ background:#d2726b;
+ font-weight:bold;
+ color:#000;
+
+}
+
 

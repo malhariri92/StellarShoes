@@ -20,7 +20,7 @@
 			<p>#{accountManager.email}</p>
 		</div>
 		<div id="top-icons">
-			<a href=""><i class="fa fa-cog fa-2x"></i></a> 
+			 
 			<h:form>
 			<h:commandLink action = "#{accountManager.logout()}"><i class="fa fa-sign-out fa-2x"></i></h:commandLink> 
 			</h:form>
@@ -37,9 +37,9 @@
 	<main id="main">
 	<h1>Products</h1>
 	<section class = "search-section">
-		 <h:form>
+		 <h:form prependId = "false">
 		<p:panel id="toggleable" header="Add Product" toggleable="true" closable="false" toggleSpeed="500" closeSpeed="500"
-		 toggleableHeader="true" collapsed="true" ajax = "true">	 	
+		 toggleableHeader="true" collapsed="true" ajax = "true" appendTo="@body">	 	
 		 
 		  <p:panelGrid id = "container"  columns="2" cellpadding="5">
 		
@@ -73,8 +73,9 @@
 		requiredMessage = "Please enter an image url."><f:ajax event="keyup"/></p:inputText>
 		
 		</p:panelGrid><br/>
-          <p:commandButton action = "#{manageProduct.addItem()}" value = "Save" icon="fa fa-save" update="message" > 
-		</p:commandButton>
+          <p:commandButton action = "#{manageProduct.addItem()}" value = "Save" icon="fa fa-save" 
+          styleClass="btn next-btn" update="message" /> 
+		
 		</p:panel>
 		</h:form>	
 	</section>
@@ -90,9 +91,10 @@
 		<p> Description: #{shoe.description} </p>
 		<p>Price: $#{shoe.price}</p>
 		
-		<h:form>
+		<h:form prependId = "false">
 		
-        <p:commandButton action="#{manageProduct.deleteItem(shoe.productID)}" update="message" icon="ui-icon ui-icon-trash" value="Delete Product" > <!--REMOVED: style = "width:185px"-->
+        <p:commandButton action="#{manageProduct.deleteItem(shoe.productID)}" update="message"
+         icon="fa fa-trash " value="Delete Product" styleClass="btn next-btn" style = "margin-bottom:10px"> 
           <p:confirm header="Confirm Delete" 
                icon="ui-icon-alert"/>
         </p:commandButton>
@@ -104,7 +106,7 @@
          </h:form>
          <h:form>
 		<p:panel id="toggleable" header="Edit Product" toggleable="true" closable="false" toggleSpeed="500" closeSpeed="500"
-		 toggleableHeader="true" collapsed="true" ajax = "true" style="margin-top:20px"> <!--REMOVED: style="margin-top:20px" -->	 	
+		 toggleableHeader="true" collapsed="true" ajax = "true"> 	 	
 		 
 		  <p:panelGrid id = "container"  columns="2" cellpadding="5">
 		
@@ -130,8 +132,8 @@
 		</p:panelGrid><br/>
 		
 		<p:commandButton action = "#{manageProduct.editItem(shoe)}"  
-		value = "Save" icon="fa fa-save" update="message">
-		</p:commandButton > 
+		value = "Save" icon="fa fa-save" update="message" styleClass="btn next-btn"/>
+		 
 		
 		</p:panel>
 		</h:form>

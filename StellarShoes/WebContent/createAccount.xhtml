@@ -36,8 +36,7 @@
 		src="./resources/images/stellar-shoes-logo.svg"></img>
 	</a>
 	<div id="top-icons">
-		<a href=""><i class="fa fa-search fa-2x"></i></a> <a
-			href="login.xhtml"><i class="fa fa-user fa-2x"></i></a> <a href=""><i
+		 <a href="login.xhtml"><i class="fa fa-user fa-2x"></i></a> <a href=""><i
 			class="fa fa-shopping-cart fa-2x"></i></a>
 	</div>
 	<span id="hamburger" onclick="openNav()">&nbsp;</span> </header>
@@ -90,10 +89,10 @@
 								</div>
 								<div>
 									<p:outputLabel for = "password2" value="Confirm Password: " />
-									<p:inputText id="password2" required="true"
+									<p:password id="password2" required="true"
 										value="#{createBN.password2}"
 										requiredMessage="Please confirm your password">
-									</p:inputText>
+									</p:password>
 								</div>
 							</div>
 							<div class="small-inputs">
@@ -133,14 +132,18 @@
 								</div> 
                         </div>
                         </div>
-						
+						 <h:messages id = "message" styleClass = "error"/>
+                        <div class="panel-footer">
+                  <p:commandButton value="Back" type = "button" onclick="history.back();"
+								action="success?faces-redirect=true" styleClass="btn next-btn"
+								style="width:50%px" />
 						<p:commandButton id="regButton" value="Create Account"
 							action="#{createBN.registerCustomer()}" update = "message" 
 							styleClass="btn next-btn"/>
 
-						<a href = "createAdminAccount.xhtml" class="info-center">I am an employee?</a> 
-                        <h:messages id = "message" styleClass="error"></h:messages>
-                                                           
+						
+                        </div>
+                        <a href = "createAdminAccount.xhtml" class="info-center">I am an employee?</a>                                    
     
                     </h:form>
                 </div>                
@@ -153,7 +156,7 @@
 	<footer> <section>
 	<h2>Customer Service</h2>
 	<ul>
-		<li><a href="createAccount.xhtml">Frequently Asked
+		<li><a href="FAQs.xhtml">Frequently Asked
 				Questions</a></li>
 		<!--REMOVED: style = "color: white"-->
 		<li><a href="contact.xhtml">Contact Us</a></li>
