@@ -11,7 +11,7 @@ public class PasswordValidatorTest {
 	private static final String pass1 = "Abcd765#";
 	private static final String pass2 = "fdss9#";
 	private static final String pass3 = "Acr9879998777677777333^";
-	private static final String pass4 = "Abc76@#";
+	private static final String pass4 = "Abc76541";
 	private static final String pass5 = "77776444";
 	private static final String pass6 = "gfkitlro#";
 	private static final String pass7 = "ADHIGFKSK76@3";

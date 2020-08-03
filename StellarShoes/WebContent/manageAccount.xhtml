@@ -36,6 +36,7 @@
 		<span id="hamburger" onclick="openNav()">&nbsp;</span>
 </header>
 <main>
+<p:growl id = "msgs" autoUpdate = "true"></p:growl>
 	<div class="checkout-panel">
 		<div class = "panel-body">
 			<h:form id = "logoutform">
@@ -61,7 +62,9 @@
 											<p style = "text-align: right;">Color: #{product.color}</p>
 										</div>
 										<p>Total Paid: $#{order.total}</p>
-            							<p:commandLink  style = "color: #7f2226" value = "Cancel order" action = "#{manageAccount.cancelOrder(order.orderID)}"/>
+										
+            							<p:commandLink  style = "color: #7f2226" value = "Cancel order" 
+            							action = "#{manageAccount.cancelOrder(order.orderID)}" update = "msgs"/>
 									</div>
 								</div>
 							</ui:repeat>
@@ -110,7 +113,7 @@
 			  </p:password><br/><br/>
 			  <p:outputLabel style="color:green" value = "Your password has been successfully changed!" 
 			  rendered = "#{manageAccount.passwordChanged}"/>
-			     <h:messages id = "message" layout = "list" styleClass = "error"></h:messages>
+			     <h:messages id = "message" layout = "list" styleClass = "error" autoUpdate = "false"/>
 			     
 			<p:commandButton id="save" value="Save" action= "#{manageAccount.changePassword()}"   
 			styleClass = "btn next-btn" update = "@form">
@@ -138,8 +141,9 @@
 		<section>
 			<h2>My Account</h2>
 			<ul>
-				<li><a href = "createAccount.xhtml"  >Create Account</a></li>
-				<li><a href = "success.xhtml" >Manage Account</a></li>
+				<li><a href = "createAccount.xhtml">Create Account</a></li> 
+				<li><a href = "manageAccount.xhtml">Manage Account</a></li>
+				<li><a href = "help.xhtml" >Help</a></li>
 				
 			</ul>
 		</section>

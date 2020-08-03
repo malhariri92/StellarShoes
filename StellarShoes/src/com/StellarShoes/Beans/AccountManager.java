@@ -85,7 +85,7 @@ public class AccountManager implements Serializable {
 		         return "checkout?faces-redirect=true";
 		      }else {
 		    	  
-			return "success?faces-redirect=true";}
+			return "manageAccount?faces-redirect=true";}
 	    }
 		else {
 			

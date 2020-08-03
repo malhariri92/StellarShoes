@@ -82,6 +82,10 @@ public class ManageProduct {
 			}
 		   
 		    product = new Product();
+		    newPrice = 0.0;
+			newColor = null;
+			newImageUrl = null;
+			
 		   FacesContext context = FacesContext.getCurrentInstance();
 		   context.getExternalContext().getFlash().setKeepMessages(true);
 		   

@@ -26,8 +26,7 @@ public class ManageAccount implements Serializable{
 			+ "SHOE_PRICE, s.IMAGE_URL from ORDER_DETAILS as d\r\n" + 
 			"Left join SHOE as s on d.SHOE_ID = s.SHOE_ID \r\n" + 
 			"Where d.ORDER_ID = ?";
-	private static final String cancelOrderSql = "ALTER TABLE ORDER_DETAILS DROP CONSTRAINT FK__ORDER_DET__ORDER__0C85DE4D"
-			+ " DELETE FROM ORDERS WHERE ORDER_ID = ? DELETE FROM ORDER_DETAILS WHERE ORDER_ID = ?";
+	private static final String cancelOrderSql = "update orders set status = 'C' where order_id = ?";
 	
 	private static final String changeAddressSql = "UPDATE ADDRESS SET STREET_ADDRESS1 = ? STREET_ADDRESS2 = ? CITY = ? "
 			+ "STATE = ? ZIP = ? WHERE CUSTOMER_ID = ?";
@@ -143,13 +142,16 @@ public class ManageAccount implements Serializable{
 			
 			pstmt = conn.prepareStatement(cancelOrderSql);
 			pstmt.setInt(1,orderID); 
-			pstmt.setInt(2,orderID); 
+			 
 			
 			int rs = pstmt.executeUpdate();
 					
 			if(rs > 0) {
 			Messages.show("Your order has been canceled!");	
-				
+			
+			FacesContext context = FacesContext.getCurrentInstance();
+			   context.getExternalContext().getFlash().setKeepMessages(true);
+			return "success?faces-redirect=true";
 			}
 			
            pstmt.close();   
