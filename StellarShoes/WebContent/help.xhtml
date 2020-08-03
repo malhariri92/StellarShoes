@@ -14,10 +14,12 @@
 	<link rel="stylesheet" type="text/css" href="./resources/css/reset.css"/>
 	<link rel="stylesheet" type="text/css" href="./resources/css/store-shell.css"/>
 	<link rel="stylesheet" type="text/css" href="./resources/css/main-components.css"/>
-	<link rel="stylesheet" type="text/css" href="./resources/css/checkout.css"/>
+	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
 	<link href="https://fonts.googleapis.com/css?family=Barlow:400,600,900" rel="stylesheet"/>
+	<h:outputScript library="primefaces" name="jquery/jquery.js" />
 </h:head>
+
 <body>
 	<header>
         <div id="mySlideNav" class="slideNav">
@@ -27,7 +29,7 @@
             <a href="FAQs.xhtml" class="nav-item" onclick="closeNav()">FAQs</a>
 			<a href="about.xhtml" class="nav-item" onclick="closeNav()">About</a>
         </div>
-		<a href="index.xhtml"><img id="logo" src="./resources/images/stellar-shoes-logo.svg" ></img></a>
+		<a href=""><img id="logo" src="./resources/images/stellar-shoes-logo.svg" alt = "Stellar Shoes logo"></img></a>
 		<div id="top-icons">
 			
 			<a href="login.xhtml"><i class="fa fa-user fa-2x"></i></a> 
@@ -35,34 +37,26 @@
 		</div>
 		<span id="hamburger" onclick="openNav()">&nbsp;</span>
 	</header>
-	
-	<main id="main">
-		<div class="checkout-panel">
-			<div class="panel-body">
-				<p> #{myCart.emptyCart()} </p>
-				<img src = "./resources/images/correct.png" id="shopping-cart-icon" alt = "correct clipart image" ></img>
-				<p >Thank You for your order!<br/> <br/>
-				 We received your order and we'll begin processing it soon.</p>
-				 
-				 <h:panelGroup rendered = "#{orderBN.orderID > 0}">
-				<p ><strong>ORDER ID: </strong> ##{orderBN.orderID}<br/> 
-				<strong>Transaction ID: </strong> ##{orderBN.paymentID}</p>
-				</h:panelGroup>
-				<h:panelGroup rendered = "#{orderBN.orderID == 0}">
-				<p  >Your order details will be sent to your email.</p> 
-				</h:panelGroup>
-			</div>
 
-		   </div>
-	</main>
-	
-	<footer>
+	<main id="main"> 
+      <p:growl id = "message" ></p:growl> 
+      
+    <section >
+		<img class= "help"  src="./resources/images/customer1.PNG" alt="image of a dress shoe"/>
+		<img class= "help"  src="./resources/images/customer2.PNG" alt="image of a dress shoe"/>
+		<img class= "help"  src="./resources/images/customer3.PNG" alt="image of a dress shoe"/>
+		<img class= "help"  src="./resources/images/customer4.PNG" alt="image of a dress shoe"/>
+		<img class= "help"  src="./resources/images/customer5.PNG" alt="image of a dress shoe"/>
+		
+    </section>
+
+    <footer>
 		<section>
 			<h2>Customer Service</h2>
 			<ul>
 				<li><a href = "FAQs.xhtml"  >Frequently Asked Questions</a></li> 
 				<li><a href = "contact.xhtml" >Contact Us</a></li> 
-				<li><a href = "about.xhtml"  >About Us</a></li> 
+				<li><a href = "about.xhtml" >About Us</a></li> 
 			</ul>
 		</section>
 		<section>
@@ -70,7 +64,7 @@
 			<ul>
 				<li><a href = "createAccount.xhtml">Create Account</a></li> 
 				<li><a href = "manageAccount.xhtml">Manage Account</a></li>
-				<li><a href = "help.xhtml" >Help</a></li> 
+				<li><a href = "help.xhtml" >Help</a></li>
 				
 			</ul>
 		</section>
@@ -90,37 +84,11 @@
 			</ul>
 		</section>
 	</footer>
+	</main>
 	
 	
-	<script src="./resources/js/jquery-3.3.1.js"></script>
-	<script src="./resources/js/hamburger-js.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	
+
     
-    	<script>
-		$(document).ready(function() {
-
- 			// $('.method').on('click', function() {
-   			// 	$('.method').removeClass('blue-border');
-   			// 	$(this).addClass('blue-border');
- 			// });
-
-		})
-
-		var $cardInput = $('.input-fields input');
-
-		$('.next-btn').on('click', function(e) {
-
- 			$cardInput.removeClass('warning');
-
-  			$cardInput.each(function() {    
-     			var $this = $(this);
-     			if (!$this.val()) {
-       				$this.addClass('warning');
-     			}
-  			})
-		});
-	</script>
-
 </body>
-</html> 
-	
+</html>

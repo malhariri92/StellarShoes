@@ -19,7 +19,7 @@ public class LoginFilter implements Filter{
 	
 	private HttpServletRequest httpRequest;
 	private static final String[] customerLoginRequiredURLs = {"/changeAddress.xhtml",
-            "/success.xhtml"};
+            "/manageAccount.xhtml"};
 	
 	private static final String[] adminLoginRequiredURLs = {"/adminHome.xhtml", "/adminProducts.xhtml", "/adminOrders.xhtml"};
 	public LoginFilter() {};
@@ -66,7 +66,7 @@ public class LoginFilter implements Filter{
 	        	}  else if(isCustomerLoggedIn) {
 	        		// the customer is already logged in and he's trying to login again
 		            // then forward to the manage account page
-		        	resp.sendRedirect(httpRequest.getContextPath() + "/faces/success.xhtml");
+		        	resp.sendRedirect(httpRequest.getContextPath() + "/faces/manageAccount.xhtml");
 	        	} else {
 		            // for other requested pages that require authentication
 		            // or the user is already logged in, continue to the destination
