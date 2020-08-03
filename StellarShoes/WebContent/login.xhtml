@@ -53,8 +53,10 @@
   
   <p:password id="password" required = "true" requiredMessage = "Password is required"
        value = "#{accountManager.password}"> 
-  </p:password><br/><br/>
-    <h:messages id="message" styleClass = "error"/> 
+  </p:password><span class="info">* Required information.</span><br/>
+	<h:messages id="message" styleClass = "error"/> 
+	
+
     <div class="panel-footer-one">
 <p:commandButton id="submit" value="Log in" action= "#{accountManager.login()}" styleClass = "btn next-btn" update="message"/><br/><br/>
 </div>
@@ -62,6 +64,7 @@
 <a href = "createAccount.xhtml" class = "info-center">Create a New Account?</a> 
 </h:form>
 			</div>
+
 		</div>
 	</div>
 

@@ -338,11 +338,13 @@ main {
   }
    
    .mark {
+     font-size: 100%;
     text-align: left;
     width: 100%;
   } 
   
   .us {
+    font-size: 100%;
     text-align: right;
     margin-right: 0;
     margin-bottom: 15px;
@@ -351,8 +353,32 @@ main {
   .peep {
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-style: italic;
+    font-size: 100%;
     font-weight: 600;
     padding-right: 10px;
+  }
+
+  @media (min-width: 950px){
+    .mark {
+      font-size: 175%;
+      
+    }
+
+    .us {
+      font-size: 175%;
+      padding-top: 1em;
+    }
+
+    .peep {
+      font-size: 150%;
+    }
+  }
+
+  @media (min-width: 1150px){
+    .us {
+      font-size: 175%;
+      padding-top: 1.25em;
+    }
   }
 
 

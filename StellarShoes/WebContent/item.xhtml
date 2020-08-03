@@ -51,8 +51,8 @@
             <p>Color: #{item.product.color}</p>
             <p>Price: $#{item.product.price}</p>
             <h:form prependId = "false">
-            <h:outputLabel value = "Select Size: "/>
-           <h:selectOneMenu width = "100" value = "#{item.product.size}">
+            <h:outputLabel value = "Select Size: " />
+           <h:selectOneMenu width = "100" value = "#{item.product.size}" >
               <f:selectItem itemValue = "0" itemLabel = "Select"/> 
               <f:selectItem itemValue = "7.5" itemLabel = "7.5" /> 
               <f:selectItem itemValue = "8" itemLabel = "8" /> 
@@ -64,18 +64,16 @@
               <f:selectItem itemValue = "11" itemLabel = "11" /> 
               <f:ajax excute = "@this" />
            </h:selectOneMenu><br/><br/>
-           <div > 
-           <p:commandButton action = "#{myCart.addToCart(item.product)}" value = "ADD TO CART"
-             update="message" styleClass = "btn next-btn" style = "width:50%"/> 
+           <div class="panel-footer"> 
+           		<p:commandButton action = "#{myCart.addToCart(item.product)}" value = "ADD TO CART"
+             	update="message" styleClass = "btn btn-one" style = "height: 3em; border: none; border-radius: 23px; background: #7f2226; background-color: #7f2226; color: white; font-family: 'Barlow', sans-serif; font-weight: 400; width: 100%; margin: 10px;"/> 
              
-             <p:commandButton action = "myCart?faces-redirect=true" value = "Checkout Now" 
-           rendered= "#{myCart.cartList.size() > 0}" styleClass = "btn next-btn" style = "width:50%"/> 
+             	<p:commandButton action = "myCart?faces-redirect=true" value = "Checkout Now" styleClass = "btn btn-one" 
+           		rendered= "#{myCart.cartList.size() > 0}" style = "height: 3em; border: none; border-radius: 23px; background: #7f2226; background-color: #7f2226; color: white; font-family: 'Barlow', sans-serif; font-weight: 400; width: 100%; margin: 10px;"/>  
              
-           <p:commandButton action = "category?faces-redirect=true" value = "Continue Shopping"
-             update="message" styleClass = "btn next-btn" style = "width:50%"/> 
-            
-           
-           </div>
+           		<p:commandButton action = "category?faces-redirect=true" value = "Continue Shopping"
+             	update="message" styleClass = "btn btn-one" style = "height: 3em; border: none; border-radius: 23px; background: #7f2226; background-color: #7f2226; color: white; font-family: 'Barlow', sans-serif; font-weight: 400; width: 100%; margin: 10px;"/>  
+            </div>
            </h:form>
 
         </div>

@@ -28,7 +28,7 @@ th {
 
 tr:nth-child(even){background-color: #f1f1f1;}
 
-tr:hover {background-color: white;}
+/* tr:hover {background-color: white;} */
 
 tbody {
   line-height: 1;
@@ -42,7 +42,7 @@ tbody p {
 }
 
 .order-item {
-  background-color: #f1f1f1;
+  /* background-color: #f1f1f1; */
   padding: 5px;
   display: flex;
   flex-direction: column;
@@ -64,7 +64,7 @@ tbody p {
 
 @media (min-width: 500px) {
   .order-item {
-    background-color: white;
+    /* background-color: #f1f1f1; */
     align-items: flex-start;
     flex-direction: row;
   }  

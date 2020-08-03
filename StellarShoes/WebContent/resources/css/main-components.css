@@ -62,6 +62,22 @@ p {
   width: 65%;
 }
 
+.float-right {
+  /* float: right;  
+  padding: 1em;
+  padding-top: 0; */
+  width: 100%;
+}
+
+@media (min-width: 425px) {
+  .float-right {
+    float: right;  
+    padding: 1em;
+    padding-top: 0;
+    width: 35%;
+  } 
+}
+
 
 a {
   text-decoration: none;
@@ -92,7 +108,6 @@ a {
 
   .checkbox-group {
     border: #2a2a2a solid 1px;
-    display: inline-block;
   }
 
   .checkbox:after {
@@ -104,6 +119,7 @@ a {
 .checkbox-input,
 .checkbox-label {
     display: inline-block;
+    padding-right: 15px;
     /*below added for accessibility*/
     user-select: none;
 }
@@ -111,6 +127,10 @@ a {
 @media (min-width: 850px) {
   .sorting-section p {
     margin-top: 8em;
+  }
+
+  .checkbox-group {
+    display: inline-block;
   }
 }
 
@@ -212,12 +232,13 @@ article h3 {
     width: 50%;
     object-fit: cover;
     align-self: flex-start;
+    text-align: center;
   }
   
   .two-column-text {
     flex: 1 1 auto;
-    padding-left: 5%;
-    padding-right: 5%;
+    padding-left: 3%;
+    padding-right: 3%;
 }
 
   .two-column-text h1, .two-column-text p  {
@@ -227,65 +248,47 @@ article h3 {
 }
 
 .flex-group {
-  width: 100%;
+  flex-direction: column;
+  margin-left: 0;
 }
 
 .flex-group-item {
 
 }
 
+.align-right {
+  text-align: left;
+}
+
+.align-center {
+  text-align: left;
+}
+
 @media (min-width: 800px) {
   .flex-group {
-    display: flex;
+    display: flex;    
+    flex-direction: row;
     margin-left: auto;
     margin-right: auto;
     justify-content: space-between;
-    align-items: left;
+    align-items: left;  
   }
+
+  .align-right {
+    text-align: right;
+  }
+  
+  .align-center {
+    text-align: center;
+  }
+}
   
 .paypal {
   /* border: 5px solid orange; */
   display: inline;
 }
 
-.btn {
-    background-color: #7f2226;
-    color: #fff;
-     /* font-size: 1em; */
-     font-size: .9em;
-     line-height: 1em;
-     width: 100%;
-     height: 3em;
-     cursor: pointer;
-     letter-spacing: 1px;
-     border: none;
-     border-radius: 23px;
-     margin: 10px;
-     text-align: center;
-}
 
-
-.back-btn {
-  color: #7f2226;
-  background: #fff;
-}
-
-.next-btn  {
-  color: #fff;
-  background: #7f2226;
-}
-#save {
-	color: #fff;
-  background: #7f2226;
-	
-}
-
-.btn:focus {
-  outline: none;
-}
-
-.btn:hover {
-}
 
  
   
@@ -298,32 +301,87 @@ article h3 {
   width: 300px;
   }
   .error{
-  color:red; 
+  color:#7f2226; 
   
   }
   
-   #forms-heading{
- 
-  margin: 0 auto;
-  margin-bottom: 50px;
-  text-align: center;
+  #forms-heading {
+    margin: 0 auto;
+    margin-bottom: 50px;
+    text-align: center;
   }
+
   #login-table tr, td { 
-  width: auto !important;
+    width: auto !important;
   }
   
 .ui-accordion .ui-state-default,
 .ui-widget-header .ui-state-default {
- background:#d2726b;
- font-weight:bold;
- color:#000;
+ /* background:#d2726b; */
+ /* font-weight:bold; */
+ /* color:#000; */
 
 }
 
 
 .customDialog .ui-dialog-titlebar.ui-widget-header {
-    background: #7f2226 !important;
+    /* background: #7f2226 !important;
     color: #fff;
-    box-shadow: none;
+    box-shadow: none; */
+    
 }
 
+.btn {
+  background: #7f2226;
+  background-color: #7f2226;
+  border: none;
+  border-radius: 23px;
+  color: #fff;
+  cursor: pointer;
+   /* font-size: 1em; */
+  font-family: 'Barlow', sans-serif;
+  font-size: .9em;
+  font-style: normal;
+  font-weight: 400;
+  height: 3em;
+  letter-spacing: 1px;
+  line-height: 1em;
+  margin: 10px;
+  /* padding-left: .5em; */
+  /* padding-right: .5em; */
+  text-align: center;
+  width: 100%;
+}
+
+.btn-one {
+  width: 100%;
+}
+
+@media (min-width: 800px) {
+  .btn-one {
+    width: 35%;
+  }
+}
+
+
+.back-btn {
+color: #7f2226;
+background: #fff;
+}
+
+.next-btn  {
+color: #fff;
+background: #7f2226;
+}
+#save {
+color: #fff;
+background: #7f2226;
+
+}
+
+.btn:focus {
+outline: none;
+}
+
+.btn:hover {
+}

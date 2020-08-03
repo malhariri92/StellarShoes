@@ -57,8 +57,8 @@
 										<p>Product name: #{product.name}</p>
 										<div class="flex-group">
 											<p>Quantity: #{product.quantity}</p>
-											<p>Size: #{product.size}</p>
-											<p>Color: #{product.color}</p>
+											<p style = "text-align: center;">Size: #{product.size}</p>
+											<p style = "text-align: right;">Color: #{product.color}</p>
 										</div>
 										<p>Total Paid: $#{order.total}</p>
             							<p:commandLink  style = "color: #7f2226" value = "Cancel order" action = "#{manageAccount.cancelOrder(order.orderID)}"/>
@@ -75,7 +75,7 @@
 						</div>
 							<h2>My Password</h2>
 					<div class="panel-footer-one">
-						<p:commandButton onclick="PF('passDialog').show();" styleClass = "btn next-btn panel-footer-one" type = "button" role = "button"
+						<p:commandButton onclick="PF('passDialog').show();" styleClass = "btn" type = "button" role = "button"
               				value = "Change Password"/> 
                        </div>
 
