@@ -41,7 +41,7 @@
 
 	<div id="order-two-column-container">
 		<h2>Credit Card</h2>
-		<h2><a href="https://www.sandbox.paypal.com/us/signin" target="_blank">PayPal</a><!-- <p:button styleClass = "btn next-btn paypal" target="_blank" href="https://www.sandbox.paypal.com/us/signin"
+		<h2 class = "to-PayPal"><a href="https://www.sandbox.paypal.com/us/signin" target="_blank">PayPal</a><!-- <p:button styleClass = "btn next-btn paypal" target="_blank" href="https://www.sandbox.paypal.com/us/signin"
 			value="Manage PayPal Orders" icon ="fa fa-external-link"/> --></h2>
 	</div>
 	
@@ -53,7 +53,7 @@
 	<p:growl id="message" life = "4000"/>
 <table  id="order-table">
   	<thead>
-		<tr align="center">
+		<tr style="text-align:center">
 	  		<th class="order-table-column width-40">Order items</th>
 	  		<th class="order-table-column width-40">Shipping Address</th>
 	  		<th class="order-table-column">Order Status</th>
@@ -69,11 +69,10 @@
 	  		<h3>Order ID ##{order.orderID}</h3>
 	  		<ui:repeat var="product" value="#{order.products}">
 				<div class = "order-item">
-
-					<div class = "order-item-text">
 					<div class = "order-item-image">
 						<img src="#{product.imgUrl}" alt="image of a dress shoe"/>
 					</div>
+					<div class = "order-item-text">
 						<p>Product ID ##{product.productID}, #{product.name}</p>
 						<p>Quantity: #{product.quantity}</p>
 						<p>Size: #{product.size}</p>
@@ -104,7 +103,7 @@
 	  		<td class="order-table-column">
 				
             
-            <p:commandButton style = "color: #fff; background: #7f2226;" value="Save Status"
+            <p:commandButton styleClass = "btn" value="Save Status"
 				 action = "#{manageOrders.changeStatus(order.orderID)}"/> 
 			</td>
 			</h:form>

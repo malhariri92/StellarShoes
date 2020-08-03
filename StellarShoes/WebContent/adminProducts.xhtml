@@ -76,7 +76,9 @@
 		</p:panelGrid><br/>
 		<div class="panel-footer-one">
           <p:commandButton id= "save" action = "#{manageProduct.addItem()}" value = "Save" icon="fa fa-save" 
-          style = "color: #fff; background: #7f2226;" update="message" /> 
+          styleClass = "btn btn-one" style = "color: white; background-color: #7f2226; background: #7f2226; 
+		  border-radius: 23px; font-family: 'Barlow', sans-serif; font-size: .9em; font-style: normal; font-weight: 400;
+			height: 3em; letter-spacing: 1px; line-height: 1em; margin: 10px;" /> 
 		</div>
 		</p:panel>
 		</h:form>	
@@ -86,25 +88,35 @@
 	<ui:repeat var="shoe"  value="#{productBN.loadProducts()}"
 	prependId = "false">
 	<section>
-		<h3 style="color: black">
-			Product ID ##{shoe.productID}
-		</h3>
-		<img src="#{shoe.imgUrl}" alt="image of a dress shoe"/>
-		<h4>#{shoe.name}</h4>
-		<p> Description: #{shoe.description} </p>
-		<p>Price: $#{shoe.price}</p>
+		<div class = "order-item">
+			<div class = "order-item-image">
+				<img src="#{shoe.imgUrl}" alt="image of a dress shoe"/>
+			</div>
+			<div class = "order-item-text">
+				<h3 style="color: black">Product ID ##{shoe.productID}</h3>
+				<h4>#{shoe.name}</h4>
+				<div class="flex-group">
+					<p> Description: #{shoe.description} </p>
+					<p>Price: $#{shoe.price}</p>
+				<div>
+				<p:commandButton action="#{manageProduct.deleteItem(shoe.productID)}" update="message"
+					icon="fa fa-trash " value="Delete Product" styleClass = "btn" style = "color: white; background-color: #7f2226; background: #7f2226; 
+					border-radius: 23px; font-family: 'Barlow', sans-serif; font-size: .9em; font-style: normal; font-weight: 400;
+  					height: 3em; letter-spacing: 1px; line-height: 1em; margin: 10px;"> 
+					<p:confirm header="Confirm Delete" icon="ui-icon-alert"/>
+				</p:commandButton>
+			</div>
+		</div>
+			</div> 
+		</div>
+		
+		
+		
+		
 		
 		<h:form prependId = "false">
 		
-		<div class="panel-footer-one">
 		
-        <p:commandButton action="#{manageProduct.deleteItem(shoe.productID)}" update="message"
-         icon="fa fa-trash " value="Delete Product" style = "color: #fff; background: #7f2226; margin-bottom:10px"> 
-         
-          <p:confirm header="Confirm Delete" 
-               icon="ui-icon-alert"/>
-        </p:commandButton>
-        </div>
           <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" 
                message = "Are you sure about deleting this product?" > 
              <p:commandButton  onclick = "true" value="Yes" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
@@ -138,8 +150,10 @@
 		</p:panelGrid><br/>
 		<div class="panel-footer-one">
 		<p:commandButton id = "save" action = "#{manageProduct.editItem(shoe)}"  
-		value = "Save" icon="fa fa-save" update="message"
-		style = "color: #fff; background: #7f2226;"/>
+		value = "Save" icon="fa fa-save" styleClass = "btn btn-one" style = "color: white; background-color: #7f2226; background: #7f2226; 
+		border-radius: 23px; font-family: 'Barlow', sans-serif; font-size: .9em; font-style: normal; font-weight: 400;
+		  height: 3em; letter-spacing: 1px; line-height: 1em; margin: 10px;"/>
+
 		 
 		</div>
 		</p:panel>

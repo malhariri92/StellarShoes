@@ -59,60 +59,61 @@
 				<div class="step"></div>
 				<div class="step"></div>
 			   -->
-		</div>
-
-		<h:form>
-			<ui:repeat var="shoe" value="#{myCart.cartList}">
-				<div class="order-item cartItems">
-					<div class="order-item-image">
-						<img src="#{shoe.imgUrl}" alt="image of a dress shoe" />
-					</div>
-					<div class="order-item-text">
-						<h3>#{shoe.name}</h3>
-						<p>Product ID ##{shoe.productID}</p>
-						<p>Description: #{shoe.description}</p>
-						<p>Color: #{shoe.color}</p>
-						<p>Size: #{shoe.size}</p>
-						<p>Price: $#{shoe.price}</p>
+			<h:form>
+				<ui:repeat var="shoe" value="#{myCart.cartList}">
+					<div class="order-item cartItems">
+						<div class="order-item-image" >
+							<img src="#{shoe.imgUrl}" alt="image of a dress shoe" />
+						</div>
+						<div class="order-item-text">
+							<h3>#{shoe.name}</h3>
+							<p>Product ID ##{shoe.productID}</p>
+							<div class="flex-group">
+								<p>Description: #{shoe.description}</p>
+								<p class = "align-center">Color: #{shoe.color}</p>
+								<p class = "align-right" >Size: #{shoe.size}</p>
+							</div>
+							<p>Price: $#{shoe.price}</p>
 						<!--<br/>-->
-						<p:commandLink style="color: #7f2226" value="Remove Item"
-							action="#{myCart.removeFromCart(shoe)}" />
+							<p:commandLink style="color: #7f2226" value="Remove Item"
+								action="#{myCart.removeFromCart(shoe)}" />
+						</div>
 					</div>
 					<!-- <div class = "cartItems"> -->
-				</div>
-			</ui:repeat>
-		</h:form>
+				</ui:repeat>
+			</h:form>
 
-		<div class="totals-group">
-			<p:outputLabel>
+			<div class="totals-group">
+				<p:outputLabel>
 				<strong>SUBTOTAL: </strong>   $#{myCart.subTotal}</p:outputLabel>
-			<br />
-			<p:outputLabel>
+				<br />
+				<p:outputLabel>
 				<strong>TAX: </strong> $#{myCart.tax}</p:outputLabel>
-			<br />
-			<p:outputLabel>
+				<br />
+				<p:outputLabel>
 				<strong>TOTAL: </strong>$#{myCart.total}</p:outputLabel>
-		</div>
-		<p:growl id="message"></p:growl>
+			</div>
+		
+			<p:growl id="message"></p:growl>
 
-		<div class="panel-footer">
-			<h:form id="form" style = "width: 100%">
-				<p:commandButton value="Continue Shopping" style = "width:30%"
-					action="category?faces-redirect=true" styleClass="btn next-btn"
+			<div styleClass="panel-footer">
+				<h:form id="form"  styleClass="panel-footer">
+					<p:commandButton value="Continue Shopping" 
+					action="category?faces-redirect=true" styleClass="btn"
 					rendered="#{myCart.cartList.size() > 0   ? 'true' : 'false'}" />
 					
-				<p:commandButton style = "width:30%"
+					<p:commandButton 
 					value="#{accountManager.customer == null ? 'Checkout as Guest' : 'Check Out'}"
-					action="checkout?faces-redirect=true" styleClass="btn next-btn"
+					action="checkout?faces-redirect=true" styleClass="btn"
 					rendered="#{myCart.cartList.size() > 0   ? 'true' : 'false'}" />
 					
-				<p:commandButton onclick="PF('loginDialog').show();" style = "width:30%"
+					<p:commandButton onclick="PF('loginDialog').show();" 
 					styleClass="btn next-btn" type="button" role="button"
 					value="Login and Checkout" aria-disabled="false"
 					rendered="#{(myCart.cartList.size() > 0 and accountManager.customer == null)  ? 'true' : 'false'}">
 				</p:commandButton>
 			</h:form>
-
+		</div>
 			<p:dialog header="Log in" widgetVar="loginDialog" id="login"
 				appendTo="@(body)" showEffect="explode" hideEffect="fade"
 				 width="40%" styleClass="customDialog">
@@ -146,7 +147,7 @@
 					</div>
 				</h:form>
 				</div>
-	</div>
+		</div>
 			</p:dialog>
 
 
