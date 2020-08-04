@@ -11,6 +11,13 @@ import javax.faces.context.FacesContext;
 import com.StellarShoes.Product;
 import com.StellarShoes.utils.Messages;
 
+/**
+ * A managed bean class to manage the products in the shopping cart.
+ * @author Mutasem Alhariri 
+ *         07/04/2020
+ *         Version 1.0
+ *
+ */
 public class MyCart implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
@@ -22,7 +29,12 @@ public class MyCart implements Serializable{
 	private Product product;
 	private List<Product> cartList = new ArrayList<>();
 	
-	
+	/**
+	 * To add the selected product to the cartList
+	 * @param item
+	 * @return the item page with success message if the product was added to the list, 
+	 * the item page with error message otherwise.
+	 */
 	public String addToCart(Product item) {
 		   product = item;
 		   
@@ -45,6 +57,12 @@ public class MyCart implements Serializable{
 		    return "item?itemID="+product.getProductID()+"faces-redirect=true"; 
 	}
 
+	
+	    /**
+	     * To remove a product from the shopping cart list
+	     * @param item the item to be removed
+	     * @return the myCart page.
+	     */
 	    public String removeFromCart(Product item) {
 		   int index = 0;
 		   for(Product product : cartList) {
@@ -62,6 +80,10 @@ public class MyCart implements Serializable{
 		   return "myCart?faces-redirect=true";  
 		  
 	}
+	    /**
+	     * To add the cost of the product added to the shopping cart list.
+	     * @param item the product which its cost will be added to the total.
+	     */
 	    private void addCost(Product item) {
 	       subTotal += item.getPrice();
 	 	   
@@ -72,7 +94,10 @@ public class MyCart implements Serializable{
 	 	  formatCost();
 	    }
 	     
-	    
+	    /**
+	     * To subtract the cost of the product removed from the shopping cart list.
+	     * @param item the product which its cost will be subtracted from the tota.
+	     */
 	    private void subtractCost(Product item) {
 	    	   subTotal -= item.getPrice();
 		 	   
@@ -82,11 +107,18 @@ public class MyCart implements Serializable{
 		 	   
 		 	  formatCost();	
 	    }
+	    
+	    /**
+	     * To clean up the shopping cart list after a successful order.
+	     */
 	     public void emptyCart() {
 	    	 cartList.clear();
 	    	 total = subTotal = tax = 0 ;
 	     }
 	    
+	     /**
+	      * To format the subTotal, total, and tax to display two decimal places.
+	      */
 	    private void formatCost() {
 	    	DecimalFormat df = new DecimalFormat("#.00");
 	    	

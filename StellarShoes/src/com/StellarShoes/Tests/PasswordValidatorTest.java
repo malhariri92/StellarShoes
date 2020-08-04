@@ -6,6 +6,13 @@ import org.junit.Test;
 
 import com.StellarShoes.utils.PasswordValidator;
 
+/**
+ * To test the Validate method functionality.
+ * @author Mutasem Alhariri 
+ *         07/04/2020
+ *         Version 1.0
+ *
+ */
 public class PasswordValidatorTest {
 
 	private static final String pass1 = "Abcd765#";

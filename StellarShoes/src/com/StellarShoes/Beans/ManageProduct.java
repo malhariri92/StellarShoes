@@ -16,6 +16,13 @@ import com.StellarShoes.Product;
 import com.StellarShoes.utils.DatabaseConnector;
 import com.StellarShoes.utils.Messages;
 
+/**
+ * A managed bean class to carry out the administrative tasks regarding products.
+ * @author Mutasem Alhariri 
+ *         07/04/2020
+ *         Version 1.0
+ *
+ */
 public class ManageProduct {
 	
 	private static final String productSQL = "SELECT s.SHOE_ID, s.SHOE_NAME, s.SHOE_SIZE, "
@@ -43,7 +50,11 @@ public class ManageProduct {
 	public ManageProduct() {}
 	
 
-	
+	/**
+	 * To insert new products into the product table.
+	 * @return the adminProducts page with success message if the new product was inserted, 
+	 * the adminProducts page with error messages otherwise.
+	 */
 	public String addItem() {
 		
 		System.out.println("here is the new Color: " +product.getColor() 
@@ -92,7 +103,10 @@ public class ManageProduct {
 			return "adminProducts?faces-redirect=true";
 	}
 	
-	
+	/**
+	 * To get a list of all products in the products table.
+	 * @return A list of all products.
+	 */
 	public List<Product> getProductsList() {
 		Connection conn = null;
 		Statement stmt = null;
@@ -126,10 +140,11 @@ public class ManageProduct {
 	}
 	
 	/**
-	 * 
-	 * @param shoe the product to be edited
-	 * @return admin page 
-     */
+	 * To update the details of a product in the product table.
+	 * @param item the product which its details will be updated.
+	 * @return the adminProducts page with success message if the details are updated, 
+	 * the adminProducts page with error messages otherwise.
+	 */
 	public String editItem(Product item) {
 		product = item;
 		
@@ -149,6 +164,7 @@ public class ManageProduct {
 		if(newImageUrl != null && newImageUrl != "") {product.setImgUrl(newImageUrl);}
         
 		if(newPrice == 0 && newColor == null && newImageUrl == null) {
+			product = new Product();
 			return null;
 		}
 		newPrice = 0.0;
@@ -198,7 +214,8 @@ public class ManageProduct {
 	/**
 	 * Will be called from he Admin invetory page to remove products from the database
 	 * @param itemID the product ID in the database used in the sql statement 
-	 * @return the admin page 
+	 * @return the adminProducts page with success message if the product was deleted, 
+	 * the adminProducts page with error messages otherwise.
 	 */
 	public String deleteItem(int itemID) {
 		System.out.println("deleted " +itemID);
@@ -234,6 +251,10 @@ public class ManageProduct {
 			return "adminProducts?faces-redirect=true";
 		}
 	
+	/**
+	 * To get today's date.
+	 * @return today's date.
+	 */
 	public String getDate() {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy");  
 		   LocalDateTime date = LocalDateTime.now(); 

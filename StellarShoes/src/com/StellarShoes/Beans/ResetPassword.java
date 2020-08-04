@@ -1,6 +1,14 @@
 package com.StellarShoes.Beans;
 
 import com.StellarShoes.utils.*;
+
+/**
+ * A simple managed bean class to carry out the reset password functionality.
+ * @author Mutasem Alhariri 
+ *         07/04/2020
+ *         Version 1.0
+ *
+ */
 public class ResetPassword {
 
 	private final String sentMsg =  "We’ve sent you an email with a link to finish resetting your password. " + 
@@ -16,6 +24,11 @@ public class ResetPassword {
 	public ResetPassword() {}
 	
 	
+	/**
+	 * To check if the entered email is associated with any user in the customer table.
+	 * @return the forgotPassword page with success message if the user exists, 
+	 * the forgotPassword page with error message otherwise.
+	 */
 	public String isRegistered() {
 		
 		if(LoginValidator.exist(email)) {

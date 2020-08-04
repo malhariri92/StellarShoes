@@ -4,6 +4,14 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
+
+/**
+ * To validate user information for login purposes.
+ * @author Mutasem Alhariri 
+ *         07/04/2020
+ *         Version 1.0
+ *
+ */
 public class LoginValidator {
 
 	
@@ -16,7 +24,12 @@ public class LoginValidator {
 	
 	
 	
-	
+	/**
+	 * To check if the customer is using a correct email and password.
+	 * @param user contains the email entered by the customer.
+	 * @param password contains the password entered by the customer.
+	 * @return true if the the email and password are valid, false otherwise.
+	 */
 	public static boolean validateCustomer(String user, String password) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -45,6 +58,12 @@ public class LoginValidator {
 		return false;
 	}
 	
+	/**
+	 * To check if the customer is using a correct email and password.
+	 * @param user contains the email entered by the customer.
+	 * @param password contains the password entered by the customer.
+	 * @return true if the the email and password are valid, false otherwise.
+	 */
 	public static boolean validateAdmin(String user, String password) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -73,8 +92,8 @@ public class LoginValidator {
 		return false;
 	}
 	/**
-	 * to check if an email is used in any account 
-	 * @param email
+	 * to check if the employee who is trying to create an account already has an account.  
+	 * @param email the email entered by the employee.
 	 * @return true if the email in use, false otherwise
 	 */
 	public static boolean exist(String email) {
@@ -112,7 +131,12 @@ public class LoginValidator {
 	}
 	
 	
-	
+	/**
+	 * To check if the entered information matches an existing employee in the employee table.
+	 * @param email the email entered by the employee.
+	 * @param employeeID the employee ID entered by the employee.
+	 * @return
+	 */
 	public static boolean isEmployee(String email, int employeeID) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;

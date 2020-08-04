@@ -13,7 +13,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
+/**
+ * A web filter to determine which page to return based on the requested url and the login status.
+ * @author Mutasem Alhariri 
+ *         07/04/2020
+ *         Version 1.0
+ *
+ */
 @WebFilter(filterName = "AuthFilter", urlPatterns = { "*.xhtml" })
 public class LoginFilter implements Filter{
 	
@@ -21,7 +27,8 @@ public class LoginFilter implements Filter{
 	private static final String[] customerLoginRequiredURLs = {"/changeAddress.xhtml",
             "/manageAccount.xhtml"};
 	
-	private static final String[] adminLoginRequiredURLs = {"/adminHome.xhtml", "/adminProducts.xhtml", "/adminOrders.xhtml"};
+	private static final String[] adminLoginRequiredURLs = {"/adminHome.xhtml", "/adminProducts.xhtml",
+			"/adminOrders.xhtml"};
 	public LoginFilter() {};
 	
 	
@@ -29,7 +36,8 @@ public class LoginFilter implements Filter{
 	public void init(FilterConfig filterConfig) throws ServletException {
 
 	}
-
+     
+	
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain) throws ServletException {
@@ -85,7 +93,10 @@ public class LoginFilter implements Filter{
 		}
 	}
 	
-	
+	/**
+	 * To check if the requested page is restricted to logged in customers.
+	 * @return True if the page is restricted, false otherwise.
+	 */
 	private boolean isCustomerLoginRequired() {
         String requestURL = httpRequest.getRequestURL().toString();
  
@@ -98,6 +109,10 @@ public class LoginFilter implements Filter{
         return false;
     }
 	
+	/**
+	 * To check if the requested page is restricted to logged in admins.
+	 * @return true if the page is restricted, false otherwise.
+	 */
 	private boolean isAdminLoginRequired() {
         String requestURL = httpRequest.getRequestURL().toString();
  

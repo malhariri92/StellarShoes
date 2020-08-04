@@ -20,6 +20,13 @@ import com.StellarShoes.Product;
 import com.StellarShoes.utils.DatabaseConnector;
 import com.StellarShoes.utils.Messages;
 
+/**
+ * A managed bean class to carry out the administrative tasks regarding orders.
+ * @author Mutasem Alhariri 
+ *         07/04/2020
+ *         Version 1.0
+ *
+ */
 public class ManageOrders implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -47,7 +54,10 @@ public class ManageOrders implements Serializable{
 	public ManageOrders() {};
 	
 	
-	
+	/**
+	 * To get a list of all active orders from the orders table.
+	 * @return a list of all active orders.
+	 */
 	public List<Order> loadOrders(){
 		orders.clear();
 		
@@ -87,7 +97,9 @@ public class ManageOrders implements Serializable{
 		return orders;
 	}
 
-
+    /**
+     * To get the details of each order in the active orders list.
+     */
 	private void getDetalis() {
 		for(Order o : orders) {
 			
@@ -124,12 +136,20 @@ public class ManageOrders implements Serializable{
 		
 	}
 	
-	
+	/**
+	 * To get the new value of the order status from the adminOrders page.
+	 * @param event a value change event will be triggered when the user select a new status.
+	 */
 	public void handleChange(AjaxBehaviorEvent event){ 
 		newStatus =(String) ((UIOutput)event.getSource()).getValue();
 	    System.out.println("New value: " +newStatus);
 	}
 
+	/**
+	 * To change the status of an order in the orders table.
+	 * @param orderID The ID of the order which its status to be changed.
+	 * @return
+	 */
     public String changeStatus(int orderID) {
     	
     	Connection conn = null;

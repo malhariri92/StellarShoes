@@ -45,12 +45,12 @@
 		  <p:panelGrid id = "container"  columns="2" cellpadding="5">
 		
 		<p:outputLabel value = "Product Name:"/>
-		<p:inputText value = "#{manageProduct.product.name}" required = "true" 
+		<p:inputText id = "name" value = "#{manageProduct.product.name}" required = "true" 
 		requiredMessage = "Please enter product name.">
 		<f:ajax event="keyup"/></p:inputText>
 		
 		<p:outputLabel value = "Category:" style="margin-right:30px"/>
-		<p:selectOneMenu value = "#{manageProduct.product.categoryId}" 
+		<p:selectOneMenu id = "category" value = "#{manageProduct.product.categoryId}" 
 		 requiredMessage = "Please select product category"> 
 		<f:selectItem itemLabel = "Select"/> 
               <f:selectItem itemValue = "1" itemLabel = "Boots" /> 
@@ -60,26 +60,26 @@
 		</p:selectOneMenu>
 		
 		<p:outputLabel value = "Price:" />  
-		<p:inputText value = "#{manageProduct.product.price}"
+		<p:inputText id = "price" value = "#{manageProduct.product.price}"
 		 validatorMessage = "Please enter a valid price. Prices must be between $20 and $200">
 		<f:validateDoubleRange  minimum = "20.00" maximum = "200.00" />
 		<f:ajax event="keyup"/>
 		</p:inputText>
 		
 		<p:outputLabel value = "Color:" /> 
-		<p:inputText value = "#{manageProduct.product.color}" required = "true" 
+		<p:inputText id = "color" value = "#{manageProduct.product.color}" required = "true" 
 		requiredMessage = "Please enter product color."><f:ajax event="keyup"/></p:inputText>
 		<p:outputLabel value = "Image URL:" /> 
-		<p:inputText value = "#{manageProduct.product.imgUrl}" required = "true" 
+		<p:inputText id = "url" value = "#{manageProduct.product.imgUrl}" required = "true" 
 		requiredMessage = "Please enter an image url."><f:ajax event="keyup"/></p:inputText>
 		
 		</p:panelGrid><br/>
-		<h:messages styleClass = "error"></h:messages>
+		<h:messages styleClass = "error" id = "msg" redisplay="false"></h:messages>
 		<div class="panel-footer-one">
           <p:commandButton id= "save" action = "#{manageProduct.addItem()}" value = "Save" icon="fa fa-save" 
           styleClass = "btn btn-one" style = "color: white; background-color: #7f2226; background: #7f2226; 
 		  border-radius: 23px; font-family: 'Barlow', sans-serif; font-size: .9em; font-style: normal; font-weight: 400;
-			height: 3em; letter-spacing: 1px; line-height: 1em; margin: 10px;" update = "@form" /> 
+			height: 3em; letter-spacing: 1px; line-height: 1em; margin: 10px;" update = "msg" /> 
 		</div>
 		</p:panel>
 		</h:form>	

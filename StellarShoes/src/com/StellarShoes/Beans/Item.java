@@ -11,6 +11,13 @@ import javax.servlet.http.HttpServletRequest;
 import com.StellarShoes.Product;
 import com.StellarShoes.utils.DatabaseConnector;
 
+/**
+ * A simple managed bean class to display information about one product on the item page.
+ * @author Mutasem Alhariri 
+ *         07/04/2020
+ *         Version 1.0
+ *
+ */
 public class Item implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -29,7 +36,10 @@ public class Item implements Serializable {
 	
 	public Item() {}
 	
-	
+	/**
+	 * To get the current product information from the products table.
+	 * @return product.
+	 */
 	public Product getShoeInfo() {
 	
      HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();

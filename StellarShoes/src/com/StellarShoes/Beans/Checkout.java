@@ -13,6 +13,14 @@ import com.StellarShoes.*;
 import com.StellarShoes.utils.DatabaseConnector;
 import com.StellarShoes.utils.Messages;
 
+/**
+ * A managed bean class to get order and payment information from the checkout pages
+ *  and to place new orders using that information.
+ * @author Mutasem Alhariri 
+ *         07/04/2020
+ *         Version 1.0
+ *
+ */
 public class Checkout implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
@@ -55,13 +63,15 @@ public class Checkout implements Serializable{
 	
 	private int cvv2;
 	
-	private int selectedMethod;
+	private int selectedMethod; //The selected method of payment
 	
 	private Product product;
 	private int orderID;
 	private int customerID;
 	
-	
+	/**
+	 * To set up customer and address based on the session customer status.
+	 */
 	public Checkout() {
 		
 		 if(AccountManager.sessionCustomer != null) {
@@ -74,17 +84,23 @@ public class Checkout implements Serializable{
 		 }   
 	}
 	
+	/**
+	 * To place a new order in the database.
+	 * @param total the total amount for this order.
+	 * @param products a list of products the order contains.
+	 * @return the confirmation page for for successful orders, otherwise null and error message
+	 */
 	public String placeOrder(double total, List<Product> products) {
 		
 		if(customer.getCustomerID() == 0) {
-			if(placeNewCustomerOrder(total) && inserOrderDetails(products)) {
+			if(placeNewCustomerOrder(total) && insertOrderDetails(products)) {
 				OrderBN.assignOrder(orderID, payment);
 				return "confirmation?faces-redirect=true";
 			}
 			
 			
 		} else {
-                 if(placeExistingCustomerOrder(total) && inserOrderDetails(products)) {
+                 if(placeExistingCustomerOrder(total) && insertOrderDetails(products)) {
                 	 OrderBN.assignOrder(orderID, payment);
 				return "confirmation?faces-redirect=true";
 			}
@@ -96,7 +112,10 @@ public class Checkout implements Serializable{
 	
 	
 	
-	
+	/**
+	 * To get the address of the new customer
+	 * @return customer's address
+	 */
 	private Address getCustomerAddress() {
 		
 		Address addr = null;
@@ -126,8 +145,10 @@ public class Checkout implements Serializable{
 		return addr;
 	}
 	
-	
-private void getPaymentID() {
+	/**
+	 * To retrieve the payment ID for the current order from the database.
+	 */
+    private void getPaymentID() {
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -154,7 +175,11 @@ private void getPaymentID() {
 		}
 	}
       
-       
+       /**
+        * To place a new order for existing customers.
+        * @param total the total amount paid for this order.
+        * @return True if the order is placed successfully, false otherwise
+        */
     public boolean placeExistingCustomerOrder(double total) {
     	
     	
@@ -196,7 +221,11 @@ private void getPaymentID() {
     	return false;
     }
     
-    
+    /**
+     * To insert a new order into the orders table for new customers. Customer checks out as guest.
+     * @param total the total amount paid for this order.
+     * @return True if the order is placed successfully, false otherwise.
+     */
     public boolean placeNewCustomerOrder(double total) {
     	
     	if (insertNewAddress() && insertPayment()) {
@@ -232,7 +261,10 @@ private void getPaymentID() {
     	
     	return false;
     }   
-    
+    /**
+     * To insert a new payment into the payment table.
+     * @return True if the payment was inserted, false otherwise.
+     */
     private boolean insertPayment() {
     	boolean result = false;
     	Connection conn = null;
@@ -275,7 +307,10 @@ private void getPaymentID() {
     }
 	
 
-
+    /**
+     * To create a new customer in the customer table.
+     * @return The new customer ID.
+     */
 	public int insertNewCustomer() {
     	Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -305,7 +340,10 @@ private void getPaymentID() {
     	return ID ;
     }
     
-
+    /**
+     * To create a new address for customers.
+     * @return True if the new address is created, false otherwise.
+     */
     public boolean insertNewAddress() {
     	if(customer.getCustomerID() == 0) {
     		customerID = insertNewCustomer();
@@ -349,7 +387,10 @@ private void getPaymentID() {
     }
     
     
-       
+       /**
+        * To get the customer ID from the customer table.
+        * @return The customer ID.
+        */
 	private int getNewCustomerID() {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -378,8 +419,12 @@ private void getPaymentID() {
 	}
 	
 	
-	
-     public boolean inserOrderDetails(List<Product> products) {
+	 /**
+	  * To insert the details of the current order into the order_details table.
+	  * @param products A list of the products in that order.
+	  * @return True if the details are inserted successfully, false otherwise.
+	  */
+     public boolean insertOrderDetails(List<Product> products) {
 	 boolean result = false;
 	  getNewOrderID();
 	  
@@ -417,7 +462,9 @@ private void getPaymentID() {
 	  }
 	 return result;
  }
-
+    /**
+     * To get the ID of the newly placed order from the orders table. 
+     */
 	private void getNewOrderID() {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -444,7 +491,10 @@ private void getPaymentID() {
 		}	
 }
 
-
+    /**
+     * To get today's date.
+     * @return today's date.
+     */
 	private String getDate() {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
 		   LocalDateTime date = LocalDateTime.now(); 

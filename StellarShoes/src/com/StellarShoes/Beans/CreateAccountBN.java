@@ -12,6 +12,13 @@ import com.StellarShoes.utils.LoginValidator;
 import com.StellarShoes.utils.Messages;
 import com.StellarShoes.utils.PasswordValidator;
 
+/**
+ * A managed bean class to carry out the create account functionality.
+ * @author Mutasem Alhariri 
+ *         07/04/2020
+ *         Version 1.0
+ *
+ */
 public class CreateAccountBN implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
@@ -45,7 +52,10 @@ private Employee employee = new Employee();
 public CreateAccountBN() {}
 
 
-
+/**
+ * To insert a new customer into the customers table.
+ * @return createAccount page with error messages if invalid data was entered, login page with success message otherwise.
+ */
 public String registerCustomer() {
 
 	if(PasswordValidator.validate(customer.getPassword()) == false) {
@@ -104,7 +114,10 @@ public String registerCustomer() {
 	return "createAccount";
 	}
 
-
+/**
+ * To insert a new admin into the admin table.
+ * @return createAdminAccount page and error messages if invalid data was entered, login page and success message otherwise. 
+ */
 public String registerAdmin() {
 
 	if(PasswordValidator.validate(employee.getPassword()) == false) {
@@ -163,7 +176,10 @@ public String registerAdmin() {
 	return "createAdminAccount";
 	}
 
-
+/**
+ * To insert a new address for the new customer.
+ * @return True if the new address is successfully created, false otherwise.
+ */
 public boolean insertAddress() {
 	setCustomerID();
 	
@@ -198,7 +214,9 @@ public boolean insertAddress() {
 	return false;
 }
 
-
+/**
+ * To get the new customer's ID from the customers table. will be called after the new customer is inserted.
+ */
 private void setCustomerID() {
 	Connection conn = null;
 	PreparedStatement pstmt = null;
@@ -225,6 +243,10 @@ private void setCustomerID() {
 		DatabaseConnector.close(conn);
 	}	
 }
+
+/**
+ * To delete the customer from the customers table. will be called inserting the address fails.
+ */
 private void deleteCustomer() {
 	Connection conn = null;
 	PreparedStatement pstmt = null;

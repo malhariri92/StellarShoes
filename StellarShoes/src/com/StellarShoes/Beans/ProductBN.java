@@ -10,6 +10,13 @@ import java.util.List;
 import com.StellarShoes.*;
 import com.StellarShoes.utils.DatabaseConnector;
 
+/**
+ * A managed bean class to display all products.
+ * @author Mutasem Alhariri 
+ *         07/04/2020
+ *         Version 1.0
+ *
+ */
 public class ProductBN implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -27,6 +34,10 @@ public class ProductBN implements Serializable {
 		
 	}
 
+	/**
+	 * To get a list of all products from the products table.
+	 * @return a list of products.
+	 */
 	public List<Product> loadProducts() {
 		Connection conn = null;
 		Statement stmt = null;

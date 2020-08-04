@@ -15,6 +15,13 @@ import com.StellarShoes.utils.DatabaseConnector;
 import com.StellarShoes.utils.Messages;
 import com.StellarShoes.utils.PasswordValidator;
 
+/**
+ * To carry out account management tasks for logged in customers.
+ * @author Mutasem Alhariri 
+ *         07/04/2020
+ *         Version 1.0
+ *
+ */
 public class ManageAccount implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -53,14 +60,19 @@ public class ManageAccount implements Serializable{
 	
 	private boolean passwordChanged = false;
 	
-	
+	/**
+	 * To get the information of the logged in customer.
+	 */
 	public ManageAccount() {
 		
 		customer = AccountManager.sessionCustomer;
 	}
 
 
-	
+	/**
+	 * To get a list of active orders for the current logged in customer.
+	 * @return A list of the active orders.
+	 */
 	public List<Order> myOrders(){
 		orders.clear();
 		List<Product> products = new ArrayList<>();
@@ -97,7 +109,9 @@ public class ManageAccount implements Serializable{
 	}
 	
 	
-
+    /**
+     * To retrieve orders details from the order_details table for each order in the active orders list.
+     */
 	private void getDetalis() {
 		for(Order o : orders) {
 			
@@ -133,7 +147,13 @@ public class ManageAccount implements Serializable{
 		}
 		
 	}
-
+    
+	/**
+	 * To change the status of an order from active to canceled.
+	 * @param orderID the order Id for which the status will be changed.
+	 * @return the manageAccount page with success message if the status was changed,
+	 *  the manageAccount page with error message otherwise.
+	 */
     public String cancelOrder(int orderID) {
     	Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -151,7 +171,7 @@ public class ManageAccount implements Serializable{
 			
 			FacesContext context = FacesContext.getCurrentInstance();
 			   context.getExternalContext().getFlash().setKeepMessages(true);
-			return "success?faces-redirect=true";
+			return "manageAccount?faces-redirect=true";
 			}
 			
            pstmt.close();   
@@ -165,9 +185,14 @@ public class ManageAccount implements Serializable{
 		
 		FacesContext context = FacesContext.getCurrentInstance();
 		   context.getExternalContext().getFlash().setKeepMessages(true);
-		return "success?faces-redirect=true";
+		return "manageAccount?faces-redirect=true";
     }
 
+    /**
+     * To change the address of the current logged in customer.
+     * @return the manageAccount page with success message if the address was changed,
+	 *  the manageAccount page with error message otherwise.
+     */
     public String changeAddress() {
     	System.out.println(newAddress.getAddress1() +" " +newAddress.getAddress2() +" "+newAddress.getCity()
     	+" "+newAddress.getState()+" "+newAddress.getZip());
@@ -206,9 +231,14 @@ public class ManageAccount implements Serializable{
 		
 		FacesContext context = FacesContext.getCurrentInstance();
 		   context.getExternalContext().getFlash().setKeepMessages(true);
-		return "success?faces-redirect=true";
+		return "manageAccount?faces-redirect=true";
     }
     
+    /**
+     * To change the password of the current logged in customer.
+     * @return the manageAccount page with success message if the password was changed,
+	 *  the manageAccount page with error message otherwise.
+     */
     public String changePassword() {
     	
     	if(!oldPassword.equals(customer.getPassword())){
@@ -254,7 +284,7 @@ public class ManageAccount implements Serializable{
 		}
 		
 		
-		return "success";
+		return "manageAccount";
     }
     
 	public Customer getCustomer() {
